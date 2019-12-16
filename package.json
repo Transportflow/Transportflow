@@ -1,0 +1,53 @@
+{
+  "name": "public-transport-information",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
+    "@steveeeie/react-page-transition": "^1.0.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "autoprefixer": "^9.7.3",
+    "dvbjs": "^6.0.0",
+    "moment": "^2.24.0",
+    "moment-duration-format": "^2.3.2",
+    "postcss-cli": "^6.1.3",
+    "postcss-selector-parser": "^6.0.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-geolocated": "^3.0.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "^2.1.8",
+    "react-spinners": "^0.6.1",
+    "react-transition-group": "^4.3.0",
+    "styled-components": "^4.4.1",
+    "tailwindcss": "^1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build-css": "postcss css/tailwind.css -o src/css/tailwind.css",
+    "watch-css": "postcss css/tailwind.css -o src/css/tailwind.css --watch"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {}
+}
