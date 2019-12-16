@@ -1,6 +1,6 @@
 {
-  "name": "Public Transport Monitor",
-  "short_name": "PTM",
+  "name": "Transportflow",
+  "short_name": "Transportflow",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
