@@ -1,6 +1,6 @@
 # 🚟 Public Transport Information
 
-Webpage to view departures or plan a route in germany.
+Web page to view departures or plan a route in germany. [Live Demo 🛰](https://transportflow.online/)
 
 ### ⛸ Getting started
 
@@ -9,7 +9,7 @@ These instructions will get you a copy of the project up and running on your loc
 #### 📦 Prerequisites
 
 - [Node.js](https://nodejs.org/)
-- [npm](https://www.npmjs.com/get-npm)/[yarn](https://yarnpkg.com/lang/en/)
+- [yarn](https://yarnpkg.com/lang/en/)
 
 #### 💈 Installing
 
@@ -17,9 +17,9 @@ How to start the site on your system:
 
 - clone the repo
 - cd into it
-- run `$ [npm|yarn] install` to install dependencies
-- then run `$ [npm|yarn] run build-css` to build the tailwind.css file
-- finally run `$ [npm|yarn] run dev` to start the development server
+- run `$ yarn` to install dependencies
+- then run `$ yarn run build-css` to build the tailwind.css file
+- finally run `$ yarn start` to start the development server
 - visit [localhost:3000](http://localhost:3000/) in your browser
 - enjoy 🎉
 
@@ -27,20 +27,13 @@ Since we use next.js for the routing stuff, the page automatically reloads when 
 
 ### 🌍 Deployment
 
-The demo page is hosted on a kubernetes cluster. You can find the deployment file as `publicTransportInformation.yaml` in this repository.
+The demo page is hosted on a kubernetes cluster. You can find the deployment file as `transportflow.yaml` in this repository.
 
 ### 🔨 Build with
 
 - [dvbjs](https://github.com/kiliankoe/dvbjs)
-- [Next.js](https://nextjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
-
-### 🦜 Contributing
-
-Please read [CONTRIBUTING.md](https://github.com/Adwirawien/PublicTransportInformation/CONTRIBUTING.md)(coming soon 🙂) for details on our code of conduct, and the process for submitting pull requests to us.
 
 ### 🖋 Authors
 
 - **Adrian Böhme** - *Creator/Maintainer* - [Adwirawien](https://github.com/Adwirawien)
-
-See also the list of [contributors](https://github.com/Adwirawien/PublicTransportInformation/contributors) who participated in this project.
