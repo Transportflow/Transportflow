@@ -6,8 +6,9 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Suggestions from "../../components/Suggestions";
 import * as dvb from "dvbjs";
 import {BarLoader} from "react-spinners";
-import ImportantLine from "../../components/ImportantLine";
 import {faChevronLeft} from "@fortawesome/free-solid-svg-icons";
+import DarkmodeToggle from "../../components/DarkmodeToggle";
+import ImpressPrivacy from "../../components/ImpressPrivacy";
 
 class Index extends React.Component {
     constructor(props) {
@@ -41,7 +42,7 @@ class Index extends React.Component {
     render() {
         return (
             <div className="p-6 pt-12 sm:p-20 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
-                <ImportantLine/>
+                <DarkmodeToggle/>
                 <h1 className="font-semibold font-inter text-2xl text-black dark\:text-gray-200">
                     Transportflow Monitor
                 </h1>
@@ -81,7 +82,9 @@ class Index extends React.Component {
                             maxResults={30}
                         />
                     </div>
+                    <ImpressPrivacy />
                 </div>
+
             </div>
         );
     }

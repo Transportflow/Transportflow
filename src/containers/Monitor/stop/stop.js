@@ -10,7 +10,8 @@ import {
     faRedo
 } from "@fortawesome/free-solid-svg-icons";
 import Departure from "../../../components/Departure"
-import ImportantLine from "../../../components/ImportantLine";
+import DarkmodeToggle from "../../../components/DarkmodeToggle";
+import ImpressPrivacy from "../../../components/ImpressPrivacy";
 
 class Stop extends React.Component {
     constructor(props) {
@@ -153,7 +154,7 @@ class Stop extends React.Component {
                     }
                     style={this.props.embed ? {paddingTop: "0.50rem"} : {}}
                 >
-                    <ImportantLine />
+                    <DarkmodeToggle/>
                     <h1 className="trans font-semibold font-inter text-2xl text-black truncate text-black dark\:text-gray-200">
                         {this.state.stop.length > 0
                             ? this.state.stop[0].name + ", " + this.state.stop[0].city
@@ -256,6 +257,7 @@ class Stop extends React.Component {
                                 );
                             }
                         })}
+                        <ImpressPrivacy />
                     </div>
                 </div>
             </div>
