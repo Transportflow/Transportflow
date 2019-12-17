@@ -1,6 +1,4 @@
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
-
 var moment = require("moment");
 require("moment-duration-format");
 
@@ -30,7 +28,9 @@ class Departure extends Component {
             }
                  onClick={this.openDeparture.bind(this)}
                  style={this.props.embed ? {minWidth: "32rem"} : {}}>
-                <div className={(this.state.open ? "opacity-100 pb-1" : "opacity-0")+" overflow-hidden font-semibold text-sm tracking-wide uppercase text-center trans"} style={{transition: "all 0.25s ease-in-out", maxHeight: this.state.open ? "60px" : 0}}>
+                <div
+                    className={(this.state.open ? "opacity-100 pb-1" : "opacity-0") + " overflow-hidden font-semibold text-sm tracking-wide uppercase text-center trans"}
+                    style={{transition: "all 0.25s ease-in-out", maxHeight: this.state.open ? "60px" : 0}}>
                     <span>{this.props.departure.state === "Delayed" ? "+" + this.props.departure.delayTime + " min Verspätung" : "pünktlich"}{this.props.departure.platform ? " | " + this.props.departure.platform.type + " " + this.props.departure.platform.name : ""}</span>
                 </div>
                 <div className="flex flex-shrink justify-between rounded-lg">
@@ -56,13 +56,9 @@ class Departure extends Component {
                         </p>
                         <p className="text-lg font-normal truncate text-gray-800 dark\:text-gray-200">
                             {!this.props.embed ? (
-                                <Link
-                                    to={"/monitor/stop/" + this.props.departure.direction.replace("/", "%2F")}
-                                >
-                                <span className="hover:underline cursor-pointer">
+                                <span className="cursor-pointer">
                                   {this.props.departure.direction}
                                 </span>
-                                </Link>
                             ) : (
                                 <span>{this.props.departure.direction}</span>
                             )}
