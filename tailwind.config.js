@@ -13,7 +13,8 @@ module.exports = {
         backgroundColor: ["responsive", "hover", "focus", "dark", "dark-hover", "dark-focus"],
         cursor: ["responsive", "hover", "focus", "disabled"],
         textColor: ["responsive", "hover", "focus", "dark", "dark-hover", "dark-focus"],
-        placeholderColor: ["responsive", "hover", "focus", "dark", "dark-hover", "dark-focus"]
+        placeholderColor: ["responsive", "hover", "focus", "dark", "dark-hover", "dark-focus"],
+        borderColor: ["responsive", "hover", "focus", "dark", "dark-hover", "dark-focus"]
     },
     plugins: [
         function({ addVariant, e }) {

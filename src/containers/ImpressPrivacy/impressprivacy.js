@@ -1,12 +1,16 @@
 import React from "react"
 import DarkmodeToggle from "../../components/DarkmodeToggle";
+import BackButton from "../../components/BackButton";
 
 export default function Impress() {
 
 
     return (
         <div className="p-6 pt-12 bg-gray-400 dark\:text-gray-100 dark\:bg-gray-800 min-h-screen h-auto trans">
-            <DarkmodeToggle/>
+            <div className="flex mb-5">
+                <BackButton to="/" large={true}/>
+                <DarkmodeToggle large={true}/>
+            </div>
             <h1 className="font-semibold text-2xl">Impressum</h1>
 
             <h2 className="font-semibold text-xl">Angaben gem&auml;&szlig; &sect; 5 TMG</h2>

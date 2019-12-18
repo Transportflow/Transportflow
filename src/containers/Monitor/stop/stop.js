@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import * as dvb from "dvbjs";
 import "../../../css/tailwind.css";
 import {BarLoader} from "react-spinners";
@@ -12,6 +11,7 @@ import {
 import Departure from "../../../components/Departure"
 import DarkmodeToggle from "../../../components/DarkmodeToggle";
 import ImpressPrivacy from "../../../components/ImpressPrivacy";
+import BackButton from "../../../components/BackButton";
 
 class Stop extends React.Component {
     constructor(props) {
@@ -154,7 +154,25 @@ class Stop extends React.Component {
                     }
                     style={this.props.embed ? {paddingTop: "0.50rem"} : {}}
                 >
-                    <DarkmodeToggle/>
+                    <div className="flex mb-3">
+                        {!this.props.embed ? (
+                            <BackButton to="/monitor" large={true}/>
+                        ) : (
+                            <button
+                                onClick={this.props.closeEmbed}
+                                className="text-gray-900 bg-gray-300 sm:hover:bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 px-4 py-3 rounded-lg mr-3 sm:hover:shadow-lg focus:outline-none trans"
+                            >
+                                <FontAwesomeIcon icon={faTimes} />
+                            </button>
+                        )}
+                        <button
+                            onClick={this.reloadDepartures}
+                            className="text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 sm:hover:bg-gray-300 px-4 py-3 rounded-lg mr-3 sm:hover:shadow-lg focus:outline-none trans"
+                        >
+                            <FontAwesomeIcon icon={faRedo} />
+                        </button>
+                        <DarkmodeToggle large={true}/>
+                    </div>
                     <h1 className="trans font-semibold font-inter text-2xl text-black truncate text-black dark\:text-gray-200">
                         {this.state.stop.length > 0
                             ? this.state.stop[0].name + ", " + this.state.stop[0].city
@@ -194,30 +212,10 @@ class Stop extends React.Component {
                     )}
 
                     <div
-                        className="flex mt-5 mb-3 overflow-scroll overflow-y-hidden scrolling-touch sm:overflow-visible custom-scrollbar w-auto rounded-lg">
-                        {!this.props.embed ? (
-                            <Link to="/monitor">
-                                <button
-                                    className="text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 sm:hover:bg-gray-300 px-5 py-3 rounded-lg mr-3 sm:hover:shadow-lg focus:outline-none trans">
-                                    <FontAwesomeIcon icon={faChevronLeft}/>
-                                </button>
-                            </Link>
-                        ) : (
-                            <button
-                                onClick={this.props.closeEmbed}
-                                className="text-gray-900 bg-gray-300 sm:hover:bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 px-4 py-3 rounded-lg mr-3 sm:hover:shadow-lg focus:outline-none trans"
-                            >
-                                <FontAwesomeIcon icon={faTimes} />
-                            </button>
-                        )}
+                        className="flex mt-4 mb-3 overflow-scroll overflow-y-hidden scrolling-touch sm:overflow-visible custom-scrollbar w-auto rounded-lg">
+
                         {this.state.err === "" ? (
                             <>
-                                <button
-                                    onClick={this.reloadDepartures}
-                                    className="text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 sm:hover:bg-gray-300 px-4 py-3 rounded-lg mr-3 sm:hover:shadow-lg focus:outline-none trans"
-                                >
-                                    <FontAwesomeIcon icon={faRedo} />
-                                </button>
                                 {this.state.allModes.length > 1 ? (
                                     this.state.allModes.map((mode, index) => {
                                         return (

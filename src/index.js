@@ -9,6 +9,7 @@ import Impress from "./containers/ImpressPrivacy/impressprivacy";
 import Monitor from "./containers/Monitor/monitor";
 import NotFound from "./containers/NotFound/notfound";
 import Stop from "./containers/Monitor/stop/stop";
+import Settings from "./containers/Settings/settings";
 
 var previousPathname = "";
 
@@ -27,6 +28,7 @@ const routing = (
                         transitionKey={location.pathname}>
                         <Switch location={location}>
                             <Route exact path="/" component={App} />
+                            <Route exact path="/settings" component={Settings} />
                             <Route exact path="/impressprivacy" component={Impress} />
                             <Route exact path="/monitor" component={Monitor} />
                             <Route path="/monitor/stop/:id" component={Stop} />

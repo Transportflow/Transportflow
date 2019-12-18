@@ -1,5 +1,5 @@
 {
-  "name": "public-transport-information",
+  "name": "transportflow",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
