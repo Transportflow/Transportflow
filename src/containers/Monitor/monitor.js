@@ -7,6 +7,7 @@ import {BarLoader} from "react-spinners";
 import DarkmodeToggle from "../../components/DarkmodeToggle";
 import ImpressPrivacy from "../../components/ImpressPrivacy";
 import BackButton from "../../components/BackButton";
+import NetworkSwitch from "../../components/NetworkSwitch";
 
 class Index extends React.Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class Index extends React.Component {
         if (stop.length < 1) {
             return;
         }
-        this.props.history.push("/monitor/stop/" + stop[0].id);
+        this.props.history.push("/monitor/"+(localStorage.getItem("network")||"db")+"/stop/" + stop[0].id);
     };
 
     handleChange = event => {
@@ -62,7 +63,8 @@ class Index extends React.Component {
                     </div>
                 )}
                 <div className="w-full sm:w-auto sm:max-w-xs">
-                    <div className="flex mb-3">
+                    <div className={localStorage.getItem("showNetworkSwitch") === "true" ? "flex w-full justify-center" : "hidden"}><NetworkSwitch/></div>
+                    <div className="flex mb-3 mt-3">
                         <input
                             placeholder="haltestelle"
                             onChange={this.handleChange}

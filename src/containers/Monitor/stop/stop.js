@@ -31,7 +31,7 @@ class Stop extends React.Component {
         };
     }
 
-    async findDepartures() {
+    async findDeparturesForDVB() {
         this.setState({loading: true});
         var stop = await dvb.findStop(this.state.stopName || "");
         this.setState({
@@ -98,7 +98,7 @@ class Stop extends React.Component {
 
     reloadDepartures = event => {
         event.preventDefault();
-        this.findDepartures();
+        this.findDeparturesForCurrentNetwork();
     };
 
     componentWillReceiveProps = async nextProps => {
@@ -110,7 +110,7 @@ class Stop extends React.Component {
                 modes: [],
                 allModes: []
             });
-            this.findDepartures();
+            this.findDeparturesForCurrentNetwork();
         } else {
             this.setState({
                 stopName: "",
@@ -126,8 +126,17 @@ class Stop extends React.Component {
         }
     };
 
+    async findDeparturesForCurrentNetwork() {
+        if (this.props.match.params.network === "dvb") {
+            this.findDeparturesForDVB();
+        } else if (this.props.match.params.network === "bvg") {
+
+        } else {
+            this.setState({err: "Verkehrsverbund nicht gefunden (" + this.props.match.params.network.toUpperCase() + ")", loading: false})
+        }
+    }
+
     componentDidMount = async () => {
-        console.log(this.props.histroy)
         if (!this.props.embed) {
             await this.setState({
                 stopName: decodeURI(
@@ -135,7 +144,7 @@ class Stop extends React.Component {
                         .replace("%2F", "/")
                 )
             });
-            this.findDepartures();
+            this.findDeparturesForCurrentNetwork();
         }
     };
 
@@ -176,7 +185,9 @@ class Stop extends React.Component {
                     <h1 className="trans font-semibold font-inter text-2xl text-black truncate text-black dark\:text-gray-200">
                         {this.state.stop.length > 0
                             ? this.state.stop[0].name + ", " + this.state.stop[0].city
-                            : "Loading"}
+                            : this.state.err !== "" ?
+                                "Fehler"
+                            : "Laden..."}
                     </h1>
                     {this.state.err === "" && !this.state.loading ? (
                         <a

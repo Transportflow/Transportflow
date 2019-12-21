@@ -31,7 +31,7 @@ const routing = (
                             <Route exact path="/settings" component={Settings} />
                             <Route exact path="/impressprivacy" component={Impress} />
                             <Route exact path="/monitor" component={Monitor} />
-                            <Route path="/monitor/stop/:id" component={Stop} />
+                            <Route path="/monitor/:network/stop/:id" component={Stop} />
                             <Route component={NotFound} />
                         </Switch>
                     </PageTransition>

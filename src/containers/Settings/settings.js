@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import * as serviceWorker from "../../serviceWorker";
 import DarkmodeToggle from "../../components/DarkmodeToggle";
 import BackButton from "../../components/BackButton";
+import NetworkSwitch from "../../components/NetworkSwitch";
+import {faCheck} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import Checkmark from "../../components/Checkmark";
 
 class Settings extends Component {
     unregisterWorker() {
@@ -17,15 +21,20 @@ class Settings extends Component {
                     <h2 className="dark\:text-gray-200 font-semibold font-inter text-xl">Region</h2>
                     <p className="font-inter text-gray-700 dark\:text-gray-400 mb-2">Wählen Sie Ihren Verkehrsverbund
                         aus.</p>
-                    <div className="flex w-full justify-start">
-                        <button className="rounded-l-lg w-24 bg-gray-300 dark\:bg-gray-700 dark\:text-white focus:outline-none"><div className="m-1 py-1 rounded bg-gray-100 dark\:bg-gray-600">VVO</div></button>
-                        <button className="rounded-r-lg w-24 bg-gray-300 dark\:bg-gray-700 dark\:text-white focus:outline-none"><div className="m-1 py-1 rounded">BVG</div></button>
-                    </div>
+                    <div className="flex w-full justify-start"><NetworkSwitch/></div>
+                    <Checkmark
+                        val={localStorage.getItem("showNetworkSwitch") !== null ? localStorage.getItem("showNetworkSwitch") : false}
+                        description="Jedes Mal fragen?"
+                        className="mt-3"
+                        itemName="showNetworkSwitch"
+                    />
+
 
                     <hr className="border-2 border-gray-500 rounded-lg dark\:border-gray-700 my-6"/>
 
                     <h2 className="dark\:text-gray-200 font-semibold font-inter text-xl">Erscheinungsbild</h2>
-                    <p className="font-inter text-gray-700 dark\:text-gray-400 mb-2">Wählen Sie Ihr präferiertes Design.</p>
+                    <p className="font-inter text-gray-700 dark\:text-gray-400 mb-2">Wählen Sie Ihr präferiertes
+                        Design.</p>
                     <DarkmodeToggle button={true}/>
                 </div>
             </div>

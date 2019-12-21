@@ -41,6 +41,7 @@ class Suggestions extends Component {
 
             stops.stops.forEach(stop => {
                 locationSuggestions.push(stop);
+                console.log(stop)
             });
 
             this.setState({ suggestions: locationSuggestions });
