@@ -1,6 +1,6 @@
 # 🦜 Transportflow
 
-Web page to view departures or plan a route in germany. [Live Demo 🛰](https://transportflow.online/)
+Web page to view departures (DVB & BVG) or plan a route in germany (DB API). [Live Demo 🛰](https://transportflow.online/)
 
 ### ⛸ Getting started
 
@@ -23,11 +23,11 @@ How to start the site on your system:
 - visit [localhost:3000](http://localhost:3000/) in your browser
 - enjoy 🎉
 
-Since we use next.js for the routing stuff, the page automatically reloads when you make changes during development.
+Since we're using React, the page automatically reloads when you make changes during development.
 
 ### 🌍 Deployment
 
-The demo page is hosted on a kubernetes cluster. You can find the deployment file as `transportflow.yaml` in this repository.
+You can build a docker container with the Dockerfile in this repo.
 
 ### 🔨 Build with
 
