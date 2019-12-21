@@ -31,7 +31,7 @@ The demo page is hosted on a kubernetes cluster. You can find the deployment fil
 
 ### 🔨 Build with
 
-- [dvbjs](https://github.com/kiliankoe/dvbjs)
+- [dvbjs](https://github.com/kiliankoe/dvbjs) & [hafas-client](https://github.com/public-transport/hafas-client)
 - [Tailwind CSS](https://tailwindcss.com/)
 
 ### 🖋 Authors
