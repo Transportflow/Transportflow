@@ -2,12 +2,13 @@ import React from "react";
 import {geolocated} from "react-geolocated";
 import "../../css/tailwind.css"
 import Suggestions from "../../components/Suggestions";
-import * as dvb from "dvbjs";
 import {BarLoader} from "react-spinners";
 import DarkmodeToggle from "../../components/DarkmodeToggle";
 import ImpressPrivacy from "../../components/ImpressPrivacy";
 import BackButton from "../../components/BackButton";
 import NetworkSwitch from "../../components/NetworkSwitch";
+
+var counter = 0;
 
 class Index extends React.Component {
     constructor(props) {
@@ -15,21 +16,20 @@ class Index extends React.Component {
         this.state = {
             suggestions: [],
             input: "",
-            loading: true
+            loading: true,
+            network: localStorage.getItem("network"),
+            showNetworkSwitch: localStorage.getItem("showNetworkSwitch")
         };
     }
 
     componentDidMount = async () => {
+        console.log(this.state.showNetworkSwitch)
         this.setState({loading: false});
     };
 
     redirect = async event => {
         this.setState({loading: true});
-        var stop = await dvb.findStop(event.target.id);
-        if (stop.length < 1) {
-            return;
-        }
-        this.props.history.push("/monitor/"+(localStorage.getItem("network")||"db")+"/stop/" + stop[0].id);
+        this.props.history.push("/monitor/"+(localStorage.getItem("network")||"db")+"/stop/" + event.target.id);
     };
 
     handleChange = event => {
@@ -37,6 +37,10 @@ class Index extends React.Component {
             input: event.target.value
         });
     };
+
+    networkChanged() {
+        this.setState({network: localStorage.getItem("network")})
+    }
 
     render() {
         return (
@@ -51,7 +55,7 @@ class Index extends React.Component {
                 {!this.state.loading ? (
                     <p className="font-inter text-gray-700 dark\:text-gray-400 mb-4">Echtzeit Fahrplanauskunft</p>
                 ) : (
-                    <div className="rounded-lg overflow-hidden max-w-xs pb-6 pt-2 dark\:text-gray-400">
+                    <div className={"rounded-lg overflow-hidden max-w-xs dark\\:text-gray-400 " + this.state.showNetworkSwitch == "true" ? "mb-6 pt-2" : "pb-4 pt-3"}>
                         <BarLoader
                             heightUnit={"px"}
                             height={4}
@@ -63,7 +67,7 @@ class Index extends React.Component {
                     </div>
                 )}
                 <div className="w-full sm:w-auto sm:max-w-xs">
-                    <div className={localStorage.getItem("showNetworkSwitch") === "true" ? "flex w-full justify-center" : "hidden"}><NetworkSwitch/></div>
+                    <div className={localStorage.getItem("showNetworkSwitch") === "true" ? "flex w-full justify-center" : "hidden"}><NetworkSwitch onChange={this.networkChanged.bind(this)}/></div>
                     <div className="flex mb-3 mt-3">
                         <input
                             placeholder="haltestelle"
@@ -77,6 +81,8 @@ class Index extends React.Component {
                             suggestionClick={this.redirect}
                             stopsOnly={true}
                             maxResults={30}
+                            network={this.state.network}
+                            setState={this.setState.bind(this)}
                         />
                     </div>
                     <ImpressPrivacy/>

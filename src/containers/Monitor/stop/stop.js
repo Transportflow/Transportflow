@@ -12,6 +12,9 @@ import Departure from "../../../components/Departure"
 import DarkmodeToggle from "../../../components/DarkmodeToggle";
 import ImpressPrivacy from "../../../components/ImpressPrivacy";
 import BackButton from "../../../components/BackButton";
+import {bvgProfile} from '../../../components/profiles/bvg';
+
+const createClient = require('hafas-client');
 
 class Stop extends React.Component {
     constructor(props) {
@@ -34,6 +37,10 @@ class Stop extends React.Component {
     async findDeparturesForDVB() {
         this.setState({loading: true});
         var stop = await dvb.findStop(this.state.stopName || "");
+        if (stop.length === 0) {
+            this.setState({err: "Fehler: Haltestelle nicht gefunden", loading: false});
+            return;
+        }
         this.setState({
             latitude: stop[0].coords[1],
             longitude: stop[0].coords[0],
@@ -46,25 +53,52 @@ class Stop extends React.Component {
             const mot = [];
             query.forEach(departure => {
                 var toPush = "";
-                if (
-                    departure.mode.title.includes("undefined") &&
-                    departure.line.includes("U")
-                ) {
-                    toPush = "U-Bahn";
-                } else if (!departure.mode.title.includes("undefined")) {
+                if (!departure.mode.title.includes("undefined")) {
                     toPush = departure.mode.title;
-                }
-                if (
-                    toPush !== "" &&
-                    mot.indexOf(toPush) === -1 &&
-                    departure.arrivalTimeRelative > -1
-                ) {
-                    mot.push(toPush);
+                    if (
+                        toPush !== "" &&
+                        mot.indexOf(toPush) === -1 &&
+                        departure.arrivalTimeRelative > -1
+                    ) {
+                        mot.push(toPush);
+                    }
                 }
             });
             this.setState({
                 allModes: Object.assign([], mot),
                 departures: query,
+                loading: false
+            });
+        }
+        this.forceUpdate();
+    }
+
+    async findDeparturesForBVG() {
+        this.setState({loading: true});
+        const client = createClient(bvgProfile, "suggestionClient");
+        var stop = await client.stop(this.state.stopName || "").catch((err) => {
+            this.setState({err: err.name + ": " + err.message, loading: false});
+        });
+        if (stop === undefined) {
+            return
+        }
+        this.setState({
+            latitude: stop.location.latitude,
+            longitude: stop.location.longitude,
+            stop: stop
+        });
+
+        var monitor = await client.departures(this.state.stopName || "").catch((err) => {
+            this.setState({err: err.name + ": " + err.message, loading: false});
+        });
+        if (monitor.length === 0) {
+            this.setState({err: "Fehler: Haltestelle nicht gefunden", loading: false});
+            return;
+        }
+        if (this.state.err === "") {
+            this.setState({
+                allModes: [],
+                departures: monitor,
                 loading: false
             });
         }
@@ -130,9 +164,12 @@ class Stop extends React.Component {
         if (this.props.match.params.network === "dvb") {
             this.findDeparturesForDVB();
         } else if (this.props.match.params.network === "bvg") {
-
+            this.findDeparturesForBVG();
         } else {
-            this.setState({err: "Verkehrsverbund nicht gefunden (" + this.props.match.params.network.toUpperCase() + ")", loading: false})
+            this.setState({
+                err: "Verkehrsverbund nicht gefunden (" + this.props.match.params.network.toUpperCase() + ")",
+                loading: false
+            })
         }
     }
 
@@ -171,23 +208,26 @@ class Stop extends React.Component {
                                 onClick={this.props.closeEmbed}
                                 className="text-gray-900 bg-gray-300 sm:hover:bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 px-4 py-3 rounded-lg mr-3 sm:hover:shadow-lg focus:outline-none trans"
                             >
-                                <FontAwesomeIcon icon={faTimes} />
+                                <FontAwesomeIcon icon={faTimes}/>
                             </button>
                         )}
                         <button
                             onClick={this.reloadDepartures}
                             className="text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 sm:hover:bg-gray-300 px-4 py-3 rounded-lg mr-3 sm:hover:shadow-lg focus:outline-none trans"
                         >
-                            <FontAwesomeIcon icon={faRedo} />
+                            <FontAwesomeIcon icon={faRedo}/>
                         </button>
                         <DarkmodeToggle large={true}/>
                     </div>
                     <h1 className="trans font-semibold font-inter text-2xl text-black truncate text-black dark\:text-gray-200">
-                        {this.state.stop.length > 0
-                            ? this.state.stop[0].name + ", " + this.state.stop[0].city
-                            : this.state.err !== "" ?
-                                "Fehler"
-                            : "Laden..."}
+                        {this.state.loading ?
+                                "Laden..."
+                            : this.props.match.params.network === "bvg" ?
+                                this.state.stop.name
+                            : this.state.stop.length > 0 && this.props.match.params.network === "dvb" ?
+                                this.state.stop[0].name + ", " + this.state.stop[0].city
+                            :
+                                "Fehler"}
                     </h1>
                     {this.state.err === "" && !this.state.loading ? (
                         <a
@@ -266,7 +306,7 @@ class Stop extends React.Component {
                                 );
                             }
                         })}
-                        <ImpressPrivacy />
+                        <ImpressPrivacy/>
                     </div>
                 </div>
             </div>

@@ -14,6 +14,7 @@ class NetworkSwitch extends Component {
     setActiveNetwork(event) {
         localStorage.setItem("network", event.target.id.toLowerCase());
         this.setState({network: event.target.id.toLowerCase()});
+        this.props.onChange()
     }
 
     render() {

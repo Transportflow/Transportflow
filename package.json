@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^7.1.2",
     "autoprefixer": "^9.7.3",
     "dvbjs": "^6.0.0",
+    "hafas-client": "^4.6.2",
     "moment": "^2.24.0",
     "moment-duration-format": "^2.3.2",
     "postcss-cli": "^6.1.3",

@@ -32,19 +32,19 @@ class Suggestion extends Component {
                                     : "") +
                         "py-3 sm:py-2 px-3 trans w-full cursor-pointer outline-none focus:outline-none flex justify-between"
                     }
-                    id={this.props.value.name + ", " + this.props.value.city}
+                    id={this.props.value.id}
                 >
           <span
               className="truncate text-left"
-              id={this.props.value.name + ", " + this.props.value.city}
+              id={this.props.value.id}
           >
-            {this.props.value.name + ", " + this.props.value.city}
+            {this.props.value.name + ( this.props.value.city !== undefined ? ", " + this.props.value.city : "")}
           </span>
                     <div>
                         <FontAwesomeIcon
                             className="ml-2 cursor-default"
                             icon={
-                                this.props.value.type === "Stop"
+                                this.props.value.type === "stop" || this.props.value.type === "Stop"
                                     ? faHospitalSymbol
                                     : this.props.value.type === "Address"
                                     ? faHome

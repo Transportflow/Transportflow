@@ -37,7 +37,7 @@ class Checkmark extends Component {
         return (
             <button onClick={this.toggleVal.bind(this)} className={"flex text-gray-700 dark\\:text-gray-400 focus:outline-none "+this.props.className}>
                 <div className="w-6 h-6 rounded-full bg-gray-300 dark\:bg-gray-700 mr-2">
-                    <FontAwesomeIcon className={"trans-faster " + (this.state.val === "true" ? "opacity-100": "opacity-0")} icon={faCheck}/>
+                    <FontAwesomeIcon className={"trans-fast " + (this.state.val === "true" ? "opacity-100": "opacity-0")} icon={faCheck}/>
                 </div>{" "}
                 {this.props.description}
             </button>

@@ -24,7 +24,7 @@ class App extends React.Component {
                 <div className="flex justify-between mb-5 w-full sm:w-auto sm:max-w-xs">
                     <div>
                         <h1 className="dark\:text-gray-200 font-bold font-inter text-2xl text-black">🦜 Transportflow</h1>
-                        <p className="font-inter text-gray-700 dark\:text-gray-400">Kein Auto, kein Problem. 🚀</p>
+                        <p className="font-inter text-gray-700 dark\:text-gray-400">Preview Version. 🚀</p>
                     </div>
                     <div className="my-auto">
                         <DarkmodeToggle large={true}/>

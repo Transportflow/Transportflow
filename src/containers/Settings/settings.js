@@ -21,7 +21,7 @@ class Settings extends Component {
                     <h2 className="dark\:text-gray-200 font-semibold font-inter text-xl">Region</h2>
                     <p className="font-inter text-gray-700 dark\:text-gray-400 mb-2">Wählen Sie Ihren Verkehrsverbund
                         aus.</p>
-                    <div className="flex w-full justify-start"><NetworkSwitch/></div>
+                    <div className="flex w-full justify-start"><NetworkSwitch onChange={() => {}}/></div>
                     <Checkmark
                         val={localStorage.getItem("showNetworkSwitch") !== null ? localStorage.getItem("showNetworkSwitch") : false}
                         description="Jedes Mal fragen?"
