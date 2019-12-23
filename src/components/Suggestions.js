@@ -2,8 +2,7 @@ import React, {Component} from "react";
 import Suggestion from "./Suggestion";
 import * as dvb from "dvbjs";
 import {geolocated} from "react-geolocated";
-import {bvgProfile} from './profiles/bvg';
-const createClient = require('hafas-client');
+const axios = require('axios').default;
 
 class Suggestions extends Component {
     constructor(props) {
@@ -40,12 +39,8 @@ class Suggestions extends Component {
 
             this.props.setState({loading: true});
             if (localStorage.getItem("network") === "bvg") {
-                const client = createClient(bvgProfile, "suggestionClient");
-                const stops = await client.nearby({
-                    type: 'location',
-                    longitude: longitude,
-                    latitude: latitude
-                });
+                const raw = await axios.get("https://api.transportflow.online/stops/nearby?latitude="+latitude+"&longitude="+longitude);
+                const stops = raw.data;
 
                 if (this.props.input.length === 0)
                     this.setState({suggestions: stops});
@@ -98,8 +93,8 @@ class Suggestions extends Component {
 
             this.setState({suggestions: suggestions});
         } else if (localStorage.getItem("network") === "bvg") {
-            const client = createClient(bvgProfile, "suggestionClient");
-            const stops = await client.locations(input, this.props.stopsOnly ? {addresses: false, poi: false} : {addresses: true, poi: true});
+            const raw = await axios.get("https://api.transportflow.online/locations?query=" + input + (this.props.stopsOnly ? "&addresses=false&poi=false" : "&addresses=true&poi=true"));
+            const stops = raw.data;
 
             if (stops.length === 1 && stops[0].id === null) {
                 this.setState({suggestions: []});

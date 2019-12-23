@@ -11,11 +11,10 @@ import {
 import DarkmodeToggle from "../../../components/DarkmodeToggle";
 import ImpressPrivacy from "../../../components/ImpressPrivacy";
 import BackButton from "../../../components/BackButton";
-import {bvgProfile} from '../../../components/profiles/bvg';
 import BVGDepartue from "../../../components/Departure/BVGDepartue";
 import DVBDeparture from "../../../components/Departure/DVBDeparture";
 
-const createClient = require('hafas-client');
+const axios = require("axios").default;
 
 class Stop extends React.Component {
     constructor(props) {
@@ -76,10 +75,13 @@ class Stop extends React.Component {
 
     async findDeparturesForBVG() {
         this.setState({loading: true});
-        const client = createClient(bvgProfile, "suggestionClient");
-        var stop = await client.stop(this.state.stopName || "").catch((err) => {
+        if (!this.state.stopName) {
+            return;
+        }
+        const raw1 = await axios.get("https://api.transportflow.online/stops/"+this.state.stopName).catch((err) => {
             this.setState({err: err.name + ": " + err.message, loading: false});
         });
+        const stop = raw1.data;
         if (stop === undefined) {
             return
         }
@@ -105,9 +107,10 @@ class Stop extends React.Component {
             stop: stop
         });
 
-        var monitor = await client.departures(this.state.stopName || "", {duration: 59}).catch((err) => {
+        const raw2 = await axios.get("https://api.transportflow.online/stops/"+this.state.stopName+"/departures?duration=59").catch((err) => {
             this.setState({err: err.name + ": " + err.message, loading: false});
         });
+        const monitor = raw2.data;
         if (monitor.length === 0) {
             this.setState({err: "Fehler: Keine Abfahrten gefunden", loading: false});
             return;
@@ -290,6 +293,7 @@ class Stop extends React.Component {
                                             <button
                                                 className="whitespace-no-wrap text-gray-900 bg-gray-300 sm:bg-gray-400 dark\:bg-gray-700 sm:dark\:bg-gray-800 dark\:text-gray-200 px-4 py-3 rounded-lg mr-3 focus:outline-none trans"
                                                 onClick={this.toggleMode}
+                                                key={mode}
                                                 id={mode}
                                             >
                                                 {mode
