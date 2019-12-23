@@ -3,8 +3,6 @@ import * as serviceWorker from "../../serviceWorker";
 import DarkmodeToggle from "../../components/DarkmodeToggle";
 import BackButton from "../../components/BackButton";
 import NetworkSwitch from "../../components/NetworkSwitch";
-import {faCheck} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import Checkmark from "../../components/Checkmark";
 
 class Settings extends Component {

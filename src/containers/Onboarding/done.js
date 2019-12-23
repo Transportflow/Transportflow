@@ -12,7 +12,7 @@ class Done extends Component {
                     🦜 Transportflow <span className="align-text-top rounded py-1 px-2 bg-red-600 text-gray-200 text-sm uppercase font-bold tracking-tight">beta</span>
                 </h1>
                 <p className="font-inter text-gray-700 dark\:text-gray-300 mb-6 mt-4 font-medium">
-                    Sie haben die Einrichtung erfolgreich<br/> abgeschlossen! <span className="font-sans">🎉</span><br/>
+                    Sie haben die Einrichtung erfolgreich<br/> abgeschlossen! <span role="img" aria-label="party" className="font-sans">🎉</span><br/>
                 </p>
                 <RedirectingButton text="Los geht's!" to="/" />
                 <ImpressPrivacy centered={true}/>

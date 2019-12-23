@@ -42,6 +42,7 @@ class DVBDeparture extends Component {
                                         ? {display: "hidden", marginRight: "0"}
                                         : {height: "26px", marginRight: "0.5rem"}
                                 }
+                                alt=""
                                 src={
                                     this.props.departure.line.includes("U") &&
                                     this.props.departure.mode.title.includes("undefined")

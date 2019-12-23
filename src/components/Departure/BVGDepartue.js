@@ -66,6 +66,7 @@ class BVGDepartue extends Component {
                                         ? {display: "hidden", marginRight: "0"}
                                         : {height: "26px", marginRight: "0.5rem"}
                                 }
+                                alt=""
                                 src={this.state.iconUrl}
                                 onError={() => {
                                     this.setState({imageError: true});

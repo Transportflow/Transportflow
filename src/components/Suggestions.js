@@ -93,7 +93,14 @@ class Suggestions extends Component {
 
             this.setState({suggestions: suggestions});
         } else if (localStorage.getItem("network") === "bvg") {
-            const raw = await axios.get("https://api.transportflow.online/locations?query=" + input + (this.props.stopsOnly ? "&addresses=false&poi=false" : "&addresses=true&poi=true"));
+            var err = false;
+            const raw = await axios.get("https://api.transportflow.online/locations?query=" + input + (this.props.stopsOnly ? "&addresses=false&poi=false" : "&addresses=true&poi=true")).catch((error) => {
+                err = true;
+            });
+            if (err) {
+                this.setState({suggestions: [], loading: false});
+                return;
+            }
             const stops = raw.data;
 
             if (stops.length === 1 && stops[0].id === null) {

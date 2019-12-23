@@ -36,7 +36,10 @@ class Stop extends React.Component {
 
     async findDeparturesForDVB() {
         this.setState({loading: true});
-        var stop = await dvb.findStop(this.state.stopName || "");
+        if (!this.state.stopName) {
+            return;
+        }
+        var stop = await dvb.findStop(this.state.stopName);
         if (stop.length === 0) {
             this.setState({err: "Fehler: Haltestelle nicht gefunden", loading: false});
             return;
@@ -78,28 +81,13 @@ class Stop extends React.Component {
         if (!this.state.stopName) {
             return;
         }
-        const raw1 = await axios.get("https://api.transportflow.online/stops/"+this.state.stopName).catch((err) => {
+        const raw1 = await axios.get("https://api.transportflow.online/stops/" + this.state.stopName).catch((err) => {
             this.setState({err: err.name + ": " + err.message, loading: false});
         });
         const stop = raw1.data;
         if (stop === undefined) {
             return
         }
-        var allModes = [];
-        if (stop.products.suburban)
-            allModes.push("suburban");
-        if (stop.products.subway)
-            allModes.push("subway");
-        if (stop.products.tram)
-            allModes.push("tram");
-        if (stop.products.bus)
-            allModes.push("bus");
-        if (stop.products.ferry)
-            allModes.push("ferry");
-        if (stop.products.express)
-            allModes.push("express");
-        if (stop.products.regional)
-            allModes.push("regional");
 
         this.setState({
             latitude: stop.location.latitude,
@@ -107,7 +95,7 @@ class Stop extends React.Component {
             stop: stop
         });
 
-        const raw2 = await axios.get("https://api.transportflow.online/stops/"+this.state.stopName+"/departures?duration=59").catch((err) => {
+        const raw2 = await axios.get("https://api.transportflow.online/stops/" + this.state.stopName + "/departures?duration=65").catch((err) => {
             this.setState({err: err.name + ": " + err.message, loading: false});
         });
         const monitor = raw2.data;
@@ -115,6 +103,11 @@ class Stop extends React.Component {
             this.setState({err: "Fehler: Keine Abfahrten gefunden", loading: false});
             return;
         }
+        var allModes = [];
+        monitor.forEach((departure, index) => {
+            if (allModes.indexOf(departure.line.product) === -1)
+                allModes.push(departure.line.product)
+        });
         if (this.state.err === "") {
             this.setState({
                 allModes: Object.assign([], allModes),
@@ -155,7 +148,7 @@ class Stop extends React.Component {
         this.findDeparturesForCurrentNetwork();
     };
 
-    componentWillReceiveProps = async nextProps => {
+    UNSAFE_componentWillReceiveProps = async nextProps => {
         if (nextProps.stop !== "") {
             await this.setState({
                 stopName: nextProps.stop
@@ -266,15 +259,15 @@ class Stop extends React.Component {
                             this.state.longitude.toString().substring(0, 10)}
                         </a>
                     ) : this.state.err === "" ? (
-                        <div className="rounded-lg overflow-hidden max-w-xs pb-2 pt-3">
+                        <div className="mb-6 mt-3 rounded-lg overflow-hidden max-w-xs dark\:text-gray-400">
                             <BarLoader
-                                heightUnit={"px"}
-                                height={4}
-                                widthUnit={"px"}
-                                width={330}
-                                color={"#718096"}
-                                loading={this.state.loading}
-                            />
+                            heightUnit={"px"}
+                            height={4}
+                            widthUnit={"px"}
+                            width={330}
+                            color={"#718096"}
+                            loading={this.state.loading}
+                        />
                         </div>
                     ) : (
                         <p className="p-1 pl-2 bg-red-600 text-gray-300 mt-4 mb-5 max-w-xs rounded-lg font-semibold">
@@ -337,7 +330,7 @@ class Stop extends React.Component {
                                     );
                                 }
                             } else if (this.props.match.params.network === "bvg") {
-                                if (Math.sign(new Date(Date.parse(departure.when))-Date.now()) > -1) {
+                                if (Math.sign(new Date(Date.parse(departure.when)) - Date.now()) > -1) {
                                     return (
                                         <BVGDepartue
                                             key={departure.line.fahrtNr + index}
@@ -347,6 +340,7 @@ class Stop extends React.Component {
                                     )
                                 }
                             }
+                            return <></>
                         })}
                         <ImpressPrivacy inline={true}/>
                     </div>
