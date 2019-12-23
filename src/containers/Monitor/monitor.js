@@ -46,7 +46,7 @@ class Index extends React.Component {
         return (
             <div className="p-6 pt-12 sm:p-20 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
                 <div className="flex mb-3">
-                    <BackButton to="/" large={true}/>
+                    <BackButton large={true}/>
                     <DarkmodeToggle large={true}/>
                 </div>
                 <h1 className="font-semibold font-inter text-2xl text-black dark\:text-gray-200">
@@ -55,7 +55,7 @@ class Index extends React.Component {
                 {!this.state.loading ? (
                     <p className="font-inter text-gray-700 dark\:text-gray-400 mb-4">Echtzeit Fahrplanauskunft</p>
                 ) : (
-                    <div className={"rounded-lg overflow-hidden max-w-xs dark\\:text-gray-400 " + this.state.showNetworkSwitch == "true" ? "mb-6 pt-2" : "pb-4 pt-3"}>
+                    <div className={"rounded-lg overflow-hidden max-w-xs dark\\:text-gray-400 " + this.state.showNetworkSwitch === "true" ? "mb-6 pt-2" : "pb-4 pt-3"}>
                         <BarLoader
                             heightUnit={"px"}
                             height={4}

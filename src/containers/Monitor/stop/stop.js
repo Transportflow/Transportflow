@@ -202,7 +202,7 @@ class Stop extends React.Component {
                 >
                     <div className="flex mb-3">
                         {!this.props.embed ? (
-                            <BackButton to="/monitor" large={true}/>
+                            <BackButton large={true}/>
                         ) : (
                             <button
                                 onClick={this.props.closeEmbed}
