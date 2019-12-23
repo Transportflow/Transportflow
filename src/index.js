@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import "./index.css";
+import "./css/tailwind.css";
 import * as serviceWorker from "./serviceWorker";
 import PageTransition from '@steveeeie/react-page-transition';
 import App from "./containers/Index/index";
@@ -11,6 +12,9 @@ import NotFound from "./containers/NotFound/notfound";
 import Stop from "./containers/Monitor/stop/stop";
 import Settings from "./containers/Settings/settings";
 import Welcome from "./containers/Onboarding/welcome";
+import Theme from "./containers/Onboarding/theme";
+import Network from "./containers/Onboarding/network";
+import Done from "./containers/Onboarding/done";
 
 var previousPathname = "";
 
@@ -29,7 +33,12 @@ const routing = (
                         transitionKey={location.pathname}>
                         <Switch location={location}>
                             <Route exact path="/" component={App} />
+
                             <Route exact path="/onboarding/welcome" component={Welcome} />
+                            <Route exact path="/onboarding/theme" component={Theme} />
+                            <Route exact path="/onboarding/network" component={Network} />
+                            <Route exact path="/onboarding/done" component={Done} />
+
                             <Route exact path="/settings" component={Settings} />
                             <Route exact path="/impressprivacy" component={Impress} />
                             <Route exact path="/monitor" component={Monitor} />

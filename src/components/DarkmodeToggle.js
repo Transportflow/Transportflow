@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Redirect} from "react-router-dom";
 
 class DarkmodeToggle extends Component {
     constructor(props) {
@@ -32,7 +33,7 @@ class DarkmodeToggle extends Component {
 
     render() {
         return (
-            <div>
+            <div className={this.props.hidden ? "hidden" : ""}>
                 {this.props.large ?
                     <button
                         className="focus:outline-none dark\:text-gray-400 text-gray-700 rounded-full bg-gray-800 dark\:bg-gray-400 trans"
@@ -50,6 +51,11 @@ class DarkmodeToggle extends Component {
                         :
                         <button className="italic focus:outline-none dark\:text-gray-400 text-gray-700"
                                 onClick={this.toggleDarkmode.bind(this)}>{this.state.darkmode === true ? "darkmode aus" : "darkmode an"}</button>
+                }
+                {!localStorage.getItem("network") && !this.props.onboarding ?
+                    <Redirect to="/onboarding/welcome"/>
+                    :
+                    <></>
                 }
             </div>
         );
