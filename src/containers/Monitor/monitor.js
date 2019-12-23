@@ -8,8 +8,6 @@ import ImpressPrivacy from "../../components/ImpressPrivacy";
 import BackButton from "../../components/BackButton";
 import NetworkSwitch from "../../components/NetworkSwitch";
 
-var counter = 0;
-
 class Index extends React.Component {
     constructor(props) {
         super(props);
