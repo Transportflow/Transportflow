@@ -1,6 +1,6 @@
 # 🦜 Transportflow
 
-Web page to view departures (DVB & BVG) or plan a route in germany (DB API). [Live Demo 🛰](https://transportflow.online/)
+Web page to view departures (DVB & BVG) or plan a route in germany. [Live Demo 🛰](https://transportflow.online/)
 
 ### ⛸ Getting started
 
