@@ -17,7 +17,7 @@ class Settings extends Component {
             <div className="p-6 pt-12 sm:p-20 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
                 <div className="w-full sm:w-auto sm:max-w-sm">
                     <BackButton to="/" large={true}/>
-                    <h1 className="dark\:text-gray-200 font-bold font-inter text-2xl mt-5 mb-1">🔨 Einstellungen</h1>
+                    <h1 className="dark\:text-gray-200 font-bold font-inter text-2xl mt-5 mb-1"><span className="font-sans">⚙</span> Einstellungen</h1>
                     <h2 className="dark\:text-gray-200 font-semibold font-inter text-xl">Region</h2>
                     <p className="font-inter text-gray-700 dark\:text-gray-400 mb-2">Wählen Sie Ihren Verkehrsverbund
                         aus.</p>

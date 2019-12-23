@@ -23,7 +23,6 @@ class Index extends React.Component {
     }
 
     componentDidMount = async () => {
-        console.log(this.state.showNetworkSwitch)
         this.setState({loading: false});
     };
 
@@ -55,7 +54,7 @@ class Index extends React.Component {
                 {!this.state.loading ? (
                     <p className="font-inter text-gray-700 dark\:text-gray-400 mb-4">Echtzeit Fahrplanauskunft</p>
                 ) : (
-                    <div className={"rounded-lg overflow-hidden max-w-xs dark\\:text-gray-400 " + this.state.showNetworkSwitch === "true" ? "mb-6 pt-2" : "pb-4 pt-3"}>
+                    <div className="mb-6 mt-3 rounded-lg overflow-hidden max-w-xs dark\:text-gray-400">
                         <BarLoader
                             heightUnit={"px"}
                             height={4}

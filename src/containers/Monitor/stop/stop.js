@@ -220,7 +220,7 @@ class Stop extends React.Component {
                         <DarkmodeToggle large={true}/>
                     </div>
                     <h1 className="trans font-semibold font-inter text-2xl text-black truncate text-black dark\:text-gray-200">
-                        {this.state.loading ?
+                        {this.state.loading && (this.state.stop.name === undefined && this.state.stop[0] === undefined) ?
                                 "Laden..."
                             : this.props.match.params.network === "bvg" ?
                                 this.state.stop.name
