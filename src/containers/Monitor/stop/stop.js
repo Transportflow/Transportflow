@@ -202,7 +202,7 @@ class Stop extends React.Component {
                 >
                     <div className="flex mb-3">
                         {!this.props.embed ? (
-                            <BackButton large={true}/>
+                            <BackButton large={true} className="mr-3"/>
                         ) : (
                             <button
                                 onClick={this.props.closeEmbed}
@@ -306,7 +306,7 @@ class Stop extends React.Component {
                                 );
                             }
                         })}
-                        <ImpressPrivacy/>
+                        <ImpressPrivacy inline={true}/>
                     </div>
                 </div>
             </div>

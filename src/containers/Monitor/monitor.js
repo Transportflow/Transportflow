@@ -45,7 +45,7 @@ class Index extends React.Component {
         return (
             <div className="p-6 pt-12 sm:p-20 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
                 <div className="flex mb-3">
-                    <BackButton large={true}/>
+                    <BackButton className="mr-3" large={true}/>
                     <DarkmodeToggle large={true}/>
                 </div>
                 <h1 className="font-semibold font-inter text-2xl text-black dark\:text-gray-200">
@@ -84,7 +84,7 @@ class Index extends React.Component {
                             setState={this.setState.bind(this)}
                         />
                     </div>
-                    <ImpressPrivacy/>
+                    <ImpressPrivacy inline={true}/>
                 </div>
 
             </div>

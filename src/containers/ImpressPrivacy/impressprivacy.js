@@ -8,8 +8,8 @@ export default function Impress() {
     return (
         <div className="p-6 pt-12 bg-gray-400 dark\:text-gray-100 dark\:bg-gray-800 min-h-screen h-auto trans">
             <div className="flex mb-5">
-                <BackButton large={true}/>
-                <DarkmodeToggle large={true}/>
+                <BackButton large={true} className="mr-3"/>
+                <DarkmodeToggle large={true} onboarding={true}/>
             </div>
             <h1 className="font-semibold text-2xl">Impressum</h1>
 

@@ -7,10 +7,9 @@ import BackButton from "../../components/BackButton";
 
 const Notfound = () => (
     <div className="not-found dark\:bg-gray-800 dark\:text-gray-200 trans">
+        <h1 className="text-3xl font-semibold mb-6">Not found</h1>
         <BackButton large={true}/>
-        <h1 className="mt-2">{"¯\\_(ツ)_/¯"}</h1>
-        <h2>Not found</h2>
-        <span className="text-base flex italic"><span className="flex"><span className="mt-2"><DarkmodeToggle/></span><span className="mt-2 italic mx-2"> | </span><ImpressPrivacy /></span></span>
+        <span className="text-base flex italic whitespace-no-wrap"><span className="flex"><span className="mt-5"><DarkmodeToggle/></span><span className="mt-5 italic mx-2"> | </span><ImpressPrivacy inline={true}/></span></span>
     </div>
 );
 export default Notfound;
