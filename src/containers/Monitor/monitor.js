@@ -70,7 +70,7 @@ class Index extends React.Component {
                     <div className={localStorage.getItem("showNetworkSwitch") === "true" ? "flex w-full justify-center" : "hidden"}><NetworkSwitch onChange={this.networkChanged.bind(this)}/></div>
                     <div className="flex mb-3 mt-3">
                         <input
-                            placeholder="haltestelle"
+                            placeholder="Haltestelle"
                             onChange={this.handleChange}
                             className="dark\:bg-gray-700 dark\:placeholder-gray-300 dark\:text-gray-300 dark-hover\:bg-gray-600 dark\:placeholder-gray-500 py-3 w-full text-lg font-inter font-semibold trans-fast rounded-lg px-3 bg-gray-300 sm:hover:bg-gray-300 focus:bg-gray-300 z-50 relative text-gray-800 sm:hover:shadow-md focus:shadow-md focus:outline-none"
                         />
