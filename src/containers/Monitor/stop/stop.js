@@ -5,14 +5,15 @@ import {BarLoader} from "react-spinners";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
     faMapMarkerAlt,
-    faTimes, faChevronLeft,
+    faTimes,
     faRedo
 } from "@fortawesome/free-solid-svg-icons";
-import Departure from "../../../components/Departure"
 import DarkmodeToggle from "../../../components/DarkmodeToggle";
 import ImpressPrivacy from "../../../components/ImpressPrivacy";
 import BackButton from "../../../components/BackButton";
 import {bvgProfile} from '../../../components/profiles/bvg';
+import BVGDepartue from "../../../components/Departure/BVGDepartue";
+import DVBDeparture from "../../../components/Departure/DVBDeparture";
 
 const createClient = require('hafas-client');
 
@@ -82,22 +83,38 @@ class Stop extends React.Component {
         if (stop === undefined) {
             return
         }
+        var allModes = [];
+        if (stop.products.suburban)
+            allModes.push("suburban");
+        if (stop.products.subway)
+            allModes.push("subway");
+        if (stop.products.tram)
+            allModes.push("tram");
+        if (stop.products.bus)
+            allModes.push("bus");
+        if (stop.products.ferry)
+            allModes.push("ferry");
+        if (stop.products.express)
+            allModes.push("express");
+        if (stop.products.regional)
+            allModes.push("regional");
+
         this.setState({
             latitude: stop.location.latitude,
             longitude: stop.location.longitude,
             stop: stop
         });
 
-        var monitor = await client.departures(this.state.stopName || "").catch((err) => {
+        var monitor = await client.departures(this.state.stopName || "", {duration: 59}).catch((err) => {
             this.setState({err: err.name + ": " + err.message, loading: false});
         });
         if (monitor.length === 0) {
-            this.setState({err: "Fehler: Haltestelle nicht gefunden", loading: false});
+            this.setState({err: "Fehler: Keine Abfahrten gefunden", loading: false});
             return;
         }
         if (this.state.err === "") {
             this.setState({
-                allModes: [],
+                allModes: Object.assign([], allModes),
                 departures: monitor,
                 loading: false
             });
@@ -107,7 +124,7 @@ class Stop extends React.Component {
 
     toggleMode = event => {
         var modes = this.state.modes;
-        var mode = event.target.innerHTML;
+        var mode = event.target.id;
 
         event.target.classList.toggle("sm:bg-gray-300");
         event.target.classList.toggle("sm:bg-gray-400");
@@ -221,13 +238,13 @@ class Stop extends React.Component {
                     </div>
                     <h1 className="trans font-semibold font-inter text-2xl text-black truncate text-black dark\:text-gray-200">
                         {this.state.loading && (this.state.stop.name === undefined && this.state.stop[0] === undefined) ?
-                                "Laden..."
+                            "Laden..."
                             : this.props.match.params.network === "bvg" ?
                                 this.state.stop.name
-                            : this.state.stop.length > 0 && this.props.match.params.network === "dvb" ?
-                                this.state.stop[0].name + ", " + this.state.stop[0].city
-                            :
-                                "Fehler"}
+                                : this.state.stop.length > 0 && this.props.match.params.network === "dvb" ?
+                                    this.state.stop[0].name + ", " + this.state.stop[0].city
+                                    :
+                                    "Fehler"}
                     </h1>
                     {this.state.err === "" && !this.state.loading ? (
                         <a
@@ -273,8 +290,17 @@ class Stop extends React.Component {
                                             <button
                                                 className="whitespace-no-wrap text-gray-900 bg-gray-300 sm:bg-gray-400 dark\:bg-gray-700 sm:dark\:bg-gray-800 dark\:text-gray-200 px-4 py-3 rounded-lg mr-3 focus:outline-none trans"
                                                 onClick={this.toggleMode}
+                                                id={mode}
                                             >
-                                                {mode}
+                                                {mode
+                                                    .replace("suburban", "S-Bahn")
+                                                    .replace("subway", "U-Bahn")
+                                                    .replace("tram", "Straßenbahn")
+                                                    .replace("bus", "Bus")
+                                                    .replace("express", "Zug")
+                                                    .replace("regional", "RE")
+                                                    .replace("ferry", "Fähre")
+                                                }
                                             </button>
                                         );
                                     })
@@ -291,19 +317,31 @@ class Stop extends React.Component {
                         className="w-full sm:w-auto sm:max-w-lg mb-3 overflow-scroll overflow-x-hidden custom-scrollbar scrolling-touch rounded-lg pb-40"
                     >
                         {this.state.departures.map((departure, index) => {
-                            if (departure.arrivalTimeRelative > -1) {
-                                return (
-                                    <Departure
-                                        key={
-                                            departure.line +
-                                            departure.direction +
-                                            departure.arrivalTimeRelative
-                                        }
-                                        modes={this.state.modes}
-                                        departure={departure}
-                                        embed={this.props.embed}
-                                    />
-                                );
+                            if (this.props.match.params.network === "dvb") {
+                                if (departure.arrivalTimeRelative > -1) {
+                                    return (
+                                        <DVBDeparture
+                                            key={
+                                                departure.line +
+                                                departure.direction +
+                                                index
+                                            }
+                                            modes={this.state.modes}
+                                            departure={departure}
+                                            embed={this.props.embed}
+                                        />
+                                    );
+                                }
+                            } else if (this.props.match.params.network === "bvg") {
+                                if (Math.sign(new Date(Date.parse(departure.when))-Date.now()) > -1) {
+                                    return (
+                                        <BVGDepartue
+                                            key={departure.line.fahrtNr + index}
+                                            departure={departure}
+                                            modes={this.state.modes}
+                                        />
+                                    )
+                                }
                             }
                         })}
                         <ImpressPrivacy inline={true}/>

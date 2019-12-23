@@ -2,7 +2,7 @@ import React, {Component} from "react";
 var moment = require("moment");
 require("moment-duration-format");
 
-class Departure extends Component {
+class DVBDeparture extends Component {
     constructor(props) {
         super(props);
 
@@ -102,4 +102,4 @@ class Departure extends Component {
     }
 }
 
-export default Departure;
+export default DVBDeparture;
