@@ -48,7 +48,7 @@ class Settings extends Component {
                         className="mb-20 text-gray-900 bg-gray-300 dark\\:bg-gray-700 dark\\:text-gray-300 dark-hover\\:bg-gray-600 sm:hover:bg-gray-300 px-5 py-3 rounded-lg text-base sm:hover:shadow-md focus:outline-none z-50 relative trans-fast">
                         <span className="mr-2"><FontAwesomeIcon icon={faDumpsterFire}/></span>Cache leeren
                     </button>
-                    <ImpressPrivacy/>
+                    <ImpressPrivacy inline={true} className="mt-10 mb-4"/>
                 </div>
             </div>
         );
