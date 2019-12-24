@@ -45,7 +45,7 @@ class Settings extends Component {
                     <p className="font-inter text-gray-700 dark\:text-gray-400 mb-2">Leeren Sie den Cache dieser Website.<br/>Dies aktualisiert Transportflow ggf. auf die neueste Version.</p>
                     <button
                         onClick={this.unregisterWorker}
-                        className="mb-20 text-gray-900 bg-gray-300 dark\\:bg-gray-700 dark\\:text-gray-300 dark-hover\\:bg-gray-600 sm:hover:bg-gray-300 px-5 py-3 rounded-lg text-base sm:hover:shadow-md focus:outline-none z-50 relative trans-fast">
+                        className="mb-20 text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 sm:hover:bg-gray-300 px-5 py-3 rounded-lg text-base sm:hover:shadow-md focus:outline-none z-50 relative trans-fast">
                         <span className="mr-2"><FontAwesomeIcon icon={faDumpsterFire}/></span>Cache leeren
                     </button>
                     <ImpressPrivacy inline={true} className="mt-10 mb-4"/>
