@@ -23,7 +23,8 @@ class Welcome extends Component {
                     <img className="w-8 mr-1" alt="" src="https://www.dvb.de/assets/img/trans-icon/transport-train.svg"/>
                     <img className="w-8 mr-1" alt="" src="https://www.dvb.de/assets/img/trans-icon/transport-lift.svg"/>
                     <img className="w-8 mr-1" alt="" src="https://www.dvb.de/assets/img/trans-icon/transport-ferry.svg"/>
-                    <img className="w-8 mr-1" alt="" src="https://www.dvb.de/assets/img/trans-icon/transport-alita.svg"/>
+                    <img className="w-8 mr-1" alt="" src="https://upload.wikimedia.org/wikipedia/commons/a/a6/VBB_Bahn-Regionalverkehr.svg"/>
+                    <img className="w-8" alt="" src="https://www.dvb.de/assets/img/trans-icon/transport-alita.svg"/>
                 </div>
                 <RedirectingButton text="Einrichten" to="/onboarding/theme" />
                 <ImpressPrivacy centered={true}/>
