@@ -22,7 +22,7 @@ class Network extends Component {
                     <span className="font-sans">🗺</span> Region
                 </h1>
                 <p className="font-inter text-gray-700 dark\:text-gray-400 mb-4 mt-4">
-                    Wählen Sie Ihren Verkehrsverbund aus.<br/>
+                    Wählen Sie Ihren Verkehrsverbund.<br/>
                     Sie können ihn später ändern.
                 </p>
                 <div className="flex justify-center mb-6">
