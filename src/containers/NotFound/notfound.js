@@ -1,9 +1,9 @@
 import React from "react";
 import "./NotFound.css";
 import "../../css/tailwind.css"
-import DarkmodeToggle from "../../components/DarkmodeToggle";
-import ImpressPrivacy from "../../components/ImpressPrivacy";
-import BackButton from "../../components/BackButton";
+import DarkmodeToggle from "../../components/Buttons/DarkmodeToggle";
+import ImpressPrivacy from "../../components/Buttons/ImpressPrivacy";
+import BackButton from "../../components/Buttons/BackButton";
 
 const Notfound = () => (
     <div className="not-found dark\:bg-gray-800 dark\:text-gray-200 trans">

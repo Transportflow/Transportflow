@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import * as serviceWorker from "../../serviceWorker";
-import DarkmodeToggle from "../../components/DarkmodeToggle";
-import BackButton from "../../components/BackButton";
-import NetworkSwitch from "../../components/NetworkSwitch";
-import Checkmark from "../../components/Checkmark";
+import DarkmodeToggle from "../../components/Buttons/DarkmodeToggle";
+import BackButton from "../../components/Buttons/BackButton";
+import NetworkSwitch from "../../components/Buttons/NetworkSwitch";
+import Checkmark from "../../components/Buttons/Checkmark";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDumpsterFire} from "@fortawesome/free-solid-svg-icons";
-import ImpressPrivacy from "../../components/ImpressPrivacy";
+import ImpressPrivacy from "../../components/Buttons/ImpressPrivacy";
+import Seperator from "../../components/Segments/Seperator";
+import SettingsCategory from "../../components/Segments/SettingsCategory";
 
 class Settings extends Component {
     unregisterWorker() {
@@ -20,9 +22,8 @@ class Settings extends Component {
                 <div className="w-full sm:w-auto sm:max-w-sm">
                     <BackButton to="/" large={true}/>
                     <h1 className="dark\:text-gray-200 font-bold font-inter text-2xl mt-5 mb-1"><span className="font-sans">⚙</span> Einstellungen</h1>
-                    <h2 className="dark\:text-gray-200 font-semibold font-inter text-xl">Region</h2>
-                    <p className="font-inter text-gray-700 dark\:text-gray-400 mb-2">Wählen Sie Ihren Verkehrsverbund
-                        aus.</p>
+
+                    <SettingsCategory title="Region" description="Wählen Sie Ihren Verkehrsverbund aus."/>
                     <div className="flex w-full justify-start"><NetworkSwitch onChange={() => {}}/></div>
                     <Checkmark
                         val={localStorage.getItem("showNetworkSwitch") !== null ? localStorage.getItem("showNetworkSwitch") : false}
@@ -31,18 +32,14 @@ class Settings extends Component {
                         itemName="showNetworkSwitch"
                     />
 
+                    <Seperator/>
 
-                    <hr className="border-2 border-gray-500 rounded-lg dark\:border-gray-700 my-6"/>
-
-                    <h2 className="dark\:text-gray-200 font-semibold font-inter text-xl">Erscheinungsbild</h2>
-                    <p className="font-inter text-gray-700 dark\:text-gray-400 mb-2">Wählen Sie Ihr präferiertes
-                        Design.</p>
+                    <SettingsCategory title="Erscheinungsbild" description="Wählen Sie Ihr präferiertes Design."/>
                     <DarkmodeToggle button={true}/>
 
-                    <hr className="border-2 border-gray-500 rounded-lg dark\:border-gray-700 my-6"/>
+                    <Seperator/>
 
-                    <h2 className="dark\:text-gray-200 font-semibold font-inter text-xl">Version</h2>
-                    <p className="font-inter text-gray-700 dark\:text-gray-400 mb-2">Leeren Sie den Cache dieser Website.<br/>Dies aktualisiert Transportflow ggf. auf die neueste Version.</p>
+                    <SettingsCategory title="Version" description={<>Leeren Sie den Cache dieser Website.<br/>Dies aktualisiert Transportflow ggf. auf die neueste Version.</>}/>
                     <button
                         onClick={this.unregisterWorker}
                         className="mb-20 text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 sm:hover:bg-gray-300 px-5 py-3 rounded-lg text-base sm:hover:shadow-md focus:outline-none z-50 relative trans-fast">

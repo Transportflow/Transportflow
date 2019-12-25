@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import ImpressPrivacy from "../../components/ImpressPrivacy";
-import DarkmodeToggle from "../../components/DarkmodeToggle";
-import RedirectingButton from "../../components/RedirectingButton";
+import ImpressPrivacy from "../../components/Buttons/ImpressPrivacy";
+import DarkmodeToggle from "../../components/Buttons/DarkmodeToggle";
+import RedirectingButton from "../../components/Buttons/RedirectingButton";
 
 class Theme extends Component {
     render() {

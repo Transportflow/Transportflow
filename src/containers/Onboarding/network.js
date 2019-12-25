@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import ImpressPrivacy from "../../components/ImpressPrivacy";
-import NetworkSwitch from "../../components/NetworkSwitch";
-import RedirectingButton from "../../components/RedirectingButton";
-import DarkmodeToggle from "../../components/DarkmodeToggle";
+import ImpressPrivacy from "../../components/Buttons/ImpressPrivacy";
+import NetworkSwitch from "../../components/Buttons/NetworkSwitch";
+import RedirectingButton from "../../components/Buttons/RedirectingButton";
+import DarkmodeToggle from "../../components/Buttons/DarkmodeToggle";
 
 class Network extends Component {
     constructor(props) {

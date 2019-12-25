@@ -3,10 +3,10 @@ import {geolocated} from "react-geolocated";
 import "../../css/tailwind.css"
 import Suggestions from "../../components/Suggestions";
 import {BarLoader} from "react-spinners";
-import DarkmodeToggle from "../../components/DarkmodeToggle";
-import ImpressPrivacy from "../../components/ImpressPrivacy";
-import BackButton from "../../components/BackButton";
-import NetworkSwitch from "../../components/NetworkSwitch";
+import DarkmodeToggle from "../../components/Buttons/DarkmodeToggle";
+import ImpressPrivacy from "../../components/Buttons/ImpressPrivacy";
+import BackButton from "../../components/Buttons/BackButton";
+import NetworkSwitch from "../../components/Buttons/NetworkSwitch";
 
 class Index extends React.Component {
     constructor(props) {

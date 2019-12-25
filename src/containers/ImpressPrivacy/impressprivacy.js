@@ -1,10 +1,8 @@
 import React from "react"
-import DarkmodeToggle from "../../components/DarkmodeToggle";
-import BackButton from "../../components/BackButton";
+import DarkmodeToggle from "../../components/Buttons/DarkmodeToggle";
+import BackButton from "../../components/Buttons/BackButton";
 
 export default function Impress() {
-
-
     return (
         <div className="p-6 pt-12 bg-gray-400 dark\:text-gray-100 dark\:bg-gray-800 min-h-screen h-auto trans">
             <div className="flex mb-5">

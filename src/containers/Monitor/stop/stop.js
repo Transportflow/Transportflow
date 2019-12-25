@@ -8,9 +8,9 @@ import {
     faTimes,
     faRedo
 } from "@fortawesome/free-solid-svg-icons";
-import DarkmodeToggle from "../../../components/DarkmodeToggle";
-import ImpressPrivacy from "../../../components/ImpressPrivacy";
-import BackButton from "../../../components/BackButton";
+import DarkmodeToggle from "../../../components/Buttons/DarkmodeToggle";
+import ImpressPrivacy from "../../../components/Buttons/ImpressPrivacy";
+import BackButton from "../../../components/Buttons/BackButton";
 import BVGDepartue from "../../../components/Departure/BVGDepartue";
 import DVBDeparture from "../../../components/Departure/DVBDeparture";
 

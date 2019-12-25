@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import ImpressPrivacy from "../../components/ImpressPrivacy";
-import RedirectingButton from "../../components/RedirectingButton";
-import DarkmodeToggle from "../../components/DarkmodeToggle";
+import ImpressPrivacy from "../../components/Buttons/ImpressPrivacy";
+import RedirectingButton from "../../components/Buttons/RedirectingButton";
+import DarkmodeToggle from "../../components/Buttons/DarkmodeToggle";
 
 class Welcome extends Component {
     render() {

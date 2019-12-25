@@ -87,7 +87,7 @@ class BVGDepartue extends Component {
                     <div
                         className="w-1/4 sm:w-1/5 md:w-1/6 bg-gray-400 dark\:bg-gray-800 rounded-lg object-right p-2 sm:m-1 trans">
                         <p className="text-center leading-tight">
-                        <span className="font-semibold text-2xl text-gray-800 dark\:text-gray-200">
+                        <span className="font-semibold text-2xl text-gray-800 dark\:text-gray-200 truncate">
                           {(new Date(Date.parse(this.props.departure.when)).getTime() - Date.now()) < 3.6e+6
                               ? moment
                                   .duration(
