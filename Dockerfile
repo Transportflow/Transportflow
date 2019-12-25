@@ -16,5 +16,3 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx/nginx.conf /etc/nginx/conf.d
 EXPOSE 4000
 CMD ["nginx", "-g", "daemon off;"]
-EXPOSE 4001
-RUN npm run server
