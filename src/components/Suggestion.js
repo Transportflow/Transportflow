@@ -34,15 +34,17 @@ class Suggestion extends Component {
                     }
                     id={this.props.value.id}
                 >
-          <span
-              className="truncate text-left"
-              id={this.props.value.id}
-          >
-            {this.props.value.name + ( this.props.value.city !== undefined ? ", " + this.props.value.city : "")}
-          </span>
+                    <span
+                       className="truncate text-left"
+                       id={this.props.value.id}
+                    >
+                        {this.props.value.name + (this.props.value.city !== undefined ? ", " + this.props.value.city : "")}
+                        <span className="flex" id={this.props.value.id}>{this.props.value.icons ? this.props.value.icons.map((icon, index) => <img key={icon} id={this.props.value.id} className="h-5 mr-1" src={icon} alt=""/>) : <></>}</span>
+                    </span>
                     <div>
                         <FontAwesomeIcon
                             className="ml-2 cursor-default"
+                            id={this.props.value.id}
                             icon={
                                 this.props.value.type === "stop" || this.props.value.type === "Stop"
                                     ? faHospitalSymbol
