@@ -34,8 +34,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-css": "postcss css/tailwind.css -o src/css/tailwind.css",
-    "watch-css": "postcss css/tailwind.css -o src/css/tailwind.css --watch",
-    "server": "node server.js"
+    "watch-css": "postcss css/tailwind.css -o src/css/tailwind.css --watch"
   },
   "eslintConfig": {
     "extends": "react-app"

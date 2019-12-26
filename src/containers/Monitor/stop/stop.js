@@ -1,5 +1,4 @@
 import React from "react";
-import * as dvb from "dvbjs";
 import "../../../css/tailwind.css";
 import {BarLoader} from "react-spinners";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -8,13 +7,15 @@ import {
     faTimes,
     faRedo
 } from "@fortawesome/free-solid-svg-icons";
+
+import {findDeparturesForDVB} from "./profiles/DVB";
+import {findDeparturesForBVG} from "./profiles/BVG";
+
 import DarkmodeToggle from "../../../components/Buttons/DarkmodeToggle";
 import ImpressPrivacy from "../../../components/Buttons/ImpressPrivacy";
 import BackButton from "../../../components/Buttons/BackButton";
 import BVGDepartue from "../../../components/Departure/BVGDepartue";
-import DVBDeparture from "../../../components/Departure/DVBDeparture";
-
-const axios = require("axios").default;
+import Departure from "../../../components/Departure";
 
 class Stop extends React.Component {
     constructor(props) {
@@ -23,99 +24,9 @@ class Stop extends React.Component {
         this.state = {
             stopName: "",
             stop: [],
-            departures: [],
-            err: "",
-            loading: true,
-            imageError: false,
-            latitude: "",
-            longitude: "",
-            modes: [],
-            allModes: []
+
+
         };
-    }
-
-    async findDeparturesForDVB() {
-        this.setState({loading: true});
-        if (!this.state.stopName) {
-            return;
-        }
-        var stop = await dvb.findStop(this.state.stopName);
-        if (stop.length === 0) {
-            this.setState({err: "Fehler: Haltestelle nicht gefunden", loading: false});
-            return;
-        }
-        this.setState({
-            latitude: stop[0].coords[1],
-            longitude: stop[0].coords[0],
-            stop: stop
-        });
-        var query = await dvb.monitor(stop[0].id, 0, 30).catch(error => {
-            this.setState({err: error.name + ": " + error.message, loading: false});
-        });
-        if (this.state.err === "") {
-            const mot = [];
-            query.forEach(departure => {
-                var toPush = "";
-                if (!departure.mode.title.includes("undefined")) {
-                    toPush = departure.mode.title;
-                    if (
-                        toPush !== "" &&
-                        mot.indexOf(toPush) === -1 &&
-                        departure.arrivalTimeRelative > -1
-                    ) {
-                        mot.push(toPush);
-                    }
-                }
-            });
-            this.setState({
-                allModes: Object.assign([], mot),
-                departures: query,
-                loading: false
-            });
-        }
-        this.forceUpdate();
-    }
-
-    async findDeparturesForBVG() {
-        this.setState({loading: true});
-        if (!this.state.stopName) {
-            return;
-        }
-        const raw1 = await axios.get("https://api.transportflow.online/stops/" + this.state.stopName).catch((err) => {
-            this.setState({err: err.name + ": " + err.message, loading: false});
-        });
-        const stop = raw1.data;
-        if (stop === undefined) {
-            return
-        }
-
-        this.setState({
-            latitude: stop.location.latitude,
-            longitude: stop.location.longitude,
-            stop: stop
-        });
-
-        const raw2 = await axios.get("https://api.transportflow.online/stops/" + this.state.stopName + "/departures?duration=65").catch((err) => {
-            this.setState({err: err.name + ": " + err.message, loading: false});
-        });
-        const monitor = raw2.data;
-        if (monitor.length === 0) {
-            this.setState({err: "Fehler: Keine Abfahrten gefunden", loading: false});
-            return;
-        }
-        var allModes = [];
-        monitor.forEach((departure, index) => {
-            if (allModes.indexOf(departure.line.product) === -1)
-                allModes.push(departure.line.product)
-        });
-        if (this.state.err === "") {
-            this.setState({
-                allModes: Object.assign([], allModes),
-                departures: monitor,
-                loading: false
-            });
-        }
-        this.forceUpdate();
     }
 
     toggleMode = event => {
@@ -148,82 +59,33 @@ class Stop extends React.Component {
         this.findDeparturesForCurrentNetwork();
     };
 
-    UNSAFE_componentWillReceiveProps = async nextProps => {
-        if (nextProps.stop !== "") {
-            await this.setState({
-                stopName: nextProps.stop
-            });
-            this.setState({
-                modes: [],
-                allModes: []
-            });
-            this.findDeparturesForCurrentNetwork();
-        } else {
-            this.setState({
-                stopName: "",
-                stop: [],
-                departures: [],
-                err: "",
-                loading: true,
-                latitude: "",
-                longitude: "",
-                modes: [],
-                allModes: []
-            });
-        }
-    };
-
     async findDeparturesForCurrentNetwork() {
         if (this.props.match.params.network === "dvb") {
-            this.findDeparturesForDVB();
+            await findDeparturesForDVB();
         } else if (this.props.match.params.network === "bvg") {
-            this.findDeparturesForBVG();
+            await findDeparturesForBVG();
         } else {
-            this.setState({
-                err: "Verkehrsverbund nicht gefunden (" + this.props.match.params.network.toUpperCase() + ")",
-                loading: false
-            })
+            throw new Error("Couldn't find Network")
         }
     }
 
     componentDidMount = async () => {
-        if (!this.props.embed) {
-            await this.setState({
-                stopName: decodeURI(
-                    this.props.match.params.id
-                        .replace("%2F", "/")
-                )
-            });
-            this.findDeparturesForCurrentNetwork();
-        }
+        await this.setState({
+            stopName: decodeURI(
+                this.props.match.params.id
+                    .replace("%2F", "/")
+            )
+        });
     };
 
     render() {
         return (
-            <div
-                className={
-                    this.props.stop === "" ? "hidden trans" : "overflow-hidden max-h-screen trans bg-gray-400 dark\\:bg-gray-800"
-                }
-            >
+            <div>
                 <div
-                    className={
-                        !this.props.embed
-                            ? "p-6 pt-12 sm:p-20 lg:pl-56"
-                            : "p-6 hidden lg:block"
-                    }
-                    style={this.props.embed ? {paddingTop: "0.50rem"} : {}}
+                    className="p-6 pt-12 sm:p-20 lg:pl-56"
                 >
                     <div className="flex mb-3">
-                        {!this.props.embed ? (
-                            <BackButton large={true} className="mr-3"/>
-                        ) : (
-                            <button
-                                onClick={this.props.closeEmbed}
-                                className="text-gray-900 bg-gray-300 sm:hover:bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 px-4 py-3 rounded-lg mr-3 sm:hover:shadow-lg focus:outline-none trans"
-                            >
-                                <FontAwesomeIcon icon={faTimes}/>
-                            </button>
-                        )}
+                        <BackButton large={true} className="mr-3"/>
                         <button
                             onClick={this.reloadDepartures}
                             className="text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 sm:hover:bg-gray-300 px-4 py-3 rounded-lg mr-3 sm:hover:shadow-lg focus:outline-none trans"
@@ -233,14 +95,9 @@ class Stop extends React.Component {
                         <DarkmodeToggle large={true}/>
                     </div>
                     <h1 className="trans font-semibold font-inter text-2xl text-black truncate text-black dark\:text-gray-200">
-                        {this.state.loading && (this.state.stop.name === undefined && this.state.stop[0] === undefined) ?
-                            "Laden..."
-                            : this.props.match.params.network === "bvg" ?
-                                this.state.stop.name
-                                : this.state.stop.length > 0 && this.props.match.params.network === "dvb" ?
-                                    this.state.stop[0].name + ", " + this.state.stop[0].city
-                                    :
-                                    "Fehler"}
+                        {this.state.loading ?
+                            "Laden..." :
+                            this.state.stop.name || "Fehler"}
                     </h1>
                     {this.state.err === "" && !this.state.loading ? (
                         <a
@@ -261,13 +118,13 @@ class Stop extends React.Component {
                     ) : this.state.err === "" ? (
                         <div className="mb-6 mt-3 rounded-lg overflow-hidden max-w-xs dark\:text-gray-400">
                             <BarLoader
-                            heightUnit={"px"}
-                            height={4}
-                            widthUnit={"px"}
-                            width={330}
-                            color={"#718096"}
-                            loading={this.state.loading}
-                        />
+                                heightUnit={"px"}
+                                height={4}
+                                widthUnit={"px"}
+                                width={330}
+                                color={"#718096"}
+                                loading={this.state.loading}
+                            />
                         </div>
                     ) : (
                         <p className="p-1 pl-2 bg-red-600 text-gray-300 mt-4 mb-5 max-w-xs rounded-lg font-semibold">
@@ -317,7 +174,7 @@ class Stop extends React.Component {
                             if (this.props.match.params.network === "dvb") {
                                 if (departure.arrivalTimeRelative > -1) {
                                     return (
-                                        <DVBDeparture
+                                        <Departure
                                             key={
                                                 departure.line +
                                                 departure.direction +
