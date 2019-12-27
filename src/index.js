@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
+import {Route, BrowserRouter, Switch} from "react-router-dom";
 import "./index.css";
 import "./css/tailwind.css";
 import * as serviceWorker from "./serviceWorker";
@@ -16,40 +16,47 @@ import Theme from "./containers/Onboarding/theme";
 import Network from "./containers/Onboarding/network";
 import Done from "./containers/Onboarding/done";
 
+import {createStore} from "redux";
+import {Provider} from "react-redux";
+import reducer from "./reducers";
+
+const store = createStore(reducer);
 var previousPathname = "";
 
 const routing = (
-    <BrowserRouter>
-        <Route
-            render={({ location }) => {
-                var transition = "fadeRightFadeLeft";
-                if (location.pathname.length > previousPathname.length) {
-                    transition = "fadeLeftFadeRight";
-                }
-                previousPathname = location.pathname;
-                return (
-                    <PageTransition
-                        preset={transition}
-                        transitionKey={location.pathname}>
-                        <Switch location={location}>
-                            <Route exact path="/" component={App} />
+    <Provider store={store}>
+        <BrowserRouter>
+            <Route
+                render={({location}) => {
+                    var transition = "fadeRightFadeLeft";
+                    if (location.pathname.length > previousPathname.length) {
+                        transition = "fadeLeftFadeRight";
+                    }
+                    previousPathname = location.pathname;
+                    return (
+                        <PageTransition
+                            preset={transition}
+                            transitionKey={location.pathname}>
+                            <Switch location={location}>
+                                <Route exact path="/" component={App}/>
 
-                            <Route exact path="/onboarding/welcome" component={Welcome} />
-                            <Route exact path="/onboarding/theme" component={Theme} />
-                            <Route exact path="/onboarding/network" component={Network} />
-                            <Route exact path="/onboarding/done" component={Done} />
+                                <Route exact path="/onboarding/welcome" component={Welcome}/>
+                                <Route exact path="/onboarding/theme" component={Theme}/>
+                                <Route exact path="/onboarding/network" component={Network}/>
+                                <Route exact path="/onboarding/done" component={Done}/>
 
-                            <Route exact path="/settings" component={Settings} />
-                            <Route exact path="/impressprivacy" component={Impress} />
-                            <Route exact path="/monitor" component={Monitor} />
-                            <Route path="/monitor/:network/stop/:id" component={Stop} />
-                            <Route component={NotFound} />
-                        </Switch>
-                    </PageTransition>
-                )
-            }}
-        />
-    </BrowserRouter>
+                                <Route exact path="/settings" component={Settings}/>
+                                <Route exact path="/impressprivacy" component={Impress}/>
+                                <Route exact path="/monitor" component={Monitor}/>
+                                <Route path="/monitor/:network/stop/:id" component={Stop}/>
+                                <Route component={NotFound}/>
+                            </Switch>
+                        </PageTransition>
+                    )
+                }}
+            />
+        </BrowserRouter>
+    </Provider>
 
 );
 ReactDOM.render(routing, document.getElementById("root"));
