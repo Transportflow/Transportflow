@@ -9,7 +9,7 @@ class Welcome extends Component {
             <div className="pt-20 sm:pt-32 md:pt-40 lg:pt-56 bg-gray-400 dark\:bg-gray-800 min-h-screen text-center trans">
                 <DarkmodeToggle hidden={true} onboarding={true}/>
                 <h1 className="font-semibold font-inter text-2xl text-black dark\:text-gray-100">
-                    🦜 Transportflow <span className="align-text-top rounded py-1 px-2 bg-red-600 text-gray-200 text-sm uppercase font-bold tracking-tight">beta</span>
+                    <span role="img" aria-label="parrot">🦜</span> Transportflow <span className="align-text-top rounded py-1 px-2 bg-red-600 text-gray-200 text-sm uppercase font-bold tracking-tight">beta</span>
                 </h1>
                 <p className="font-inter text-gray-700 dark\:text-gray-400 mb-2 mt-4">
                     Willkommen bei Transportflow,<br/>
