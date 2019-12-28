@@ -7,7 +7,7 @@ import * as serviceWorker from "./serviceWorker";
 import PageTransition from '@steveeeie/react-page-transition';
 import App from "./containers/Index/index";
 import Impress from "./containers/ImpressPrivacy/impressprivacy";
-import Monitor from "./containers/Monitor/monitor";
+import Monitor from "./containers/Monitor/search/monitor";
 import NotFound from "./containers/NotFound/notfound";
 import Stop from "./containers/Monitor/stop/stop";
 import Settings from "./containers/Settings/settings";

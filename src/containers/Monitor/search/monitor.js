@@ -1,12 +1,13 @@
 import React from "react";
 import {geolocated} from "react-geolocated";
-import "../../css/tailwind.css"
-import Suggestions from "../../components/Suggestions";
+import "../../../css/tailwind.css"
+import Suggestions from "../../../components/Suggestions";
 import {BarLoader} from "react-spinners";
-import DarkmodeToggle from "../../components/Buttons/DarkmodeToggle";
-import ImpressPrivacy from "../../components/Buttons/ImpressPrivacy";
-import BackButton from "../../components/Buttons/BackButton";
-import NetworkSwitch from "../../components/Buttons/NetworkSwitch";
+import DarkmodeToggle from "../../../components/Buttons/DarkmodeToggle";
+import ImpressPrivacy from "../../../components/Buttons/ImpressPrivacy";
+import BackButton from "../../../components/Buttons/BackButton";
+import NetworkSwitch from "../../../components/Buttons/NetworkSwitch";
+import {connect} from "react-redux";
 
 class Index extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class Index extends React.Component {
         this.state = {
             suggestions: [],
             input: "",
+            err: "",
             loading: true,
             network: localStorage.getItem("network"),
             showNetworkSwitch: localStorage.getItem("showNetworkSwitch")
@@ -24,10 +26,9 @@ class Index extends React.Component {
         this.setState({loading: false});
     };
 
-    redirect = async event => {
-        this.setState({loading: true});
-        this.props.history.push("/monitor/"+(localStorage.getItem("network")||"db")+"/stop/" + event.target.id);
-    };
+    componentDidCatch(error, errorInfo) {
+        this.setState({err: errorInfo.toString(), loading: false})
+    }
 
     handleChange = event => {
         this.setState({
@@ -51,6 +52,10 @@ class Index extends React.Component {
                 </h1>
                 {!this.state.loading ? (
                     <p className="font-inter text-gray-700 dark\:text-gray-400 mb-4">Echtzeit Fahrplanauskunft</p>
+                ) : this.state.err !== "" ? (
+                    <p className="p-1 pl-2 bg-red-600 text-gray-300 mt-4 mb-5 max-w-xs rounded-lg font-semibold">
+                        {this.state.err}
+                    </p>
                 ) : (
                     <div className="mb-6 mt-3 rounded-lg overflow-hidden max-w-xs dark\:text-gray-400">
                         <BarLoader
@@ -64,7 +69,9 @@ class Index extends React.Component {
                     </div>
                 )}
                 <div className="w-full sm:w-auto sm:max-w-xs">
-                    <div className={localStorage.getItem("showNetworkSwitch") === "true" ? "flex w-full justify-center" : "hidden"}><NetworkSwitch onChange={this.networkChanged.bind(this)}/></div>
+                    <div
+                        className={localStorage.getItem("showNetworkSwitch") === "true" ? "flex w-full justify-center" : "hidden"}>
+                        <NetworkSwitch onChange={this.networkChanged.bind(this)}/></div>
                     <div className="flex mb-3 mt-3">
                         <input
                             placeholder="Haltestelle"
@@ -75,11 +82,13 @@ class Index extends React.Component {
                     <div className="w-full font-semibold font-inter dark\:text-gray-400">
                         <Suggestions
                             input={this.state.input}
-                            suggestionClick={this.redirect}
                             stopsOnly={true}
                             maxResults={30}
                             network={this.state.network}
                             setState={this.setState.bind(this)}
+                            suggestions={this.props.suggestions}
+                            dispatch={this.props.dispatch}
+                            setError={(err) => this.setState({err: err})}
                         />
                     </div>
                     <ImpressPrivacy inline={true}/>
@@ -90,6 +99,10 @@ class Index extends React.Component {
     }
 }
 
-export default geolocated({
+function mapStateToProps(state) {
+    return {suggestions: state.monitor.suggestions};
+}
+
+export default connect(mapStateToProps)(geolocated({
     userDecisionTimeout: 5000
-})(Index);
+})(Index));
