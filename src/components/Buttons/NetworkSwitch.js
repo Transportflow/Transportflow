@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-let networks = ["DVB", "BVG"];
+let networks = ["DVB", "BVG", "DB"];
 
 class NetworkSwitch extends Component {
     constructor(props) {

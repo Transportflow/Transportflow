@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import Suggestion from "./Suggestion";
-import * as dvb from "../containers/Monitor/search/profiles/DVB";
-import * as bvg from "../containers/Monitor/search/profiles/BVG";
+import * as dvb from "../containers/Monitor/profiles/DVB";
+import * as bvg from "../containers/Monitor/profiles/BVG";
+import * as db from "../containers/Monitor/profiles/DB";
 import {geolocated} from "react-geolocated";
 
 class Suggestions extends Component {
@@ -43,10 +44,17 @@ class Suggestions extends Component {
 
             this.props.setState({loading: true});
             try {
-                if (localStorage.getItem("network") === "bvg") {
-                    await bvg.findLocationSuggestions(latitude, longitude, this.props.dispatch);
-                } else if (localStorage.getItem("network") === "dvb") {
-                    await dvb.findLocationSuggestions(latitude, longitude, this.props.dispatch);
+                switch (localStorage.getItem("network")) {
+                    case "dvb":
+                        await dvb.findLocationSuggestions(latitude, longitude, this.props.dispatch);
+                        break;
+                    case "bvg":
+                        await bvg.findLocationSuggestions(latitude, longitude, this.props.dispatch);
+                        break;
+                    case "db":
+                        await db.findLocationSuggestions(latitude, longitude, this.props.dispatch);
+                        break;
+                    default:
                 }
             } catch (err) {
                 throw new Error(err.toString())
@@ -57,10 +65,17 @@ class Suggestions extends Component {
 
     findSuggestions = async input => {
         this.props.setState({loading: true});
-        if (localStorage.getItem("network") === "dvb") {
-            await dvb.findSuggestions(input, this.props.dispatch)
-        } else if (localStorage.getItem("network") === "bvg") {
-            await bvg.findSuggestions(input, this.props.dispatch)
+        switch (localStorage.getItem("network")) {
+            case "dvb":
+                await dvb.findSuggestions(input, this.props.dispatch);
+                break;
+            case "bvg":
+                await bvg.findSuggestions(input, this.props.dispatch);
+                break;
+            case "db":
+                await db.findSuggestions(input, this.props.dispatch);
+                break;
+            default:
         }
         this.props.setState({loading: false});
 

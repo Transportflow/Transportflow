@@ -25,17 +25,17 @@ class Index extends React.Component {
     componentDidMount = async () => {
         this.setState({loading: false});
     };
-
+    componentWillUnmount() {
+        this.props.dispatch({type:"CLEAR_SUGGESTIONS"});
+    }
     componentDidCatch(error, errorInfo) {
         this.setState({err: errorInfo.toString(), loading: false})
     }
-
     handleChange = event => {
         this.setState({
             input: event.target.value
         });
     };
-
     networkChanged() {
         this.setState({network: localStorage.getItem("network")})
     }

@@ -7,8 +7,9 @@ import {
     faRedo
 } from "@fortawesome/free-solid-svg-icons";
 
-import {findDeparturesForDVB} from "./profiles/DVB";
-import {findDeparturesForBVG} from "./profiles/BVG";
+import * as dvb from "../profiles/DVB";
+import * as bvg from "../profiles/BVG";
+import * as db from "../profiles/DB";
 
 import DarkmodeToggle from "../../../components/Buttons/DarkmodeToggle";
 import ImpressPrivacy from "../../../components/Buttons/ImpressPrivacy";
@@ -61,11 +62,13 @@ class Stop extends React.Component {
         this.setState({loading: true});
         try {
             if (this.props.match.params.network === "dvb") {
-                await findDeparturesForDVB(this.state.stop, this.props.dispatch);
+                await dvb.findDepartures(this.state.stop, this.props.dispatch);
             } else if (this.props.match.params.network === "bvg") {
-                await findDeparturesForBVG(this.state.stop, this.props.dispatch);
+                await bvg.findDepartures(this.state.stop, this.props.dispatch);
+            } else if (this.props.match.params.network === "db") {
+                await db.findDepartures(this.state.stop, this.props.dispatch);
             } else {
-                throw new Error("Couldn't find Network")
+                throw new Error("Couldn't find Network");
             }
         } catch (error) {
             this.setState({err: error.toString().replace("Error: ", ""), loading: false});

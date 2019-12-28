@@ -51,7 +51,7 @@ class Departure extends Component {
                     style={{transition: "all 0.25s ease-in-out", maxHeight: this.state.open ? "60px" : 0}}>
                     <span>{this.props.departure.state === "In time" ? "pünktlich"
                         : this.props.departure.state === "Delayed" ? "+" + this.props.departure.delayTime + " min Verspätung"
-                            : this.props.departure.delayTime + " min zu früh"}
+                            : this.props.departure.state === "No data" ? "Keine Echtzeitauskunft" : this.props.departure.delayTime + " min zu früh"}
                         {this.props.departure.platform ? " | " + this.props.departure.platformTitle + " " + this.props.departure.platform : ""}</span>
                 </div>
                 <div className="flex flex-shrink justify-between rounded-lg">
