@@ -36,14 +36,13 @@ export async function findDeparturesForDVB(stopID, dispatch) {
     });
     dispatch({type: "SET_MODES", modes: mot});
 
-    console.log(query)
     for (let i = 0; i < query.length; i++) {
         let newDeparture = {};
         let departure = query[i];
 
         newDeparture.id = departure.id;
-        newDeparture.state = departure.delay === null || departure.delay === 0 ? "In time" : departure.delay > 0 ? "Too late" : "Too early";
-        newDeparture.delayTime = departure.delay;
+        newDeparture.state = departure.delayTime === 0 ? "In time" : departure.delayTime > 0 ? "Delayed" : "Too early";
+        newDeparture.delayTime = departure.delayTime;
 
         newDeparture.mode = departure.mode.title;
         newDeparture.platform = departure.platform.name;
