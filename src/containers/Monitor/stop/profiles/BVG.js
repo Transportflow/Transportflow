@@ -34,7 +34,7 @@ export async function findDeparturesForBVG(stopID, dispatch) {
     });
 
     const monitor = monitorQuery.data;
-    monitor.splice(10);
+    monitor.splice(30);
 
     if (monitor.length === 0) {
         throw new Error("Keine Abfahrten gefunden");
@@ -71,7 +71,7 @@ export async function findDeparturesForBVG(stopID, dispatch) {
                 )
                     .format("m[']")
                 : moment.duration(
-                departure.arrivalTimeRelative,
+                new Date(Date.parse(departure.when)).getTime() - Date.now()+30000,
                 "milliseconds"
                 )
                     .format("h['']");
