@@ -121,11 +121,11 @@ function getStopIcons(stops) {
             stop.icons.push("https://www.dvb.de/assets/img/trans-icon/transport-tram.svg");
         if (stop.products.suburban)
             stop.icons.push("https://www.dvb.de/assets/img/trans-icon/transport-metropolitan.svg");
-        if (stop.products.express)
+        if (stop.products.regional)
             stop.icons.push("https://www.dvb.de/assets/img/trans-icon/transport-train.svg");
         if (stop.products.ferry)
             stop.icons.push("https://www.dvb.de/assets/img/trans-icon/transport-ferry.svg");
-        if (stop.products.regional)
+        if (stop.products.express)
             stop.icons.push("https://upload.wikimedia.org/wikipedia/commons/a/a6/VBB_Bahn-Regionalverkehr.svg");
     });
 }
@@ -136,16 +136,22 @@ function getDepartureIcon(name) {
             return "https://www.dvb.de/assets/img/trans-icon/transport-bus.svg";
         case ("ferry"):
             return "https://www.dvb.de/assets/img/trans-icon/transport-ferry.svg";
+        case ("nationalExpress"):
+            return "https://www.dvb.de/assets/img/trans-icon/transport-train.svg";
+        case ("national"):
+            return "https://www.dvb.de/assets/img/trans-icon/transport-train.svg";
+        case ("regionalExp"):
+            return "https://upload.wikimedia.org/wikipedia/commons/a/a6/VBB_Bahn-Regionalverkehr.svg";
         case ("regional"):
             return "https://upload.wikimedia.org/wikipedia/commons/a/a6/VBB_Bahn-Regionalverkehr.svg";
-        case ("express"):
-            return "https://www.dvb.de/assets/img/trans-icon/transport-train.svg";
         case ("suburban"):
             return "https://www.dvb.de/assets/img/trans-icon/transport-metropolitan.svg";
         case ("subway"):
             return "https://upload.wikimedia.org/wikipedia/commons/a/a3/U-Bahn.svg";
         case ("tram"):
             return "https://www.dvb.de/assets/img/trans-icon/transport-tram.svg";
+        case ("taxi"):
+            return "https://www.dvb.de/assets/img/trans-icon/transport-alita.svg";
         default:
             return "";
     }
