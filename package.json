@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^8.0.2",
     "autoprefixer": "^9.7.3",
     "axios": "^0.19.0",
+    "db-wagenreihung": "^1.0.1",
     "dvbjs": "^6.0.0",
     "express": "^4.17.1",
     "hafas-client": "^4.7.0",
