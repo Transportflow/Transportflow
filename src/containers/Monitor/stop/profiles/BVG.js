@@ -56,7 +56,7 @@ export async function findDeparturesForBVG(stopID, dispatch) {
 
         newDeparture.mode = departure.line.product;
         newDeparture.platform = departure.platform;
-        newDeparture.platformTitle = "Steig";
+        newDeparture.platformTitle = "Gleis"; // Bvg departure platforms are mostly null when not being a train/subway
         newDeparture.icon = getIconUrl(departure.line.product);
 
         newDeparture.line = departure.line.name;
