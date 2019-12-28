@@ -21,8 +21,8 @@ class Suggestions extends Component {
         this.props.setError(error.toString());
     }
 
-    componentDidUpdate(nextProps) {
-        if (this.props.input === nextProps.input && this.props.network === nextProps.network) {
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.input === prevProps.input && this.props.network === prevProps.network) {
             return;
         }
         if (this.props.input.length > 0) {
@@ -38,8 +38,8 @@ class Suggestions extends Component {
             return;
         }
         if (this.props.isGeolocationAvailable && this.props.isGeolocationEnabled) {
-            var longitude = this.props.coords.longitude;
-            var latitude = this.props.coords.latitude;
+            let longitude = this.props.coords.longitude;
+            let latitude = this.props.coords.latitude;
 
             this.props.setState({loading: true});
             try {
