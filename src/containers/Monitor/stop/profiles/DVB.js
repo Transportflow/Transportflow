@@ -5,7 +5,7 @@ let moment = require("moment");
 require("moment-duration-format");
 
 export async function findDeparturesForDVB(stopID, dispatch) {
-    var stops = await dvb.findStop(stopID);
+    let stops = await dvb.findStop(stopID);
     if (stops.length === 0) {
         throw new Error("Haltestelle nicht gefunden");
     }
