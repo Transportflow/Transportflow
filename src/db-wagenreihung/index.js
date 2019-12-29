@@ -1,7 +1,7 @@
-const axios = require('axios').default;
-const moment = require('moment-timezone');
+let axios = require('axios').default;
+let moment = require('moment-timezone');
 
-const createWagon = (w, group) => ({
+let createWagon = (w, group) => ({
     group,
     type: w.kategorie,
     id: w.fahrzeugnummer,
@@ -13,18 +13,18 @@ const createWagon = (w, group) => ({
 
 // todo: validate params
 
-const wagenreihung = async (trainNumber, lastDeparture) => {
-    const date = moment.tz(lastDeparture, 'Europe/Berlin').format('YYYYMMDDHHmm');
+export async function wagenreihung (trainNumber, lastDeparture) {
+    let date = moment.tz(lastDeparture, 'Europe/Berlin').format('YYYYMMDDHHmm');
     let catchError = false;
-    const data = await axios.get(`https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${date}`).catch(() => catchError = true).then(res => res.data);
+    let data = await axios.get(`https://www.apps-bahn.de/wr/wagenreihung/1.0/${trainNumber}/${date}`).catch(() => catchError = true).then(res => res.data);
 
     if (catchError) {
         return "error";
     }
 
-    const d = data.data.istformation;
+    let d = data.data.istformation;
 
-    const wagons = [];
+    let wagons = [];
     for (const i in d.allFahrzeuggruppe) {
         for (const w of d.allFahrzeuggruppe[i].allFahrzeug) {
             wagons.push(createWagon(w, +i))
@@ -39,5 +39,3 @@ const wagenreihung = async (trainNumber, lastDeparture) => {
         wagons
     })
 }
-
-module.exports = wagenreihung;

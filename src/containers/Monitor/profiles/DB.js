@@ -1,7 +1,7 @@
 import {dateToHHMM} from "./utils";
+import {wagenreihung} from "../../../db-wagenreihung";
 
 const axios = require("axios").default;
-const wagenreihung = require('../../../db-wagenreihung');
 
 let moment = require("moment");
 require("moment-duration-format");
