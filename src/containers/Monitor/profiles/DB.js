@@ -1,6 +1,7 @@
 import {dateToHHMM} from "./utils";
 
 const axios = require("axios").default;
+const wagenreihung = require('../../../db-wagenreihung');
 
 let moment = require("moment");
 require("moment-duration-format");
@@ -14,6 +15,10 @@ export async function findSuggestions(input, dispatch) {
         }
     });
     let query = raw.data;
+
+    if (query.length === 0) {
+        return;
+    }
 
     await parseSuggestions(query, dispatch)
 }
@@ -37,8 +42,10 @@ async function parseSuggestions(query, dispatch) {
 
 export async function findDepartures(stopID, dispatch) {
     const stopSearch = await axios.get(baseUrl + "/stops/" + stopID).catch((err) => {
-        if (err.toString().includes("500") || err.toString().includes("502")) {
+        if (err.toString().includes("500")) {
             throw new Error("Haltestelle nicht gefunden")
+        } else if (err.toString().includes("502")) {
+            throw new Error("Service Error ._.")
         }
     });
 
@@ -62,8 +69,7 @@ export async function findDepartures(stopID, dispatch) {
     });
 
     const monitor = monitorQuery.data;
-    monitor.splice(30);
-    console.log(Object.assign([], monitor))
+    monitor.splice(60);
 
     if (monitor.length === 0) {
         throw new Error("Keine Abfahrten gefunden");
@@ -90,7 +96,9 @@ export async function findDepartures(stopID, dispatch) {
 
         newDeparture.line = departure.line.name;
         newDeparture.direction = departure.direction;
+        newDeparture.fahrtNr = departure.line.fahrtNr;
 
+        newDeparture.when = departure.when;
         newDeparture.arrivalTime = dateToHHMM(departure.when !== null ? departure.when : new Date(Date.now()).toUTCString());
         newDeparture.arrivalTimeRelative = departure.when !== null ?
             new Date(Date.parse(departure.when)).getTime() - Date.now() < 3.6e+6
@@ -129,7 +137,6 @@ function getStopIcons(stops) {
             stop.icons.push("https://upload.wikimedia.org/wikipedia/commons/a/a6/VBB_Bahn-Regionalverkehr.svg");
     });
 }
-
 function getDepartureIcon(name) {
     switch (name) {
         case ("bus"):
@@ -154,5 +161,22 @@ function getDepartureIcon(name) {
             return "https://www.dvb.de/assets/img/trans-icon/transport-alita.svg";
         default:
             return "";
+    }
+}
+export async function getWagenreihung(fahrtNr, when, product) {
+    if (when === null)
+        throw new Error("when is null");
+
+    if (product === "nationalExpress"
+        || product === "national"
+        || product === "regional"
+        || product === "regionalExpress") {
+        try {
+            return await wagenreihung(fahrtNr, when);
+        } catch (err) {
+            throw new Error(err);
+        }
+    } else {
+        return undefined;
     }
 }

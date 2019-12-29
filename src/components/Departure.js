@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import * as db from "../containers/Monitor/profiles/DB"
 
 /*
 PROPS
@@ -29,8 +30,32 @@ class Departure extends Component {
 
         this.state = {
             imageError: false,
-            open: false
+            open: false,
+            wagenreihung: undefined
         };
+    }
+
+    componentDidMount() {
+        this.loadWagenreihung();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.departure !== this.props.departure)
+            this.loadWagenreihung();
+    }
+
+    async loadWagenreihung() {
+        if (localStorage.getItem("network") === "db") {
+            try {
+                let wagenreihung = await db.getWagenreihung(this.props.departure.fahrtNr, this.props.departure.when, this.props.departure.mode);
+                if (wagenreihung === "error") {
+                    throw new Error("No Wagenreihung available");
+                }
+                this.setState({wagenreihung: wagenreihung});
+            } catch (err) {
+                // no wagenreihung available
+            }
+        }
     }
 
     openDeparture() {
@@ -93,6 +118,34 @@ class Departure extends Component {
                             </span>
                         </p>
                     </div>
+                </div>
+                <div
+                    className={(this.state.open ? "opacity-100 pb-1" : "opacity-0") + " overflow-hidden text-sm tracking-wide text-center trans"}
+                    style={{transition: "all 0.25s ease-in-out", maxHeight: this.state.open ? "2000px" : 0}}>
+                    {this.state.wagenreihung !== undefined ?
+                        <div className="mb-2 mt-2">
+                            {this.state.wagenreihung.wagons.map((wagon, index) =>
+                                <div className="px-2 pb-0 pt-1 text-xl rounded mr-1 mt-1 flex justify-between">
+                                    <span className="truncate">
+                                        <ion-icon name="ios-train"/>{" "}
+                                        <span className="text-base pb-1 truncate">{wagon.type
+                                        .replace("REISEZUGWAGEN", "")
+                                        .replace("LOK", "Lok")
+                                        .replace("TRIEBKOPF", "Triebkopf")
+                                        .replace("ERSTEZWEITEKLASSE", "1. & 2. Klasse")
+                                        .replace("ERSTEKLASSE", "1. Klasse")
+                                        .replace("ZWEITEKLASSE", "2. Klasse")
+                                        .replace("HALBSPEISEWAGEN", "Halbspeisewagen ")
+                                        .replace("SPEISEWAGEN", "Speisewagen ")
+                                        .replace("STEUERWAGEN", "Steuerwagen ")}</span>
+                                        </span>
+                                    <span className="whitespace-no-wrap">
+                                        <span className="text-base">{wagon.wagonNumber !== null ? <>(Wagen {wagon.wagonNumber})</> : ""}</span> {wagon.fahrzeugsektor}
+                                    </span>
+                                </div>
+                            )}
+                        </div>
+                        : <></>}
                 </div>
             </div>
         );

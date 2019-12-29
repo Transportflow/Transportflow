@@ -8,12 +8,12 @@ require("moment-duration-format");
 const baseUrl = "https://bvg.api.transportflow.online";
 
 export async function findSuggestions(input, dispatch) {
-    const raw = await axios.get(baseUrl + "/locations?query=" + input + "&addresses=false&poi=false").catch((err) => {
-        if (!err.toString().includes("500") || !err.toString().includes("502")) {
-            throw new Error(err.toString());
-        }
-    });
+    const raw = await axios.get(baseUrl + "/locations?query=" + input + "&addresses=false&poi=false");
     let query = raw.data;
+
+    if (query.length === 0) {
+        return;
+    }
 
     await parseSuggestions(query, dispatch)
 }
@@ -37,8 +37,10 @@ async function parseSuggestions(query, dispatch) {
 
 export async function findDepartures(stopID, dispatch) {
     const stopSearch = await axios.get(baseUrl + "/stops/" + stopID).catch((err) => {
-        if (err.toString().includes("500") || err.toString().includes("502")) {
+        if (err.toString().includes("500")) {
             throw new Error("Haltestelle nicht gefunden")
+        } else if (err.toString().includes("502")) {
+            throw new Error("Service Error ._.")
         }
     });
 

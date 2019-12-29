@@ -19,7 +19,7 @@ class Suggestions extends Component {
     }
 
     componentDidCatch(error, errorInfo) {
-        this.props.setError(error.toString());
+        console.log(error)
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {

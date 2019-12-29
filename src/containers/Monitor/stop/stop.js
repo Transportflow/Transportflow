@@ -158,12 +158,12 @@ class Stop extends React.Component {
                                             .replace("subway", "U-Bahn")
                                             .replace("tram", "Straßenbahn")
                                             .replace("bus", "Bus")
-                                            .replace("express", "Zug")
-                                            .replace("regionalExp", "RE/RB")
+                                            .replace("express", "Bahn")
+                                            .replace("regionalExp", "Express")
                                             .replace("regional", "RE/RB")
                                             .replace("ferry", "Fähre")
                                             .replace("nationalExpress", "ICE")
-                                            .replace("national", "IC")
+                                            .replace("national", "IC/EC")
                                         }
                                     </button>
                                 );
