@@ -11,6 +11,10 @@
     }
 }
 
+.trans-none {
+    transition: all 0s;
+}
+
 .trans {
     transition: all 0.25s;
 }

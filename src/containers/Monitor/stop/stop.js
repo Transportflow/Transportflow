@@ -148,7 +148,7 @@ class Stop extends React.Component {
                             this.props.modes.map((mode, index) => {
                                 return (
                                     <button
-                                        className="whitespace-no-wrap text-gray-900 bg-gray-300 sm:bg-gray-400 dark\:bg-gray-700 sm:dark\:bg-gray-800 dark\:text-gray-200 px-4 py-3 rounded-lg mr-3 focus:outline-none trans"
+                                        className="whitespace-no-wrap text-gray-900 bg-gray-300 sm:bg-gray-400 dark\:bg-gray-700 sm:dark\:bg-gray-800 dark\:text-gray-200 px-4 py-3 rounded-lg mr-3 focus:outline-none trans-none"
                                         onClick={this.toggleMode}
                                         key={mode}
                                         id={mode}

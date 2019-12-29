@@ -67,7 +67,7 @@ class Departure extends Component {
             <div className={
                 this.props.modes.includes(this.props.departure.mode) ||
                 this.props.modes.length < 1
-                    ? "trans bg-gray-300 dark\\:bg-gray-700 text-gray-900 dark\\:text-gray-100 font-medium font-inter rounded-lg overflow-hidden mb-2 sm:mb-3 p-2 pl-3 select-none cursor-pointer"
+                    ? "trans-none bg-gray-300 dark\\:bg-gray-700 text-gray-900 dark\\:text-gray-100 font-medium font-inter rounded-lg overflow-hidden mb-2 sm:mb-3 p-2 pl-3 select-none cursor-pointer"
                     : "hidden"
             }
                  onClick={this.openDeparture.bind(this)}>
@@ -107,7 +107,7 @@ class Departure extends Component {
                         </p>
                     </div>
                     <div
-                        className="w-1/4 sm:w-1/5 md:w-1/6 bg-gray-400 dark\:bg-gray-800 rounded-lg object-right p-2 sm:m-1 trans">
+                        className="w-1/4 sm:w-1/5 md:w-1/6 bg-gray-400 dark\:bg-gray-800 rounded-lg object-right p-2 sm:m-1">
                         <p className="text-center leading-tight">
                         <span className="font-semibold text-2xl text-gray-800 dark\:text-gray-200">
                           {this.props.departure.arrivalTimeRelative}
