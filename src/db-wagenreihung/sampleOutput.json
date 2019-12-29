@@ -1,0 +1,313 @@
+{
+  "meta": {
+    "id": "A69EC3C37F9D4545ABBC3F96DDDF8111",
+    "owner": "vz",
+    "format": "JSON",
+    "version": "0.2.69",
+    "correlation": [],
+    "created": "2019-12-29T22:00:06.678+01:00",
+    "sequence": 18
+  },
+  "data": {
+    "istformation": {
+      "fahrtrichtung": "VORWAERTS",
+      "allFahrzeuggruppe": [
+        {
+          "allFahrzeug": [
+            {
+              "allFahrzeugausstattung": [
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "KLIMA",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                },
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "INFO",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                },
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "ABTEILKLEINKIND",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                },
+                {
+                  "anzahl": "6",
+                  "ausstattungsart": "PLAETZEFAHRRAD",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                },
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "PLAETZEROLLSTUHL",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                },
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "ROLLSTUHLTOILETTE",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                },
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "PLAETZESCHWERBEH",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                }
+              ],
+              "kategorie": "DOPPELSTOCKSTEUERWAGENZWEITEKLASSE",
+              "fahrzeugnummer": "508086818863",
+              "orientierung": "UNDEFINIERT",
+              "positioningruppe": "1",
+              "fahrzeugsektor": "D",
+              "fahrzeugtyp": "DBpbzfa",
+              "wagenordnungsnummer": "1",
+              "positionamhalt": {
+                "endemeter": "255.97",
+                "endeprozent": "60",
+                "startmeter": "228.7",
+                "startprozent": "53"
+              },
+              "status": "OFFEN"
+            },
+            {
+              "allFahrzeugausstattung": [
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "KLIMA",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                },
+                {
+                  "anzahl": "1",
+                  "ausstattungsart": "PLAETZEFAHRRAD",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                }
+              ],
+              "kategorie": "DOPPELSTOCKWAGENZWEITEKLASSE",
+              "fahrzeugnummer": "508026815706",
+              "orientierung": "UNDEFINIERT",
+              "positioningruppe": "2",
+              "fahrzeugsektor": "C",
+              "fahrzeugtyp": "DBpza",
+              "wagenordnungsnummer": "2",
+              "positionamhalt": {
+                "endemeter": "282.77",
+                "endeprozent": "66",
+                "startmeter": "255.97",
+                "startprozent": "60"
+              },
+              "status": "OFFEN"
+            },
+            {
+              "allFahrzeugausstattung": [
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "KLIMA",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                },
+                {
+                  "anzahl": "1",
+                  "ausstattungsart": "PLAETZEFAHRRAD",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                }
+              ],
+              "kategorie": "DOPPELSTOCKWAGENZWEITEKLASSE",
+              "fahrzeugnummer": "508026815722",
+              "orientierung": "UNDEFINIERT",
+              "positioningruppe": "3",
+              "fahrzeugsektor": "C",
+              "fahrzeugtyp": "DBpza",
+              "wagenordnungsnummer": "3",
+              "positionamhalt": {
+                "endemeter": "309.57",
+                "endeprozent": "72",
+                "startmeter": "282.77",
+                "startprozent": "66"
+              },
+              "status": "OFFEN"
+            },
+            {
+              "allFahrzeugausstattung": [
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "KLIMA",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                },
+                {
+                  "anzahl": "1",
+                  "ausstattungsart": "PLAETZEFAHRRAD",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                },
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "PLAETZEBAHNCOMFORT",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                }
+              ],
+              "kategorie": "DOPPELSTOCKWAGENZWEITEKLASSE",
+              "fahrzeugnummer": "508026815730",
+              "orientierung": "UNDEFINIERT",
+              "positioningruppe": "4",
+              "fahrzeugsektor": "B",
+              "fahrzeugtyp": "DBpza",
+              "wagenordnungsnummer": "4",
+              "positionamhalt": {
+                "endemeter": "336.37",
+                "endeprozent": "78",
+                "startmeter": "309.57",
+                "startprozent": "72"
+              },
+              "status": "OFFEN"
+            },
+            {
+              "allFahrzeugausstattung": [
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "KLIMA",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                },
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "RUHE",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                },
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "PLAETZEBAHNCOMFORT",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                },
+                {
+                  "anzahl": "",
+                  "ausstattungsart": "PLAETZESCHWERBEH",
+                  "bezeichnung": "",
+                  "status": "UNDEFINIERT"
+                }
+              ],
+              "kategorie": "DOPPELSTOCKWAGENERSTEKLASSE",
+              "fahrzeugnummer": "508016811806",
+              "orientierung": "UNDEFINIERT",
+              "positioningruppe": "5",
+              "fahrzeugsektor": "B",
+              "fahrzeugtyp": "DApza",
+              "wagenordnungsnummer": "5",
+              "positionamhalt": {
+                "endemeter": "363.17",
+                "endeprozent": "85",
+                "startmeter": "336.37",
+                "startprozent": "78"
+              },
+              "status": "OFFEN"
+            },
+            {
+              "allFahrzeugausstattung": [],
+              "kategorie": "LOK",
+              "fahrzeugnummer": "918061475623",
+              "orientierung": "UNDEFINIERT",
+              "positioningruppe": "6",
+              "fahrzeugsektor": "A",
+              "fahrzeugtyp": "E1475",
+              "wagenordnungsnummer": "",
+              "positionamhalt": {
+                "endemeter": "382.07",
+                "endeprozent": "89",
+                "startmeter": "363.17",
+                "startprozent": "85"
+              },
+              "status": "OFFEN"
+            }
+          ],
+          "fahrzeuggruppebezeichnung": "ICD4886",
+          "zielbetriebsstellename": "Karlsruhe Hbf",
+          "startbetriebsstellename": "Nürnberg Hbf",
+          "verkehrlichezugnummer": "2064"
+        }
+      ],
+      "halt": {
+        "abfahrtszeit": "2019-12-30T18:16:00",
+        "ankunftszeit": "2019-12-30T18:15:00",
+        "bahnhofsname": "Vaihingen(Enz)",
+        "evanummer": "8006053",
+        "gleisbezeichnung": "7",
+        "haltid": "TV",
+        "rl100": "TV",
+        "allSektor": [
+          {
+            "positionamgleis": {
+              "endemeter": "158.05",
+              "endeprozent": "37",
+              "startmeter": "0",
+              "startprozent": "0"
+            },
+            "sektorbezeichnung": "F"
+          },
+          {
+            "positionamgleis": {
+              "endemeter": "223.575",
+              "endeprozent": "52",
+              "startmeter": "158.05",
+              "startprozent": "37"
+            },
+            "sektorbezeichnung": "E"
+          },
+          {
+            "positionamgleis": {
+              "endemeter": "268.575",
+              "endeprozent": "63",
+              "startmeter": "223.575",
+              "startprozent": "52"
+            },
+            "sektorbezeichnung": "D"
+          },
+          {
+            "positionamgleis": {
+              "endemeter": "312.85",
+              "endeprozent": "73",
+              "startmeter": "268.575",
+              "startprozent": "63"
+            },
+            "sektorbezeichnung": "C"
+          },
+          {
+            "positionamgleis": {
+              "endemeter": "365.35",
+              "endeprozent": "85",
+              "startmeter": "312.85",
+              "startprozent": "73"
+            },
+            "sektorbezeichnung": "B"
+          },
+          {
+            "positionamgleis": {
+              "endemeter": "429.55",
+              "endeprozent": "100",
+              "startmeter": "365.35",
+              "startprozent": "85"
+            },
+            "sektorbezeichnung": "A"
+          }
+        ]
+      },
+      "liniebezeichnung": "61",
+      "zuggattung": "IC",
+      "zugnummer": "2064",
+      "serviceid": "8834392760",
+      "planstarttag": "2019-12-30",
+      "fahrtid": "",
+      "istplaninformation": true
+    }
+  }
+}
