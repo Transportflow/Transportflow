@@ -69,7 +69,7 @@ export async function findDepartures(stopID, dispatch) {
     });
 
     const monitor = monitorQuery.data;
-    monitor.splice(60);
+    monitor.splice(30);
 
     if (monitor.length === 0) {
         throw new Error("Keine Abfahrten gefunden");
