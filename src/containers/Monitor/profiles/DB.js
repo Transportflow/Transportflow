@@ -6,7 +6,7 @@ const axios = require("axios").default;
 let moment = require("moment");
 require("moment-duration-format");
 
-const baseUrl = "https://db.api.transportflow.online";
+const baseUrl = "https://db.transportflow.de";
 
 export async function findSuggestions(input, dispatch) {
     const raw = await axios.get(baseUrl + "/locations?query=" + input + "&addresses=false&poi=false").catch((err) => {
@@ -45,7 +45,7 @@ export async function findDepartures(stopID, dispatch) {
         if (err.toString().includes("500")) {
             throw new Error("Haltestelle nicht gefunden")
         } else if (err.toString().includes("502")) {
-            throw new Error("Service Error ._.")
+            throw new Error("Service Error, bitte erneut versuchen")
         }
     });
 
@@ -59,7 +59,7 @@ export async function findDepartures(stopID, dispatch) {
             name: stop.name,
             longitude: stop.location.longitude,
             latitude: stop.location.latitude,
-            mapLink: "https://maps.apple.com/?dirflg=w&daddr=" + stop.location.longitude + "," + stop.location.latitude
+            mapLink: "https://maps.apple.com/?dirflg=w&daddr=" + stop.location.latitude + "," + stop.location.longitude
         }
     });
 
