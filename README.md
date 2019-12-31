@@ -1,6 +1,6 @@
 # 🦜 Transportflow
 
-Web page to view departures or plan a route(coming soon) in germany. [Live Demo 🛰](https://transportflow.online/)
+Web page to view departures or plan a route(coming soon) in germany. [Live Demo 🛰](https://transportflow.de/)
 
 ### ⛸ Getting started
 
