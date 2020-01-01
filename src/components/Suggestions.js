@@ -25,10 +25,14 @@ class Suggestions extends Component {
     async componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.props.network !== prevProps.network && this.props.input.length < 1) {
             await this.getLocation();
+        } else if (this.props.network !== prevProps.network && this.props.input.length > 0) {
+            this.findSuggestions(this.props.input);
         }
+
         if (this.props.input === prevProps.input) {
             return;
         }
+
         if (this.props.input.length > 0) {
             this.findSuggestions(this.props.input);
         } else {
