@@ -25,9 +25,6 @@ class Index extends React.Component {
     componentDidMount = async () => {
         this.setState({loading: false});
     };
-    componentWillUnmount() {
-        this.props.dispatch({type:"CLEAR_SUGGESTIONS"});
-    }
     componentDidCatch(error, errorInfo) {
         this.setState({err: errorInfo.toString(), loading: false})
     }
