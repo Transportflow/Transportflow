@@ -90,6 +90,7 @@ export async function findDepartures(stopID, dispatch) {
 
         newDeparture.line = departure.line;
         newDeparture.direction = departure.direction;
+        newDeparture.fahrtNr = departure.id;
 
         newDeparture.arrivalTime = dateToHHMM(departure.arrivalTime);
         newDeparture.arrivalTimeRelative =
