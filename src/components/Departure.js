@@ -120,7 +120,7 @@ class Departure extends Component {
                     </div>
                 </div>
                 <div
-                    className={(this.state.open ? "opacity-100 pb-1" : "opacity-0") + " overflow-hidden text-sm tracking-wide text-center trans"}
+                    className={(this.state.open ? "opacity-100" : "opacity-0") + " overflow-hidden text-sm tracking-wide text-center trans"}
                     style={{transition: "all 0.25s ease-in-out", maxHeight: this.state.open ? "2000px" : 0}}>
                     {this.state.wagenreihung !== undefined ?
                         <div className="mb-2 mt-2">
