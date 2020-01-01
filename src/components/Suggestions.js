@@ -22,8 +22,11 @@ class Suggestions extends Component {
         console.log(error)
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.input === prevProps.input && this.props.network === prevProps.network) {
+    async componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.network !== prevProps.network && this.props.input.length < 1) {
+            await this.getLocation();
+        }
+        if (this.props.input === prevProps.input) {
             return;
         }
         if (this.props.input.length > 0) {
@@ -44,7 +47,7 @@ class Suggestions extends Component {
 
             this.props.setState({loading: true});
             try {
-                switch (localStorage.getItem("network")) {
+                switch (this.props.network) {
                     case "dvb":
                         await dvb.findLocationSuggestions(latitude, longitude, this.props.dispatch);
                         break;
@@ -65,7 +68,7 @@ class Suggestions extends Component {
 
     findSuggestions = async input => {
         this.props.setState({loading: true});
-        switch (localStorage.getItem("network")) {
+        switch (this.props.network) {
             case "dvb":
                 await dvb.findSuggestions(input, this.props.dispatch);
                 break;
@@ -87,6 +90,7 @@ class Suggestions extends Component {
                 {this.props.suggestions.map((suggestion, index) => (
                     <Suggestion
                         key={index}
+                        network={this.props.network}
                         suggestion={suggestion}
                         index={index}
                         dispatch={this.props.dispatch}
