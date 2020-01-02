@@ -127,6 +127,8 @@ export function getDepartureIcon(name) {
             return "https://www.dvb.de/assets/img/trans-icon/transport-train.svg";
         case ("national"):
             return "https://www.dvb.de/assets/img/trans-icon/transport-train.svg";
+        case ("express"):
+            return "https://www.dvb.de/assets/img/trans-icon/transport-train.svg";
         case ("regionalExp"):
             return "https://upload.wikimedia.org/wikipedia/commons/a/a6/VBB_Bahn-Regionalverkehr.svg";
         case ("regional"):

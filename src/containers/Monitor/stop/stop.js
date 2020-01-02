@@ -164,6 +164,7 @@ class Stop extends React.Component {
                                             .replace("ferry", "Fähre")
                                             .replace("nationalExpress", "ICE")
                                             .replace("national", "IC/EC")
+                                            .replace("taxi", "Taxi")
                                         }
                                     </button>
                                 );
