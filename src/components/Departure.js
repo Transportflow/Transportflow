@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import * as db from "../containers/Monitor/profiles/DB"
+import {BarLoader, CircleLoader, MoonLoader} from "react-spinners";
 
 /*
 PROPS
@@ -31,23 +32,31 @@ class Departure extends Component {
         this.state = {
             imageError: false,
             open: false,
-            wagenreihung: undefined
+            wagenreihung: undefined,
+            cancelled: false,
+            loading: false
         };
     }
 
     componentDidMount() {
-        this.loadWagenreihung();
+        if (this.props.departure.cancelled) {
+            this.setState({open: true, cancelled: true});
+        } else {
+            this.loadWagenreihung();
+        }
+
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.departure !== this.props.departure)
+        if (prevProps.departure !== this.props.departure && !this.props.departure.cancelled)
             this.loadWagenreihung();
     }
 
     async loadWagenreihung() {
         if (localStorage.getItem("network") === "db") {
             try {
-                let wagenreihung = await db.getWagenreihung(this.props.departure.fahrtNr, this.props.departure.when, this.props.departure.mode);
+                this.setState({loading: true});
+                let wagenreihung = await db.getWagenreihung(this.props.departure.fahrtNr, this.props.departure.scheduledWhen, this.props.departure.mode);
                 if (wagenreihung === "error") {
                     throw new Error("No Wagenreihung available");
                 }
@@ -55,6 +64,7 @@ class Departure extends Component {
             } catch (err) {
                 // no wagenreihung available
             }
+            this.setState({loading: false});
         }
     }
 
@@ -74,9 +84,9 @@ class Departure extends Component {
                 <div
                     className={(this.state.open ? "opacity-100 pb-1" : "opacity-0") + " overflow-hidden font-semibold text-sm tracking-wide uppercase text-center trans"}
                     style={{transition: "all 0.25s ease-in-out", maxHeight: this.state.open ? "60px" : 0}}>
-                    <span>{this.props.departure.state === "In time" ? "pünktlich"
+                    <span>{this.state.cancelled ? "Fällt aus" : (this.props.departure.state === "In time" ? "pünktlich"
                         : this.props.departure.state === "Delayed" ? "+" + this.props.departure.delayTime + " min Verspätung"
-                            : this.props.departure.state === "No data" ? "Keine Echtzeitauskunft" : this.props.departure.delayTime + " min zu früh"}
+                            : this.props.departure.state === "No data" ? "Keine Echtzeitauskunft" : this.props.departure.delayTime + " min zu früh")}
                         {this.props.departure.platform ? " | " + this.props.departure.platformTitle + " " + this.props.departure.platform : ""}</span>
                 </div>
                 <div className="flex flex-shrink justify-between rounded-lg">
@@ -122,30 +132,41 @@ class Departure extends Component {
                 <div
                     className={(this.state.open ? "opacity-100" : "opacity-0") + " overflow-hidden text-sm tracking-wide text-center trans"}
                     style={{transition: "all 0.25s ease-in-out", maxHeight: this.state.open ? "2000px" : 0}}>
-                    {this.state.wagenreihung !== undefined ?
-                        <div className="mb-2 mt-2">
-                            {this.state.wagenreihung.wagons.map((wagon, index) =>
-                                <div className="px-2 pb-0 pt-1 text-xl rounded mr-1 mt-1 flex justify-between">
+                    {this.state.loading ?
+                            <div className="sm:ml-1 mb-1 flex">
+                                <CircleLoader
+                                    size={20}
+                                    color={"#718096"}
+                                    loading={this.state.loading}
+                                />
+                                <span className="ml-1">Lade Wagenreihung</span>
+                            </div>
+                        : this.state.wagenreihung !== undefined ?
+                            <div className="mb-2 mt-2">
+                                {this.state.wagenreihung.wagons.map((wagon, index) =>
+                                    <div className="px-2 pb-0 pt-1 text-xl rounded mr-1 mt-1 flex justify-between">
                                     <span className="truncate">
-                                        <ion-icon name="ios-train"/>{" "}
+                                        <ion-icon name="ios-train"/>
+                                        {" "}
                                         <span className="text-base pb-1 truncate">{wagon.type
-                                        .replace("REISEZUGWAGEN", "")
-                                        .replace("LOK", "Lok")
-                                        .replace("TRIEBKOPF", "Triebkopf")
-                                        .replace("ERSTEZWEITEKLASSE", "1. & 2. Klasse")
-                                        .replace("ERSTEKLASSE", "1. Klasse")
-                                        .replace("ZWEITEKLASSE", "2. Klasse")
-                                        .replace("HALBSPEISEWAGEN", "Halbspeisewagen ")
-                                        .replace("SPEISEWAGEN", "Speisewagen ")
-                                        .replace("STEUERWAGEN", "Steuerwagen ")}</span>
+                                            .replace("REISEZUGWAGEN", "")
+                                            .replace("LOK", "Lok")
+                                            .replace("TRIEBKOPF", "Triebkopf")
+                                            .replace("ERSTEZWEITEKLASSE", "1. & 2. Klasse")
+                                            .replace("ERSTEKLASSE", "1. Klasse")
+                                            .replace("ZWEITEKLASSE", "2. Klasse")
+                                            .replace("HALBSPEISEWAGEN", "Halbspeisewagen ")
+                                            .replace("SPEISEWAGEN", "Speisewagen ")
+                                            .replace("STEUERWAGEN", "Steuerwagen ")}</span>
                                         </span>
-                                    <span className="whitespace-no-wrap">
-                                        <span className="text-base">{wagon.wagonNumber !== null ? <>(Wagen {wagon.wagonNumber})</> : ""}</span> {wagon.fahrzeugsektor}
+                                        <span className="whitespace-no-wrap">
+                                        <span
+                                            className="text-base">{wagon.wagonNumber !== null ? <>(Wagen {wagon.wagonNumber})</> : ""}</span> {wagon.fahrzeugsektor}
                                     </span>
-                                </div>
-                            )}
-                        </div>
-                        : <></>}
+                                    </div>
+                                )}
+                            </div>
+                            : <></>}
                 </div>
             </div>
         );

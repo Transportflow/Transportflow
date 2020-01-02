@@ -43,12 +43,14 @@ export async function findDepartures(stopID, dispatch) {
             platformTitle: "Gleis", // Bvg departure platforms are mostly null when not being a train/subway
             line: departure.line.name,
             direction: departure.direction,
-            fahrtNr: departure.line.fahrtNr
+            fahrtNr: departure.line.fahrtNr,
+            cancelled: departure.cancelled,
+            when: departure.scheduledWhen
         };
 
         newDeparture.icon = getDepartureIcon(departure.line.product);
-        newDeparture.arrivalTime = dateToHHMM(departure.when);
-        newDeparture.arrivalTimeRelative = departure.when !== null ? parseRelativeTime(departure.when) : "0'";
+        newDeparture.arrivalTime = dateToHHMM(departure.when !== null ? departure.when : departure.scheduledWhen);
+        newDeparture.arrivalTimeRelative = departure.when !== null ? parseRelativeTime(departure.when) : parseRelativeTime(departure.scheduledWhen);
 
         departures[i] = newDeparture;
     }

@@ -91,6 +91,8 @@ export async function findDepartures(stopID, dispatch) {
         newDeparture.line = departure.line;
         newDeparture.direction = departure.direction;
         newDeparture.fahrtNr = departure.id;
+        newDeparture.when = departure.arrivalTime;
+        newDeparture.cancelled = false; // I suppose DVB hasn't got anything in it's api to set a departure cancelled?
 
         newDeparture.arrivalTime = dateToHHMM(departure.arrivalTime);
         newDeparture.arrivalTimeRelative =

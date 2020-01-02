@@ -47,12 +47,13 @@ export async function findDepartures(stopID, dispatch) {
             line: departure.line.name,
             direction: departure.direction,
             fahrtNr: departure.line.fahrtNr,
-            when: departure.when
+            when: departure.scheduledWhen,
+            cancelled: departure.cancelled
         };
 
         newDeparture.icon = getDepartureIcon(departure.line.product);
-        newDeparture.arrivalTime = dateToHHMM(departure.when !== null ? departure.when : new Date(Date.now()).toUTCString());
-        newDeparture.arrivalTimeRelative = departure.when !== null ? parseRelativeTime(departure.when) : "0'";
+        newDeparture.arrivalTime = dateToHHMM(departure.when !== null ? departure.when : departure.scheduledWhen);
+        newDeparture.arrivalTimeRelative = departure.when !== null ? parseRelativeTime(departure.when) : parseRelativeTime(departure.scheduledWhen);
 
         departures[i] = newDeparture;
     }
