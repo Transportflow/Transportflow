@@ -18,7 +18,7 @@ export async function findLocationSuggestions(latitude, longitude, dispatch) {
     ).catch((err) => {
         throw new Error(err.toString());
     });
-    parseSuggestions(query.stops, dispatch);
+    await parseSuggestions(query.stops, dispatch);
 }
 async function parseSuggestions(query, dispatch) {
     try {
@@ -115,9 +115,7 @@ export async function findDepartures(stopID, dispatch) {
 
 async function getStopIcons(stops) {
     for (let stop of stops) {
-        let lines = await dvb.lines(stop.id).catch((error) => {
-            throw error;
-        });
+        let lines = await dvb.lines(stop.id);
 
         stop.icons = [];
         lines.forEach((line,) => {

@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import * as db from "../containers/Monitor/profiles/DB"
-import {BarLoader, CircleLoader, MoonLoader} from "react-spinners";
+import {CircleLoader} from "react-spinners";
 
 /*
 PROPS
