@@ -143,7 +143,7 @@ class Departure extends Component {
                             </div>
                         : this.state.wagenreihung !== undefined ?
                             <div className="mb-2 mt-2">
-                                {this.state.wagenreihung.wagons.map((wagon, index) =>
+                                {this.state.wagenreihung.wagons.map((wagon) =>
                                     <div className="px-2 pb-0 pt-1 text-xl rounded mr-1 mt-1 flex justify-between">
                                     <span className="truncate">
                                         <ion-icon name="ios-train"/>
@@ -157,7 +157,11 @@ class Departure extends Component {
                                             .replace("ZWEITEKLASSE", "2. Klasse")
                                             .replace("HALBSPEISEWAGEN", "Halbspeisewagen ")
                                             .replace("SPEISEWAGEN", "Speisewagen ")
-                                            .replace("STEUERWAGEN", "Steuerwagen ")}</span>
+                                            .replace("DOPPELSTOCKSTEUERWAGEN", "Doppelstocksteuerwagen ")
+                                            .replace("DOPPELSTOCKWAGEN", "Doppelstockwagen ")
+                                            .replace("STEUERWAGEN", "Steuerwagen ")
+
+                                        }</span>
                                         </span>
                                         <span className="whitespace-no-wrap">
                                         <span
