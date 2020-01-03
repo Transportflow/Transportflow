@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import * as db from "../../containers/Monitor/profiles/DB"
 import {CircleLoader} from "react-spinners";
 import Wagenreihung from "./Wagenreihung";
+import {getNextStops, getNextStopsDVB} from "../../containers/Monitor/profiles/utils";
 
 /*
 PROPS
@@ -34,8 +35,10 @@ class Index extends Component {
             imageError: false,
             open: false,
             wagenreihung: undefined,
+            nextStops: [],
             cancelled: false,
-            loading: false
+            loadingWagons: false,
+            loadingNextStops: false
         };
     }
 
@@ -44,19 +47,53 @@ class Index extends Component {
             this.setState({open: true, cancelled: true});
         } else {
             this.loadWagenreihung();
+            this.loadNextStops();
         }
 
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.departure !== this.props.departure && !this.props.departure.cancelled)
+        if (prevProps.departure !== this.props.departure && !this.props.departure.cancelled) {
             this.loadWagenreihung();
+            this.loadNextStops();
+        }
+    }
+
+    async loadNextStops() {
+        let nextStops;
+        this.setState({loadingNextStops: true});
+        switch (localStorage.getItem("network")) {
+            case "bvg":
+                nextStops = await getNextStops(
+                    "https://bvg.transportflow.de",
+                    this.props.departure.tripId,
+                    this.props.departure.line,
+                    this.props.departure.when);
+                break;
+            case "db":
+                nextStops = await getNextStops(
+                    "https://db.transportflow.de",
+                    this.props.departure.tripId,
+                    this.props.departure.line,
+                    this.props.departure.when);
+                break;
+            case "dvb":
+                nextStops = await getNextStopsDVB(
+                    this.props.departure.id,
+                    this.props.departure.when,
+                    this.props.departure.stopid);
+                break;
+            default:
+                this.setState({nextStops: [], loadingNextStops: false});
+                return;
+        }
+        this.setState({nextStops: nextStops, loadingNextStops: false});
     }
 
     async loadWagenreihung() {
         if (localStorage.getItem("network") === "db") {
             try {
-                this.setState({loading: true});
+                this.setState({loadingWagons: true});
                 let wagenreihung = await db.getWagenreihung(this.props.departure.fahrtNr, this.props.departure.when, this.props.departure.mode);
                 if (wagenreihung === "error") {
                     throw new Error("No Wagenreihung available");
@@ -65,7 +102,7 @@ class Index extends Component {
             } catch (err) {
                 // no wagenreihung available
             }
-            this.setState({loading: false});
+            this.setState({loadingWagons: false});
         }
     }
 
@@ -133,18 +170,47 @@ class Index extends Component {
                 <div
                     className={(this.state.open ? "opacity-100" : "opacity-0") + " overflow-hidden text-sm tracking-wide text-center trans"}
                     style={{transition: "all 0.25s ease-in-out", maxHeight: this.state.open ? "300px" : 0}}>
-                    {this.state.loading ?
+                    {this.state.loadingWagons ?
                         <div className="sm:ml-1 mb-1 flex">
                             <CircleLoader
                                 size={20}
                                 color={"#718096"}
-                                loading={this.state.loading}
+                                loading={this.state.loadingWagons}
                             />
                             <span className="ml-1">Lade Wagenreihung</span>
                         </div>
                         : this.state.wagenreihung !== undefined ?
                             <div className="mb-2 mt-2">
                                 <Wagenreihung wagons={this.state.wagenreihung.wagons}/>
+                            </div>
+                            : <></>}
+                    {this.state.loadingNextStops ?
+                        <div className="sm:ml-1 mb-1 flex">
+                            <CircleLoader
+                                size={20}
+                                color={"#718096"}
+                                loading={this.state.loadingNextStops}
+                            />
+                            <span className="ml-1">Lade kommende Haltestellen</span>
+                        </div>
+                        : this.state.nextStops !== undefined && this.state.nextStops.length > 0 ?
+                            <div
+                                className="mb-2 mt-2 flex overflow-y-hidden overflow-scroll overflow-y-hidden scrolling-touch">
+                                {this.state.nextStops.map((stop, index) => {
+                                    return (
+                                        <div key={index} className="mx-2">
+                                            <span className="flex">
+                                                {stop.icons.map((icon, index) => {
+                                                    return (
+                                                        <img key={index} className="h-3 mr-1 mt-1" src={icon} alt=""/>
+                                                    )
+                                                })}
+                                            </span>
+                                            <p className="whitespace-no-wrap text-left font-semibold">{stop.name}</p>
+                                            <p className="whitespace-no-wrap text-left">{stop.timeRelative} | {stop.time}</p>
+                                        </div>
+                                    )
+                                })}
                             </div>
                             : <></>}
                 </div>

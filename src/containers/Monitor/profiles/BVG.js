@@ -3,7 +3,9 @@ import {
     parseRelativeTime,
     searchStop,
     getDepartureIcon,
-    findUtilitySuggestions, findUtilityLocationSuggestions, monitor
+    findUtilitySuggestions,
+    findUtilityLocationSuggestions,
+    monitor
 } from "./utils";
 
 const baseUrl = "https://bvg.transportflow.de";
@@ -44,8 +46,9 @@ export async function findDepartures(stopID, dispatch) {
             line: departure.line.name,
             direction: departure.direction,
             fahrtNr: departure.line.fahrtNr,
-            cancelled: departure.cancelled,
-            when: departure.scheduledWhen
+            cancelled: departure.cancelled || false,
+            when: departure.when || departure.scheduledWhen,
+            tripId: departure.tripId
         };
 
         newDeparture.icon = getDepartureIcon(departure.line.product);

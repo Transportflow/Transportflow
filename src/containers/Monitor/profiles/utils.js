@@ -1,3 +1,5 @@
+import * as dvb from "dvbjs";
+
 const axios = require("axios").default;
 let moment = require("moment");
 require("moment-duration-format");
@@ -9,6 +11,19 @@ export function dateToHHMM(date) {
             .padStart(2, "0") +
         ":" +
         new Date(Date.parse(date))
+            .getMinutes()
+            .toString()
+            .padStart(2, "0")
+}
+export function dateToHHMMDVB(date) {
+    let d = new Date();
+    d.setTime(date);
+    return d
+            .getHours()
+            .toString()
+            .padStart(2, "0") +
+        ":" +
+        d
             .getMinutes()
             .toString()
             .padStart(2, "0")
@@ -97,6 +112,81 @@ export async function monitor(baseUrl, stopID, dispatch) {
     dispatch({type: "SET_MODES", modes: allModes});
 
     return monitor;
+}
+export async function getNextStops(baseUrl, id, lineName, when) {
+    let stops = await axios.get(baseUrl + "/trips/" + id + "?lineName=" + lineName).catch(err => console.log(err)).then((res) => res.data.stopovers);
+
+    let toSplice = 1;
+    for (let i = 0; i < stops.length; i++) {
+        if (new Date(Date.parse(stops[i].arrival)).getTime() <= new Date(Date.parse(when)).getTime()) {
+            toSplice++;
+        }
+    }
+    stops.splice(0, toSplice);
+
+    stops.forEach(val => {
+        val.time = dateToHHMM(val.arrival !== null ? val.arrival : val.departure);
+        val.timeRelative = val.arrival !== null ? moment.duration(
+            new Date(Date.parse(val.arrival)).getTime() - new Date(Date.parse(when)).getTime(),
+            "milliseconds"
+        )
+            .format("+h[''] m[']") : moment.duration(
+            new Date(Date.parse(val.departure)).getTime() - new Date(Date.parse(when)).getTime(),
+            "milliseconds"
+        )
+            .format("+h[''] m[']");
+        val.products = val.stop.products;
+        val.name = val.stop.name;
+    });
+
+    getStopIcons(stops);
+
+    return stops;
+}
+export async function getNextStopsDVB(tripid, time, stopid) {
+    let stops = await axios.post("https://webapi.vvo-online.de/dm/trip",
+        {tripid: tripid, time: time, stopid: stopid}, {timeout: 10000})
+        .catch(error=>console.log(error))
+        .then(res => res.data.Stops);
+
+    let toDelete = 1;
+    stops.forEach((stop, index) => {
+        if (stop.Position === "Previous")
+            toDelete++;
+    });
+    stops.splice(0, toDelete);
+
+    stops.forEach(stop => {
+        stop.id = stop.Id;
+        stop.name = stop.Name;
+        stop.Time = stop.Time.replace("/Date(", "").replace("-0000)/", "");
+        if (stop.RealTime)
+            stop.RealTime = stop.RealTime.replace("/Date(", "").replace("-0000)/", "");
+        stop.time = dateToHHMMDVB(stop.RealTime ? stop.RealTime : stop.Time);
+        stop.timeRelative = stop.RealTime !== null ? moment.duration(
+            stop.RealTime - new Date(Date.parse(time)).getTime(),
+            "milliseconds"
+        )
+            .format("+h[''] m[']") : moment.duration(
+            new Date(stop.Time).getTime() - new Date(Date.parse(time)).getTime(),
+            "milliseconds"
+        )
+            .format("+h[''] m[']");
+    });
+    await getStopIconsDVB(stops);
+
+    return stops;
+}
+async function getStopIconsDVB(stops) {
+    for (let stop of stops) {
+        let lines = await dvb.lines(stop.id);
+
+        stop.icons = [];
+        lines.forEach((line,) => {
+            if (stop.icons.indexOf(line.mode.iconUrl) === -1)
+                stop.icons.push(line.mode.iconUrl);
+        });
+    }
 }
 export function getStopIcons(stops) {
     stops.forEach(stop => {

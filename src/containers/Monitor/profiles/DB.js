@@ -48,7 +48,8 @@ export async function findDepartures(stopID, dispatch) {
             direction: departure.direction,
             fahrtNr: departure.line.fahrtNr,
             when: departure.when || departure.scheduledWhen,
-            cancelled: departure.cancelled || false
+            cancelled: departure.cancelled || false,
+            tripId: departure.tripId
         };
 
         newDeparture.icon = getDepartureIcon(departure.line.product);
