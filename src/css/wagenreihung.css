@@ -1,16 +1,17 @@
 
 .station {
     position: relative;
-    width: 200%;
-    height: 84px;
-    resize: both;
+    width: 100%;
+    height: 70px;
+    /*resize: both;*/
 }
 
 .platform {
     position: relative;
     width: 100%;
-    transform: scale(0.5);
-    transform-origin: top left;
+    height: 100%;
+    /*transform: scale(0.5);*/
+    /*transform-origin: top left;*/
     display: flex;
     flex-wrap: nowrap;
     overflow-x: scroll;
@@ -19,8 +20,8 @@
 
 .platform-part .platform-id {
     width: 100%;
-    margin-bottom: 5px;
-    font-size: 45px;
+    margin-bottom: 0;
+    font-size: 16px;
     text-align: center;
     font-weight: 700;
 }
@@ -31,80 +32,100 @@
 }
 
 .wagon {
-    min-width: 160px;
-    margin: 0 5px;
+    min-width: 55px;
+    margin: 0 2px;
 }
 
 .wagon.engine-left,
 .wagon.engine-right {
-    min-width: 230px;
+    min-width: 73px;
+}
+
+.wagon.engine-right {
+    margin-right: 5px;
 }
 
 .wagon-parts {
     position:relative;
-    height: 80px;
+    height: 25px;
 }
 
 .wagon .wagon-parts > .box {
     position: absolute;
-    height: 69.3px;
-    width: 150px;
-    border: 5px solid;
+    height: 25px;
+    width: 55px;
+    border: 2px solid;
     border-color: black transparent black transparent;
-    top: -0.2px;
-    font-size: 45px;
+    top: 0px;
+    font-size: 16px;
     text-align: center;
-    line-height: 70px;
-    font-weight: 700;
+    line-height: 22px;
+    font-weight: 400;
+    z-index: 10;
 }
 
 .wagon .wagon-parts > .triangle-back {
     position: absolute;
-    height: 69px;
-    width: 71px;
-    border: 5px solid black;
+    height: 25px;
+    width: 30px;
+    border: 2px solid black;
     border-color: transparent transparent black;
+    overflow: hidden;
+    z-index: 10;
 }
 
-.wagon .wagon-parts > .triangle-top {
+.wagon .wagon-parts > .triangle-top,
+.wagon.first-class .wagon-parts > .triangle-back .triangle-inside {
     position: absolute;
-    top: 14px;
-    height: 100px;
-    width: 111px;
-    border: 5px solid;
-    border-radius: 30px;
+    top: 0.5px;
+    height: 50px;
+    width: 40px;
+    border: 2px solid;
+    border-radius: 15px;
     border-color: black transparent transparent transparent;
 }
 
-.wagon.engine-left .wagon-parts > .triangle-top {
-    left: 11px;
+.wagon.engine-left .wagon-parts > .triangle-top,
+.wagon.engine-left .wagon-parts > .triangle-back .triangle-inside {
+    left: 4.5px;
     transform: rotate(-46deg);
 }
 
+.wagon.engine-left .wagon-parts > .triangle-back .triangle-inside {
+    left: 6.5px;
+}
+
 .wagon.engine-left .wagon-parts > .triangle-back {
-    left: -2px;
-    border-radius: 0 0 0 15px;
+    left: -4.25px;
+    border-radius: 0 0 0 10px;
 }
 
 .wagon.engine-left .wagon-parts > .box {
-    left: 69.6px;
+    left: 18px;
 }
 
-.wagon.engine-right .wagon-parts > .triangle-top {
-    left: 98px;
+.wagon.engine-right .wagon-parts > .triangle-top,
+.wagon.engine-right .wagon-parts > .triangle-back .triangle-inside {
+    right: 4.5px;
     transform: rotate(46deg);
 }
 
+.wagon.engine-right .wagon-parts > .triangle-back .triangle-inside {
+    right:6.5px;
+}
+
 .wagon.engine-right .wagon-parts > .triangle-back {
-    left: 150px;
-    border-radius:  0 0 15px 0;
+    right: -4.25px;
+    border-radius:  0 0 10px 0;
 }
 
 .wagon.engine-right .wagon-parts > .box {
     left: 0;
 }
 
-.wagon.first-class .box{
+.wagon.first-class .box,
+.wagon.first-class.engine-right .triangle-inside,
+.wagon.first-class.engine-left .triangle-inside {
     background-color: black;
     color: white;
 }

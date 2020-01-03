@@ -75,7 +75,9 @@ class Wagenreihung extends Component {
                                                         <div key={index} className={"wagon engine-left" + (wagon.type.includes("ERSTEKLASSE") ? " first-class" : "")}>
                                                             <div className="wagon-parts">
                                                                 <div className="triangle-top"/>
-                                                                <div className="triangle-back"/>
+                                                                <div className="triangle-back">
+                                                                    <div className="triangle-inside"/>
+                                                                </div>
                                                                 <div className="box">{wagon.wagonNumber}</div>
                                                             </div>
                                                         </div>
@@ -93,8 +95,10 @@ class Wagenreihung extends Component {
                                                         <div key={index} className={"wagon engine-right" + (wagon.type.includes("ERSTEKLASSE") ? " first-class" : "")}>
                                                             <div className="wagon-parts">
                                                                 <div className="box">{wagon.wagonNumber}</div>
-                                                                <div className="triangle-back"/>
                                                                 <div className="triangle-top"/>
+                                                                <div className="triangle-back">
+                                                                    <div className="triangle-inside"/>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     );
