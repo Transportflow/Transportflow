@@ -40,7 +40,11 @@ class Wagenreihung extends Component {
                     wagon.orientation = "left";
                 } else if (index === this.props.wagons.length-1) {
                     wagon.orientation = "right";
-                } else if (this.props.wagons[index-1].type === "LOK" || this.props.wagons[index-1].type.includes("STEUERWAGEN")) {
+                } else if (
+                    this.props.wagons[index-1].type === "LOK" ||
+                    this.props.wagons[index-1].type.includes("STEUERWAGEN") ||
+                    this.props.wagons[index-1].type.includes("TRIEBKOPF")
+                ) {
                     wagon.orientation = "left";
                 } else {
                     wagon.orientation = "right";
@@ -109,29 +113,5 @@ class Wagenreihung extends Component {
         );
     }
 }
-
-/*
-<ion-icon name="ios-train"/>
-                                        {" "}
-                                        <span className="text-base pb-1 truncate">{wagon.type
-                                            .replace("REISEZUGWAGEN", "")
-                                            .replace("LOK", "Lok")
-                                            .replace("TRIEBKOPF", "Triebkopf")
-                                            .replace("ERSTEZWEITEKLASSE", "1. & 2. Klasse")
-                                            .replace("ERSTEKLASSE", "1. Klasse")
-                                            .replace("ZWEITEKLASSE", "2. Klasse")
-                                            .replace("HALBSPEISEWAGEN", "Halbspeisewagen ")
-                                            .replace("SPEISEWAGEN", "Speisewagen ")
-                                            .replace("DOPPELSTOCKSTEUERWAGEN", "Doppelstocksteuerwagen ")
-                                            .replace("DOPPELSTOCKWAGEN", "Doppelstockwagen ")
-                                            .replace("STEUERWAGEN", "Steuerwagen ")
-
-                                        }</span>
-                                        </span>
-                                        <span className="whitespace-no-wrap">
-                                        <span
-                                            className="text-base">{wagon.wagonNumber !== null ? <>(Wagen {wagon.wagonNumber})</> : ""}</span> {wagon.fahrzeugsektor}
-                                    </span>
- */
 
 export default Wagenreihung;
