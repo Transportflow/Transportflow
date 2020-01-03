@@ -1,0 +1,111 @@
+
+.station {
+    position: relative;
+    width: 200%;
+    height: 84px;
+    resize: both;
+}
+
+.platform {
+    position: relative;
+    width: 100%;
+    transform: scale(0.5);
+    transform-origin: top left;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.platform-part .platform-id {
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 45px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.wagon-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.wagon {
+    min-width: 160px;
+    margin: 0 5px;
+}
+
+.wagon.engine-left,
+.wagon.engine-right {
+    min-width: 230px;
+}
+
+.wagon-parts {
+    position:relative;
+    height: 80px;
+}
+
+.wagon .wagon-parts > .box {
+    position: absolute;
+    height: 69.3px;
+    width: 150px;
+    border: 5px solid;
+    border-color: black transparent black transparent;
+    top: -0.2px;
+    font-size: 45px;
+    text-align: center;
+    line-height: 70px;
+    font-weight: 700;
+}
+
+.wagon .wagon-parts > .triangle-back {
+    position: absolute;
+    height: 69px;
+    width: 71px;
+    border: 5px solid black;
+    border-color: transparent transparent black;
+}
+
+.wagon .wagon-parts > .triangle-top {
+    position: absolute;
+    top: 14px;
+    height: 100px;
+    width: 111px;
+    border: 5px solid;
+    border-radius: 30px;
+    border-color: black transparent transparent transparent;
+}
+
+.wagon.engine-left .wagon-parts > .triangle-top {
+    left: 11px;
+    transform: rotate(-46deg);
+}
+
+.wagon.engine-left .wagon-parts > .triangle-back {
+    left: -2px;
+    border-radius: 0 0 0 15px;
+}
+
+.wagon.engine-left .wagon-parts > .box {
+    left: 69.6px;
+}
+
+.wagon.engine-right .wagon-parts > .triangle-top {
+    left: 98px;
+    transform: rotate(46deg);
+}
+
+.wagon.engine-right .wagon-parts > .triangle-back {
+    left: 150px;
+    border-radius:  0 0 15px 0;
+}
+
+.wagon.engine-right .wagon-parts > .box {
+    left: 0;
+}
+
+.wagon.first-class .box{
+    background-color: black;
+    color: white;
+}
+

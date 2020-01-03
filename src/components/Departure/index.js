@@ -1,6 +1,7 @@
 import React, {Component} from "react";
-import * as db from "../containers/Monitor/profiles/DB"
+import * as db from "../../containers/Monitor/profiles/DB"
 import {CircleLoader} from "react-spinners";
+import Wagenreihung from "./Wagenreihung";
 
 /*
 PROPS
@@ -25,7 +26,7 @@ stops[] - next stops for departure
     arrivalTime - hh:mm arrival time at the stop
     name - name of stop
  */
-class Departure extends Component {
+class Index extends Component {
     constructor(props) {
         super(props);
 
@@ -56,7 +57,7 @@ class Departure extends Component {
         if (localStorage.getItem("network") === "db") {
             try {
                 this.setState({loading: true});
-                let wagenreihung = await db.getWagenreihung(this.props.departure.fahrtNr, this.props.departure.scheduledWhen, this.props.departure.mode);
+                let wagenreihung = await db.getWagenreihung(this.props.departure.fahrtNr, this.props.departure.when, this.props.departure.mode);
                 if (wagenreihung === "error") {
                     throw new Error("No Wagenreihung available");
                 }
@@ -131,44 +132,19 @@ class Departure extends Component {
                 </div>
                 <div
                     className={(this.state.open ? "opacity-100" : "opacity-0") + " overflow-hidden text-sm tracking-wide text-center trans"}
-                    style={{transition: "all 0.25s ease-in-out", maxHeight: this.state.open ? "2000px" : 0}}>
+                    style={{transition: "all 0.25s ease-in-out", maxHeight: this.state.open ? "300px" : 0}}>
                     {this.state.loading ?
-                            <div className="sm:ml-1 mb-1 flex">
-                                <CircleLoader
-                                    size={20}
-                                    color={"#718096"}
-                                    loading={this.state.loading}
-                                />
-                                <span className="ml-1">Lade Wagenreihung</span>
-                            </div>
+                        <div className="sm:ml-1 mb-1 flex">
+                            <CircleLoader
+                                size={20}
+                                color={"#718096"}
+                                loading={this.state.loading}
+                            />
+                            <span className="ml-1">Lade Wagenreihung</span>
+                        </div>
                         : this.state.wagenreihung !== undefined ?
                             <div className="mb-2 mt-2">
-                                {this.state.wagenreihung.wagons.map((wagon) =>
-                                    <div className="px-2 pb-0 pt-1 text-xl rounded mr-1 mt-1 flex justify-between">
-                                    <span className="truncate">
-                                        <ion-icon name="ios-train"/>
-                                        {" "}
-                                        <span className="text-base pb-1 truncate">{wagon.type
-                                            .replace("REISEZUGWAGEN", "")
-                                            .replace("LOK", "Lok")
-                                            .replace("TRIEBKOPF", "Triebkopf")
-                                            .replace("ERSTEZWEITEKLASSE", "1. & 2. Klasse")
-                                            .replace("ERSTEKLASSE", "1. Klasse")
-                                            .replace("ZWEITEKLASSE", "2. Klasse")
-                                            .replace("HALBSPEISEWAGEN", "Halbspeisewagen ")
-                                            .replace("SPEISEWAGEN", "Speisewagen ")
-                                            .replace("DOPPELSTOCKSTEUERWAGEN", "Doppelstocksteuerwagen ")
-                                            .replace("DOPPELSTOCKWAGEN", "Doppelstockwagen ")
-                                            .replace("STEUERWAGEN", "Steuerwagen ")
-
-                                        }</span>
-                                        </span>
-                                        <span className="whitespace-no-wrap">
-                                        <span
-                                            className="text-base">{wagon.wagonNumber !== null ? <>(Wagen {wagon.wagonNumber})</> : ""}</span> {wagon.fahrzeugsektor}
-                                    </span>
-                                    </div>
-                                )}
+                                <Wagenreihung wagons={this.state.wagenreihung.wagons}/>
                             </div>
                             : <></>}
                 </div>
@@ -177,4 +153,4 @@ class Departure extends Component {
     }
 }
 
-export default Departure;
+export default Index;
