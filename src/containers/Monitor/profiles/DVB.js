@@ -73,8 +73,9 @@ export async function findDepartures(stopID, dispatch) {
         let departure = query[i];
 
         newDeparture.id = departure.id;
-        newDeparture.state = departure.delayTime === 0 ? "In time" : departure.delayTime > 0 ? "Delayed" : "Too early";
+        newDeparture.state = departure.state === "Unknown" ? "No data" : departure.delayTime === 0 ? "In time" : departure.delayTime > 0 ? "Delayed" : "Too early";
         newDeparture.delayTime = departure.delayTime;
+        newDeparture.stopid = stops[0].id;
 
         newDeparture.mode = departure.mode.title;
 
