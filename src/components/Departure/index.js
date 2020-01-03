@@ -195,7 +195,7 @@ class Index extends Component {
                         </div>
                         : this.state.nextStops !== undefined && this.state.nextStops.length > 0 ?
                             <div
-                                className="mb-2 mt-2 flex overflow-y-hidden overflow-scroll overflow-y-hidden scrolling-touch">
+                                className="mb-2 mt-2 pb-1 flex overflow-y-hidden overflow-x-scroll scrolling-touch">
                                 {this.state.nextStops.map((stop, index) => {
                                     return (
                                         <div key={index} className="mx-2">
