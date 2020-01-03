@@ -13,6 +13,10 @@ class Network extends Component {
         }
     }
 
+    componentDidMount() {
+        localStorage.setItem("showNetworkSwitch", "true");
+    }
+
     render() {
         return (
             <div
