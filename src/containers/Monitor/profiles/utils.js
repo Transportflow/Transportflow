@@ -83,7 +83,7 @@ export async function monitor(baseUrl, stopID, dispatch) {
     });
 
     const monitor = monitorQuery.data;
-    monitor.splice(30);
+    monitor.splice(60);
 
     if (monitor.length === 0) {
         throw new Error("Keine Abfahrten gefunden");
