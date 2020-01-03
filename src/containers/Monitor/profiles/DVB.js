@@ -77,14 +77,17 @@ export async function findDepartures(stopID, dispatch) {
         newDeparture.delayTime = departure.delayTime;
 
         newDeparture.mode = departure.mode.title;
-        newDeparture.platform = departure.platform.name;
-        switch (departure.platform.type.toLowerCase()) {
-            case "railtrack":
-                newDeparture.platformTitle = "Gleis";
-                break;
-            default:
-                newDeparture.platformTitle = "Steig";
-                break;
+
+        if (departure.platform !== undefined) {
+            newDeparture.platform = departure.platform.name;
+            switch (departure.platform.type.toLowerCase()) {
+                case "railtrack":
+                    newDeparture.platformTitle = "Gleis";
+                    break;
+                default:
+                    newDeparture.platformTitle = "Steig";
+                    break;
+            }
         }
         newDeparture.icon = departure.mode.iconUrl;
 
