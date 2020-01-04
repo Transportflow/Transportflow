@@ -93,7 +93,7 @@ export async function searchStop(baseUrl, stopID, dispatch) {
     });
 }
 export async function monitor(baseUrl, stopID, dispatch) {
-    const monitorQuery = await axios.get(baseUrl + "/stops/" + stopID + "/departures?duration=240").catch((err) => {
+    const monitorQuery = await axios.get(baseUrl + "/stops/" + stopID + "/departures?duration=340").catch((err) => {
         throw new Error(err.message);
     });
 
