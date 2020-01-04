@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import "../../css/wagenreihung.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faUtensils} from "@fortawesome/free-solid-svg-icons";
 
 class Wagenreihung extends Component {
     constructor(props) {
@@ -52,10 +54,14 @@ class Wagenreihung extends Component {
             } else {
                 wagon.orientation = "";
             }
+
+            wagon.dining = wagon.type.includes("SPEISEWAGEN");
+
             currentSector.wagons.push(wagon);
         });
+        if (currentSector.wagons.length > 0)
+            sectors.push(Object.assign({}, currentSector));
         this.setState({sectors: sectors});
-        console.log(sectors)
     }
 
     render() {
@@ -86,7 +92,7 @@ class Wagenreihung extends Component {
                                                     return (
                                                         <div key={index} className={"wagon" + (wagon.type.includes("ERSTEKLASSE") ? " first-class" : "")}>
                                                             <div className="wagon-parts">
-                                                                <div className="box">{wagon.wagonNumber}</div>
+                                                                <div className="box">{wagon.dining === true ? <FontAwesomeIcon icon={faUtensils}/> : wagon.wagonNumber}</div>
                                                             </div>
                                                         </div>
                                                     );
