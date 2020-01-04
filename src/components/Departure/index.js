@@ -112,12 +112,7 @@ class Index extends Component {
 
     render() {
         return (
-            <div className={
-                this.props.modes.includes(this.props.departure.mode) ||
-                this.props.modes.length < 1
-                    ? "trans-none bg-gray-300 dark\\:bg-gray-700 text-gray-900 dark\\:text-gray-100 font-medium font-inter rounded-lg overflow-hidden mb-2 sm:mb-3 p-2 pl-3 select-none cursor-pointer"
-                    : "hidden"
-            }
+            <div className="trans-bg bg-gray-300 dark\:bg-gray-700 text-gray-900 dark\:text-gray-100 font-medium font-inter rounded-lg overflow-hidden mb-2 sm:mb-3 p-2 pl-3 select-none cursor-pointer"
                  onClick={this.openDeparture.bind(this)}>
                 <div
                     className={(this.state.open ? "opacity-100 pb-1" : "opacity-0") + " overflow-hidden font-semibold text-sm tracking-wide uppercase text-center trans"}

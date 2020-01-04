@@ -28,15 +28,19 @@ const routing = (
         <BrowserRouter>
             <Route
                 render={({location}) => {
-                    var transition = "fadeRightFadeLeft";
+                    let preset = "moveToRightFromLeft";
+                    let exit = "moveToRight";
                     if (location.pathname.length > previousPathname.length) {
-                        transition = "fadeLeftFadeRight";
+                        preset= "moveToLeftFromRight";
+                        exit = "moveToLeft";
                     }
                     previousPathname = location.pathname;
                     return (
                         <PageTransition
-                            preset={transition}
-                            transitionKey={location.pathname}>
+                            preset={preset}
+                            transitionKey={location.pathname}
+                            exitAnimation={exit}
+                        >
                             <Switch location={location}>
                                 <Route exact path="/" component={App}/>
 

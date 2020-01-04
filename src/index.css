@@ -12,20 +12,17 @@ code {
     monospace;
 }
 
-.ljmdlk {
-  position: absolute !important;
-  perspective: none !important;
-  background-color: #cbd5e0;
-}
-
 .mode-dark .ljmdlk {
   background-color: #2d3748;
 }
-
+.ljmdlk {
+  position: absolute !important;
+  background-color: #cbd5e0;
+}
 .kqCone {
+  position: relative !important;
   overflow-y: scroll !important;
   -webkit-overflow-scrolling: touch;
-
 }
 
 .kqCone::-webkit-scrollbar {
