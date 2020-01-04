@@ -39,7 +39,7 @@ export function parseRelativeTime(when) {
         new Date(Date.parse(when)).getTime() - Date.now()+30000,
         "milliseconds"
         )
-            .format("h['']")
+            .format("h[h]")
 }
 export async function findUtilitySuggestions(baseUrl, input, dispatch) {
     const raw = await axios.get(baseUrl + "/locations?query=" + input + "&addresses=false&poi=false");
@@ -93,16 +93,11 @@ export async function searchStop(baseUrl, stopID, dispatch) {
     });
 }
 export async function monitor(baseUrl, stopID, dispatch) {
-    const monitorQuery = await axios.get(baseUrl + "/stops/" + stopID + "/departures?duration=140").catch((err) => {
+    const monitorQuery = await axios.get(baseUrl + "/stops/" + stopID + "/departures?duration=240").catch((err) => {
         throw new Error(err.message);
     });
 
     const monitor = monitorQuery.data;
-    monitor.splice(60);
-
-    if (monitor.length === 0) {
-        throw new Error("Keine Abfahrten gefunden");
-    }
 
     let allModes = [];
     monitor.forEach((departure) => {
@@ -111,18 +106,14 @@ export async function monitor(baseUrl, stopID, dispatch) {
     });
     dispatch({type: "SET_MODES", modes: allModes});
 
+    if (monitor.length === 0) {
+        throw new Error("Keine Abfahrten gefunden");
+    }
+
     return monitor;
 }
 export async function getNextStops(baseUrl, id, lineName, when) {
     let stops = await axios.get(baseUrl + "/trips/" + id + "?lineName=" + lineName).catch(err => console.log(err)).then((res) => res.data.stopovers);
-
-    let toSplice = 1;
-    for (let i = 0; i < stops.length; i++) {
-        if (new Date(Date.parse(stops[i].arrival)).getTime() <= new Date(Date.parse(when)).getTime()) {
-            toSplice++;
-        }
-    }
-    stops.splice(0, toSplice);
 
     stops.forEach(val => {
         val.time = dateToHHMM(val.arrival !== null ? val.arrival : val.departure);
@@ -130,14 +121,22 @@ export async function getNextStops(baseUrl, id, lineName, when) {
             new Date(Date.parse(val.arrival)).getTime() - new Date(Date.parse(when)).getTime(),
             "milliseconds"
         )
-            .format("+h[''] m[']") : moment.duration(
+            .format("+h[h] m[']") : moment.duration(
             new Date(Date.parse(val.departure)).getTime() - new Date(Date.parse(when)).getTime(),
             "milliseconds"
         )
-            .format("+h[''] m[']");
+            .format("+h[h] m[']");
         val.products = val.stop.products;
         val.name = val.stop.name;
     });
+
+    let toSplice = 1;
+    for (let i = 0; i < stops.length; i++) {
+        if (stops[i].timeRelative.includes("-")) {
+            toSplice++;
+        }
+    }
+    stops.splice(0, toSplice);
 
     getStopIcons(stops);
 
@@ -146,11 +145,11 @@ export async function getNextStops(baseUrl, id, lineName, when) {
 export async function getNextStopsDVB(tripid, time, stopid) {
     let stops = await axios.post("https://webapi.vvo-online.de/dm/trip",
         {tripid: tripid, time: time, stopid: stopid}, {timeout: 10000})
-        .catch(error=>console.log(error))
-        .then(res => res.data.Stops);
+        .then(res => res.data.Stops)
+        .catch(error=>console.log(error));
 
     let toDelete = 1;
-    stops.forEach((stop, index) => {
+    stops.forEach((stop) => {
         if (stop.Position === "Previous")
             toDelete++;
     });
@@ -162,16 +161,16 @@ export async function getNextStopsDVB(tripid, time, stopid) {
         stop.Time = stop.Time.replace("/Date(", "").replace("-0000)/", "");
         if (stop.RealTime)
             stop.RealTime = stop.RealTime.replace("/Date(", "").replace("-0000)/", "");
-        stop.time = dateToHHMMDVB(stop.RealTime ? stop.RealTime : stop.Time);
-        stop.timeRelative = stop.RealTime !== null ? moment.duration(
+        stop.time = dateToHHMMDVB(stop.RealTime !== undefined ? stop.RealTime : stop.Time);
+        stop.timeRelative = stop.RealTime !== undefined ? moment.duration(
             stop.RealTime - new Date(Date.parse(time)).getTime(),
             "milliseconds"
         )
-            .format("+h[''] m[']") : moment.duration(
-            new Date(stop.Time).getTime() - new Date(Date.parse(time)).getTime(),
+            .format("+h[h] m[']") : moment.duration(
+            stop.Time - new Date(Date.parse(time)).getTime(),
             "milliseconds"
         )
-            .format("+h[''] m[']");
+            .format("+h[h] m[']");
     });
     await getStopIconsDVB(stops);
 

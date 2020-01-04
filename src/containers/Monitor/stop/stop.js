@@ -97,16 +97,18 @@ class Stop extends React.Component {
     }
 
     render() {
+        let currentlyDisplayed = 0;
+
         return (
             <div>
                 <div
-                    className="p-6 pt-12 sm:p-20 lg:pl-56"
+                    className="p-6 pt-12 sm:p-20 lg:pl-56 bg-gray-400 dark\:bg-gray-800 trans"
                 >
                     <div className="flex mb-3">
                         <BackButton large={true} className="mr-3"/>
                         <button
                             onClick={this.reloadDepartures}
-                            className="text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 sm:hover:bg-gray-300 px-4 py-3 rounded-lg mr-3 sm:hover:shadow-lg focus:outline-none trans"
+                            className="text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 sm:hover:bg-gray-300 px-4 py-3 rounded-lg mr-3 sm:hover:shadow-lg focus:outline-none trans-faster"
                         >
                             <FontAwesomeIcon icon={faRedo}/>
                         </button>
@@ -148,7 +150,7 @@ class Stop extends React.Component {
                             this.props.modes.map((mode, index) => {
                                 return (
                                     <button
-                                        className="whitespace-no-wrap text-gray-900 bg-gray-300 sm:bg-gray-400 dark\:bg-gray-700 sm:dark\:bg-gray-800 dark\:text-gray-200 px-4 py-3 rounded-lg mr-3 focus:outline-none trans-none"
+                                        className="whitespace-no-wrap text-gray-900 bg-gray-300 sm:bg-gray-400 dark\:bg-gray-700 sm:dark\:bg-gray-800 dark\:text-gray-200 px-4 py-3 rounded-lg mr-3 focus:outline-none trans-bg"
                                         onClick={this.toggleMode}
                                         key={mode}
                                         id={mode}
@@ -178,16 +180,26 @@ class Stop extends React.Component {
                         className="w-full sm:w-auto sm:max-w-lg mb-3 overflow-scroll overflow-x-hidden custom-scrollbar scrolling-touch rounded-lg pb-40"
                     >
                         {this.props.departures.map((departure, index) => {
+                            if (index === 0) {
+                                currentlyDisplayed = 0;
+                            }
                             if (departure.arrivalTimeRelative.includes("-")) {
                                 return <></>
                             }
-                            return (
-                                <Departure
-                                    key={index}
-                                    modes={this.state.activeModes}
-                                    departure={departure}
-                                />
-                            );
+                            if (currentlyDisplayed > 14) {
+                                return <></>
+                            }
+                            if (this.state.activeModes.includes(departure.mode) ||
+                                this.state.activeModes.length < 1) {
+                                currentlyDisplayed++;
+                                return (
+                                    <Departure
+                                        key={index}
+                                        departure={departure}
+                                    />
+                                );
+                            }
+
                         })}
                         <ImpressPrivacy inline={true}/>
                     </div>

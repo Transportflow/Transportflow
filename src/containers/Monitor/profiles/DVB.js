@@ -51,7 +51,7 @@ export async function findDepartures(stopID, dispatch) {
         }
     });
 
-    var query = await dvb.monitor(stops[0].id, 0, 30, 8000).catch(err => {
+    var query = await dvb.monitor(stops[0].id, 0, 120, 8000).catch(err => {
         throw new Error(err)
     });
 
