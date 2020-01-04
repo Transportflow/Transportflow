@@ -55,7 +55,7 @@
     height: 25px;
     width: 55px;
     border: 2px solid;
-    border-color: black transparent black transparent;
+    border-color: #1a202c transparent #1a202c transparent;
     top: 0px;
     font-size: 16px;
     text-align: center;
@@ -64,14 +64,25 @@
     z-index: 10;
 }
 
+/* DARKMODE */
+.mode-dark .wagon .wagon-parts > .box {
+    border-color: #f7fafc transparent #f7fafc transparent;
+}
+
 .wagon .wagon-parts > .triangle-back {
     position: absolute;
     height: 25px;
     width: 30px;
-    border: 2px solid black;
-    border-color: transparent transparent black;
+    border: 2px solid #1a202c;
+    border-color: transparent transparent #1a202c;
     overflow: hidden;
     z-index: 10;
+}
+
+/* DARKMODE */
+.mode-dark .wagon .wagon-parts > .triangle-back {
+    border: 2px solid #f7fafc;
+    border-color: transparent transparent #f7fafc;
 }
 
 .wagon .wagon-parts > .triangle-top,
@@ -82,7 +93,13 @@
     width: 40px;
     border: 2px solid;
     border-radius: 15px;
-    border-color: black transparent transparent transparent;
+    border-color: #1a202c transparent transparent transparent;
+}
+
+/* DARKMODE */
+.mode-dark .wagon .wagon-parts > .triangle-top,
+.mode-dark .wagon.first-class .wagon-parts > .triangle-back .triangle-inside {
+    border-color: #f7fafc transparent transparent transparent;
 }
 
 .wagon.engine-left .wagon-parts > .triangle-top,
@@ -126,7 +143,15 @@
 .wagon.first-class .box,
 .wagon.first-class.engine-right .triangle-inside,
 .wagon.first-class.engine-left .triangle-inside {
-    background-color: black;
+    background-color: #1a202c;
     color: white;
 }
 
+
+
+.mode-dark .wagon.first-class .box,
+.mode-dark .wagon.first-class.engine-right .triangle-inside,
+.mode-dark .wagon.first-class.engine-left .triangle-inside {
+    background-color: #f7fafc;
+    color: #1a202c;
+}
