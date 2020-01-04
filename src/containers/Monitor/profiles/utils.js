@@ -132,7 +132,9 @@ export async function getNextStops(baseUrl, id, lineName, when) {
 
     let toSplice = 1;
     for (let i = 0; i < stops.length; i++) {
-        if (stops[i].timeRelative.includes("-")) {
+        if (stops[i].timeRelative.includes("-") || stops[i].timeRelative.includes("+0'")) {
+            console.log("removed");
+            console.log(stops[i]);
             toSplice++;
         }
     }
