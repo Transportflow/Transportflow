@@ -18,7 +18,7 @@ export default function Impress() {
 
             <h2 className="font-semibold text-xl">Kontakt</h2>
             <p>Telefon: +4917643300530<br/>
-                E-Mail: me@hannsadrian.de</p>
+                E-Mail: hannsadrian@gmail.com</p>
 
             <h3 className="font-semibold text-lg">Haftung f&uuml;r Inhalte</h3> <p>Als Diensteanbieter sind wir
             gem&auml;&szlig; &sect; 7 Abs.1 TMG
@@ -36,7 +36,9 @@ export default function Impress() {
             m&ouml;gliche Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der
             Verlinkung nicht erkennbar.</p> <p>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch
             ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen
-            werden wir derartige Links umgehend entfernen.</p> <h3>Urheberrecht</h3> <p>Die durch die Seitenbetreiber
+            werden wir derartige Links umgehend entfernen.</p>
+            <h3 className="font-semibold text-lg">Urheberrecht</h3>
+            <p>Die durch die Seitenbetreiber
             erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die
             Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung au&szlig;erhalb der Grenzen des
             Urheberrechtes bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads
