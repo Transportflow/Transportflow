@@ -41,7 +41,7 @@ class Index extends React.Component {
         return (
             <div className="p-6 pt-6 sm:p-12 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
                 <div className="flex mb-3">
-                    <BackButton className="mr-3" large={true}/>
+                    <BackButton className="mr-3" to={"/"} large={true}/>
                     <DarkmodeToggle large={true}/>
                 </div>
                 <h1 className="font-semibold font-inter text-2xl text-black dark\:text-gray-200">

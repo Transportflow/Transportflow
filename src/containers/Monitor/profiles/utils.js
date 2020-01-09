@@ -156,7 +156,9 @@ export async function getNextStopsDVB(tripid, time, stopid) {
     stops.splice(0, toDelete);
 
     stops.forEach(stop => {
+        stop.stop = {};
         stop.id = stop.Id;
+        stop.stop.id = stop.Id;
         stop.name = stop.Name;
         stop.Time = stop.Time.replace("/Date(", "").replace("-0000)/", "");
         if (stop.RealTime)

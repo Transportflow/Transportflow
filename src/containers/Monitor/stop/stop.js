@@ -106,7 +106,7 @@ class Stop extends React.Component {
                     className="p-6 pt-6 sm:p-12 lg:pl-56 bg-gray-400 dark\:bg-gray-800 trans font-sans min-h-screen"
                 >
                     <div className="flex mb-2">
-                        <BackButton large={true} className="mr-3"/>
+                        <BackButton large={true} to={"/monitor"} className="mr-3"/>
                         <button
                             onClick={this.reloadDepartures}
                             className="text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 sm:hover:bg-gray-300 px-4 py-3 rounded-lg mr-3 sm:hover:shadow-lg focus:outline-none trans-faster"

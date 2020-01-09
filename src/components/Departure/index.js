@@ -38,7 +38,8 @@ class Index extends Component {
             nextStops: [],
             cancelled: false,
             loadingWagons: false,
-            loadingNextStops: false
+            loadingNextStops: false,
+            network: localStorage.getItem("network")
         };
     }
 
@@ -62,7 +63,7 @@ class Index extends Component {
     async loadNextStops() {
         let nextStops;
         this.setState({loadingNextStops: true});
-        switch (localStorage.getItem("network")) {
+        switch (this.state.network) {
             case "bvg":
                 nextStops = await getNextStops(
                     "https://bvg.transportflow.de",
@@ -201,7 +202,9 @@ class Index extends Component {
                                                     )
                                                 })}
                                             </span>
-                                            <p className="whitespace-no-wrap text-left font-semibold">{stop.name}</p>
+                                            <a href={"/monitor/"+this.state.network+"/stop/"+stop.stop.id}>
+                                                <p className="whitespace-no-wrap text-left font-semibold hover:underline">{stop.name}</p>
+                                            </a>
                                             <p className="whitespace-no-wrap text-left">{stop.timeRelative} | {stop.time}</p>
                                         </div>
                                     )
