@@ -172,9 +172,9 @@ class Stop extends React.Component {
                             transition: "all 0.25s ease-in-out",
                             display: this.state.stopInfo ? "block" : "none"
                         }}>
-                        <div className="sm:w-auto sm:max-w-sm py-2 rounded-lg overflow-hidden">
+                        <div className="sm:w-auto sm:max-w-md py-2 rounded-lg overflow-hidden">
                             <img style={{borderRadius: "0.5em"}} alt='static map of stop'
-                                 src={'https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/' + this.props.stop.longitude + ',' + this.props.stop.latitude + ',17.00,10.00/350x350@2x?access_token=pk.eyJ1IjoiYWR3aXJhd2llbiIsImEiOiJjazU1aGp4cXkwM3VsM3NvNXpkeWNtZGo0In0.ZfjLctJ4o3iZj6u5faDISw'}/>
+                                 src={'https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/' + this.props.stop.longitude + ',' + this.props.stop.latitude + ',17.00,10.00/500x500@2x?access_token=pk.eyJ1IjoiYWR3aXJhd2llbiIsImEiOiJjazU1aGp4cXkwM3VsM3NvNXpkeWNtZGo0In0.ZfjLctJ4o3iZj6u5faDISw'}/>
                         </div>
                         <a
                             href={this.props.stop.mapLink}
