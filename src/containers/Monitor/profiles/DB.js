@@ -53,8 +53,6 @@ export async function findDepartures(stopID, dispatch) {
             tripId: departure.tripId
         };
 
-        console.log(newDeparture.scheduledWhen);
-
         newDeparture.icon = getDepartureIcon(departure.line.product);
         newDeparture.arrivalTime = dateToHHMM(departure.when !== null ? departure.when : departure.scheduledWhen);
         newDeparture.arrivalTimeRelative = departure.when !== null ? parseRelativeTime(departure.when) : parseRelativeTime(departure.scheduledWhen);
