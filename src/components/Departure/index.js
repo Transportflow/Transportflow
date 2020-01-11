@@ -95,7 +95,7 @@ class Index extends Component {
         if (localStorage.getItem("network") === "db") {
             try {
                 this.setState({loadingWagons: true});
-                let wagenreihung = await db.getWagenreihung(this.props.departure.fahrtNr, this.props.departure.when, this.props.departure.mode);
+                let wagenreihung = await db.getWagenreihung(this.props.departure.fahrtNr, this.props.departure.scheduledWhen, this.props.departure.mode);
                 if (wagenreihung === "error") {
                     throw new Error("No Wagenreihung available");
                 }

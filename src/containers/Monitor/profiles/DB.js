@@ -48,9 +48,12 @@ export async function findDepartures(stopID, dispatch) {
             direction: departure.direction,
             fahrtNr: departure.line.fahrtNr,
             when: departure.when || departure.scheduledWhen,
+            scheduledWhen: departure.scheduledWhen ? departure.scheduledWhen : new Date(Date.parse(departure.when) - departure.delay*1000 || 0),
             cancelled: departure.cancelled || false,
             tripId: departure.tripId
         };
+
+        console.log(newDeparture.scheduledWhen);
 
         newDeparture.icon = getDepartureIcon(departure.line.product);
         newDeparture.arrivalTime = dateToHHMM(departure.when !== null ? departure.when : departure.scheduledWhen);
