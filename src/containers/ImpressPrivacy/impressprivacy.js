@@ -3,6 +3,7 @@ import DarkmodeToggle from "../../components/Buttons/DarkmodeToggle";
 import BackButton from "../../components/Buttons/BackButton";
 
 export default function Impress() {
+
     return (
         <div className="p-6 pt-12 bg-gray-400 dark\:text-gray-100 dark\:bg-gray-800 min-h-screen h-auto trans">
             <div className="flex mb-5">
@@ -12,13 +13,13 @@ export default function Impress() {
             <h1 className="font-semibold text-2xl">Impressum</h1>
 
             <h2 className="font-semibold text-xl">Angaben gem&auml;&szlig; &sect; 5 TMG</h2>
-            <p>Hanns Adrian B&ouml;hme<br/>
-                Prie&szlig;nitzstra&szlig;e 39<br/>
-                01099 Dresden</p>
+            <p>{process.env.REACT_APP_IMPRESS_RESPONSIBLE}<br/>
+                {process.env.REACT_APP_IMPRESS_STREET}<br/>
+                {process.env.REACT_APP_IMPRESS_CITY}</p>
 
             <h2 className="font-semibold text-xl">Kontakt</h2>
-            <p>Telefon: +4917643300530<br/>
-                E-Mail: hannsadrian@gmail.com</p>
+            <p>Telefon: {process.env.REACT_APP_IMPRESS_TELEPHONE}<br/>
+                E-Mail: {process.env.REACT_APP_IMPRESS_MAIL}</p>
 
             <h3 className="font-semibold text-lg">Haftung f&uuml;r Inhalte</h3> <p>Als Diensteanbieter sind wir
             gem&auml;&szlig; &sect; 7 Abs.1 TMG
@@ -86,12 +87,12 @@ export default function Impress() {
             aufweisen kann. Ein l&uuml;ckenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht
             m&ouml;glich.</p>
             <h3 className="font-semibold text-lg">Hinweis zur verantwortlichen Stelle</h3> <p>Die verantwortliche Stelle
-            f&uuml;r die Datenverarbeitung auf dieser Website ist:</p> <p>Hanns Adrian B&ouml;hme<br/>
-            Prie&szlig;nitzstra&szlig;e 39<br/>
-            01099 Dresden</p>
+            f&uuml;r die Datenverarbeitung auf dieser Website ist:</p> <p>{process.env.REACT_APP_IMPRESS_RESPONSIBLE}<br/>
+            {process.env.REACT_APP_IMPRESS_STREET}<br/>
+            {process.env.REACT_APP_IMPRESS_CITY}</p>
 
-            <p>Telefon: +49 176 43300530<br/>
-                E-Mail: hannsadrian@gmail.com</p>
+            <p>Telefon: {process.env.REACT_APP_IMPRESS_TELEPHONE}<br/>
+                E-Mail: {process.env.REACT_APP_IMPRESS_MAIL}</p>
             <p>Verantwortliche Stelle ist die nat&uuml;rliche oder juristische Person, die allein oder gemeinsam mit
                 anderen &uuml;ber die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.&nbsp;B. Namen,
                 E-Mail-Adressen o. &Auml;.) entscheidet.</p>

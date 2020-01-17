@@ -113,34 +113,37 @@ export async function monitor(baseUrl, stopID, dispatch) {
     return monitor;
 }
 export async function getNextStops(baseUrl, id, lineName, when) {
-    let stops = await axios.get(baseUrl + "/trips/" + id + "?lineName=" + lineName).catch(err => console.log(err)).then((res) => res.data.stopovers);
+    try {
+        let stops = await axios.get(baseUrl + "/trips/" + id + "?lineName=" + lineName).then((res) => res.data.stopovers);
+        stops.forEach(val => {
+            val.time = dateToHHMM(val.arrival !== null ? val.arrival : val.departure);
+            val.timeRelative = val.arrival !== null ? moment.duration(
+                new Date(Date.parse(val.arrival)).getTime() - new Date(Date.parse(when)).getTime(),
+                "milliseconds"
+            )
+                .format("+h[h] m[']") : moment.duration(
+                new Date(Date.parse(val.departure)).getTime() - new Date(Date.parse(when)).getTime(),
+                "milliseconds"
+            )
+                .format("+h[h] m[']");
+            val.products = val.stop.products;
+            val.name = val.stop.name;
+        });
 
-    stops.forEach(val => {
-        val.time = dateToHHMM(val.arrival !== null ? val.arrival : val.departure);
-        val.timeRelative = val.arrival !== null ? moment.duration(
-            new Date(Date.parse(val.arrival)).getTime() - new Date(Date.parse(when)).getTime(),
-            "milliseconds"
-        )
-            .format("+h[h] m[']") : moment.duration(
-            new Date(Date.parse(val.departure)).getTime() - new Date(Date.parse(when)).getTime(),
-            "milliseconds"
-        )
-            .format("+h[h] m[']");
-        val.products = val.stop.products;
-        val.name = val.stop.name;
-    });
-
-    let toSplice = 1;
-    for (let i = 0; i < stops.length; i++) {
-        if (stops[i].timeRelative.includes("-") || stops[i].timeRelative.includes("+0'")) {
-            toSplice++;
+        let toSplice = 1;
+        for (let i = 0; i < stops.length; i++) {
+            if (stops[i].timeRelative.includes("-") || stops[i].timeRelative.includes("+0'")) {
+                toSplice++;
+            }
         }
+        stops.splice(0, toSplice);
+
+        getStopIcons(stops);
+
+        return stops;
+    } catch (err) {
+        return [];
     }
-    stops.splice(0, toSplice);
-
-    getStopIcons(stops);
-
-    return stops;
 }
 export async function getNextStopsDVB(tripid, time, stopid) {
     let stops = await axios.post("https://webapi.vvo-online.de/dm/trip",
