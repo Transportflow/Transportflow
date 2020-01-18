@@ -1,2 +1,3 @@
 node_modules
 src/css/tailwind.css
+.env
