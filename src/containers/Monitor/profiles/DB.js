@@ -9,7 +9,7 @@ import {
 } from "./utils";
 import {wagenreihung} from "../../../db-wagenreihung";
 
-const baseUrl = "https://db.transportflow.de";
+const baseUrl = "http://db-hafas-rest-endpoint.hafas-rest-endpoint.159.69.189.191.xip.io/";
 
 export async function findSuggestions(input, dispatch) {
     await findUtilitySuggestions(baseUrl, input, dispatch);
