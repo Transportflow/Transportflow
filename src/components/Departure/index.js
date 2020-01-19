@@ -66,14 +66,14 @@ class Index extends Component {
         switch (this.state.network) {
             case "bvg":
                 nextStops = await getNextStops(
-                    "http://bvg-hafas-rest-endpoint.hafas-rest-endpoint.159.69.189.191.xip.io/",
+                    "https://bvg.transportflow.online",
                     this.props.departure.tripId,
                     this.props.departure.line,
                     this.props.departure.when);
                 break;
             case "db":
                 nextStops = await getNextStops(
-                    "http://db-hafas-rest-endpoint.hafas-rest-endpoint.159.69.189.191.xip.io/",
+                    "https://db.transportflow.online",
                     this.props.departure.tripId,
                     this.props.departure.line,
                     this.props.departure.when);
