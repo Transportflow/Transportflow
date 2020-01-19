@@ -8,7 +8,7 @@ import {
     monitor
 } from "./utils";
 
-const baseUrl = "http://bvg-hafas-rest-endpoint.hafas-rest-endpoint.159.69.189.191.xip.io";
+const baseUrl = "https://bvg.transportflow.online";
 
 export async function findSuggestions(input, dispatch) {
     await findUtilitySuggestions(baseUrl, input, dispatch);
