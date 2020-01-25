@@ -4,7 +4,7 @@ WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json /app/package.json
 RUN yarn --silent
-RUN yarn add react-scripts@3.0.1 -g --silent
+RUN yarn add react-scripts -g --silent
 COPY . /app
 RUN yarn run build-css
 RUN yarn run build
