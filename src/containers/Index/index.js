@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import DarkmodeToggle from "../../components/Buttons/DarkmodeToggle";
 import ImpressPrivacy from "../../components/Buttons/ImpressPrivacy";
 import MenuButton from "../../components/Buttons/MenuButton";
+import Twemoji from 'react-twemoji';
 
 class App extends React.Component {
     constructor(props) {
@@ -19,7 +20,7 @@ class App extends React.Component {
             <div className="p-6 pt-12 sm:p-20 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
                 <div className="flex justify-between mb-5 w-full sm:w-auto sm:max-w-xs">
                     <div>
-                        <h1 className="dark\:text-gray-200 font-bold font-inter text-2xl text-black"><span role="img" aria-label="parrot">🦜</span> Transportflow <span className="align-text-top rounded py-1 px-2 bg-red-600 text-gray-200 text-sm uppercase font-bold tracking-tight">beta</span></h1>
+                        <h1 className="dark\:text-gray-200 font-bold font-inter text-2xl text-black flex"><Twemoji options={{ className: "h-8 mr-1" }}>🦜</Twemoji> Transportflow</h1>
                         <p className="font-inter text-gray-700 dark\:text-gray-400">Kein Auto, kein Problem. <span role="img" aria-label="rocket">🚀</span></p>
                     </div>
                     <div className="my-auto">

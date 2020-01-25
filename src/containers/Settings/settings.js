@@ -9,6 +9,7 @@ import {faDumpsterFire} from "@fortawesome/free-solid-svg-icons";
 import ImpressPrivacy from "../../components/Buttons/ImpressPrivacy";
 import Seperator from "../../components/Segments/Seperator";
 import SettingsCategory from "../../components/Segments/SettingsCategory";
+import Twemoji from 'react-twemoji';
 
 class Settings extends Component {
     unregisterWorker() {
@@ -21,7 +22,7 @@ class Settings extends Component {
             <div className="p-6 pt-12 sm:p-20 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
                 <div className="w-full sm:w-auto sm:max-w-sm">
                     <BackButton to="/" large={true}/>
-                    <h1 className="dark\:text-gray-200 font-bold font-inter text-2xl mt-5 mb-1"><span className="font-sans">⚙</span> Einstellungen</h1>
+                    <h1 className="dark\:text-gray-200 font-bold font-inter text-2xl mt-5 mb-1 flex"><Twemoji options={{className: "h-8 mr-2"}}>⚙</Twemoji> Einstellungen</h1>
 
                     <SettingsCategory title="Region" description="Wählen Sie Ihren Verkehrsverbund aus."/>
                     <div className="flex w-full justify-start"><NetworkSwitch onChange={() => {}}/></div>

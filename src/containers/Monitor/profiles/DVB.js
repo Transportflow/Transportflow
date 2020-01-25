@@ -110,7 +110,7 @@ export async function findDepartures(stopID, dispatch) {
                 departure.arrivalTimeRelative,
                 "minutes"
                 )
-                    .format("h['']");
+                    .format("h[h]");
 
         query[i] = newDeparture;
     }
