@@ -4,7 +4,7 @@ import {Route, BrowserRouter, Switch} from "react-router-dom";
 import "./index.css";
 import "./css/tailwind.css";
 import * as serviceWorker from "./serviceWorker";
-import PageTransition from '@steveeeie/react-page-transition';
+import { PageTransition } from '@steveeeie/react-page-transition';
 import App from "./containers/Index/index";
 import Impress from "./containers/ImpressPrivacy/impressprivacy";
 import Monitor from "./containers/Monitor/search/monitor";
@@ -21,7 +21,7 @@ import {Provider} from "react-redux";
 import reducer from "./reducers";
 
 const store = createStore(reducer);
-var previousPathname = "";
+let previousPathname = "";
 
 const routing = (
     <Provider store={store}>
