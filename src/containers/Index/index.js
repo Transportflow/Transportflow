@@ -5,15 +5,6 @@ import ImpressPrivacy from "../../components/Buttons/ImpressPrivacy";
 import MenuButton from "../../components/Buttons/MenuButton";
 
 class App extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
-    componentDidMount() {
-
-    }
-
     render() {
         return (
             <div className="p-6 pt-12 sm:p-20 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
