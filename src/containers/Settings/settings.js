@@ -5,7 +5,7 @@ import BackButton from "../../components/Buttons/BackButton";
 import NetworkSwitch from "../../components/Buttons/NetworkSwitch";
 import Checkmark from "../../components/Buttons/Checkmark";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faDumpsterFire} from "@fortawesome/free-solid-svg-icons";
+import {faDumpsterFire, faPowerOff} from "@fortawesome/free-solid-svg-icons";
 import ImpressPrivacy from "../../components/Buttons/ImpressPrivacy";
 import Seperator from "../../components/Segments/Seperator";
 import SettingsCategory from "../../components/Segments/SettingsCategory";
@@ -14,6 +14,11 @@ import Twemoji from 'react-twemoji';
 class Settings extends Component {
     unregisterWorker() {
         serviceWorker.unregister();
+        window.location.reload(true);
+    }
+
+    clearLocalStorage() {
+        localStorage.clear();
         window.location.reload(true);
     }
 
@@ -43,8 +48,17 @@ class Settings extends Component {
                     <SettingsCategory title="Version" description={<>Leeren Sie den Cache dieser Website.<br/>Dies aktualisiert Transportflow ggf. auf die neueste Version.</>}/>
                     <button
                         onClick={this.unregisterWorker}
-                        className="mb-20 text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 sm:hover:bg-gray-300 px-5 py-3 rounded-lg text-base sm:hover:shadow-md focus:outline-none z-50 relative trans-fast">
+                        className="text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 sm:hover:bg-gray-300 px-5 py-3 rounded-lg text-base sm:hover:shadow-md focus:outline-none z-50 relative trans-fast">
                         <span className="mr-2"><FontAwesomeIcon icon={faDumpsterFire}/></span>Cache leeren
+                    </button>
+
+                    <Seperator/>
+
+                    <SettingsCategory title="Zurücksetzen" description={<>Setzen Sie alle Einstellungen zurück.<br/>Sie durchlaufen den Einrichtungsprozess anschließend erneut.</>}/>
+                    <button
+                        onClick={this.clearLocalStorage}
+                        className="mb-20 text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-300 dark-hover\:bg-gray-600 sm:hover:bg-gray-300 px-5 py-3 rounded-lg text-base sm:hover:shadow-md focus:outline-none z-50 relative trans-fast">
+                        <span className="mr-2"><FontAwesomeIcon icon={faPowerOff}/></span>Zurücksetzen
                     </button>
                     <ImpressPrivacy inline={true} className="mt-10 mb-4"/>
                 </div>
