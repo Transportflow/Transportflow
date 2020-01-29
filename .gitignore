@@ -25,3 +25,5 @@ yarn-error.log*
 # tailwindcss
 src/css/tailwind.css
 .env
+
+.idea/statistic.xml
