@@ -19,10 +19,10 @@ import Done from "./containers/Onboarding/done";
 import {createStore} from "redux";
 import {Provider} from "react-redux";
 import reducer from "./reducers";
+import Ackee from "./components/Ackee";
 
 const store = createStore(reducer);
 let previousPathname = "";
-
 const routing = (
     <Provider store={store}>
         <BrowserRouter>
@@ -35,12 +35,14 @@ const routing = (
                         exit = "moveToLeft";
                     }
                     previousPathname = location.pathname;
+
                     return (
                         <PageTransition
                             preset={preset}
                             transitionKey={location.pathname}
                             exitAnimation={exit}
                         >
+                            <Ackee/>
                             <Switch location={location}>
                                 <Route exact path="/" component={App}/>
 
