@@ -27,6 +27,7 @@ let previousPathname = "";
 const routing = (
     <Provider store={store}>
         <BrowserRouter>
+            <Ackee/>
             <Route
                 render={({location}) => {
                     let preset = "moveToRightFromLeft";
@@ -43,7 +44,6 @@ const routing = (
                             transitionKey={location.pathname}
                             exitAnimation={exit}
                         >
-                            <Ackee/>
                             <Switch location={location}>
                                 <Route exact path="/" component={App}/>
 
