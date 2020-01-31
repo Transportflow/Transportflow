@@ -5,10 +5,9 @@ import {useAckee} from "use-ackee";
 function Ackee() {
     const loc = useLocation();
 
-    // have to implement proper proxy
     useAckee(loc.pathname, {
-        server: 'https://non-cors.herokuapp.com/http://adwira.wien:3000',
-        domainId: 'e378db20-177b-4351-ac54-8a4533567513'
+        server: process.env.REACT_APP_ACKEE_URL,
+        domainId: process.env.REACT_APP_ACKEE_ID
     }, {
         ignoreLocalhost: true,
         detailed: localStorage.getItem("detailed_data") === "true"
