@@ -60,7 +60,7 @@ class Settings extends Component {
                         Browserversion und Gerätename.
                         Genaueres kann unserer Datenschutzerklärung
                         entnommen werden.</>}/>
-                    <Checkmark className="mt-4" val="true" description="Personalisierte Daten senden" itemName="detailed_data"/>
+                    <Checkmark className="mt-4" val={localStorage.getItem("detailed_data") !== null ? localStorage.getItem("detailed_data") : false} description="Personalisierte Daten senden" itemName="detailed_data"/>
 
                     <Seperator/>
 

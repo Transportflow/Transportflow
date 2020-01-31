@@ -1,6 +1,6 @@
 import React from 'react';
 import {useLocation} from "react-router-dom";
-import {useAckee} from "use-ackee";
+import useAckee from "./useAckee";
 
 function Ackee() {
     const loc = useLocation();
