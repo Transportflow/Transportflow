@@ -34,7 +34,7 @@ class Network extends Component {
                         this.setState({disabled: false})
                     }}/>
                 </div>
-                <RedirectingButton to="/onboarding/done" disabled={this.state.disabled}/>
+                <RedirectingButton to="/onboarding/privacy" disabled={this.state.disabled}/>
                 <ImpressPrivacy centered={true}/>
             </div>
         );

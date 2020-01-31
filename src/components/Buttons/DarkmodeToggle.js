@@ -65,6 +65,8 @@ class DarkmodeToggle extends Component {
                     }
                     {!localStorage.getItem("network") && !this.props.onboarding ?
                         <Redirect to="/onboarding/welcome"/>
+                        : !localStorage.getItem("detailed_data") && !this.props.onboarding ?
+                            <Redirect to="/onboarding/privacy"/>
                         :
                         <></>
                     }

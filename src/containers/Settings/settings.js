@@ -54,6 +54,16 @@ class Settings extends Component {
 
                     <Seperator/>
 
+                    <SettingsCategory title="Datenerhebung" description={<>Wir erheben sog. "personalisierte Daten"<br/>
+                        <span className="font-semibold">nur mit Ihrer Zustimmung</span>.<br/>
+                        Darunter fallen u.a. Betriebssystem,
+                        Browserversion und Gerätename.
+                        Genaueres kann unserer Datenschutzerklärung
+                        entnommen werden.</>}/>
+                    <Checkmark className="mt-4" val="true" description="Personalisierte Daten senden" itemName="detailed_data"/>
+
+                    <Seperator/>
+
                     <SettingsCategory title="Zurücksetzen" description={<>Setzen Sie alle Einstellungen zurück.<br/>Sie durchlaufen den Einrichtungsprozess anschließend erneut.</>}/>
                     <button
                         onClick={this.clearLocalStorage}

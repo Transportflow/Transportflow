@@ -10,7 +10,8 @@ function Ackee() {
         server: 'https://non-cors.herokuapp.com/http://adwira.wien:3000',
         domainId: 'e378db20-177b-4351-ac54-8a4533567513'
     }, {
-        ignoreLocalhost: true
+        ignoreLocalhost: true,
+        detailed: localStorage.getItem("detailed_data") === "true"
     });
 
     return (

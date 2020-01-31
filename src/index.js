@@ -14,6 +14,7 @@ import Settings from "./containers/Settings/settings";
 import Welcome from "./containers/Onboarding/welcome";
 import Theme from "./containers/Onboarding/theme";
 import Network from "./containers/Onboarding/network";
+import Privacy from "./containers/Onboarding/privacy";
 import Done from "./containers/Onboarding/done";
 
 import {createStore} from "redux";
@@ -49,6 +50,7 @@ const routing = (
                                 <Route exact path="/onboarding/welcome" component={Welcome}/>
                                 <Route exact path="/onboarding/theme" component={Theme}/>
                                 <Route exact path="/onboarding/network" component={Network}/>
+                                <Route exact path="/onboarding/privacy" component={Privacy}/>
                                 <Route exact path="/onboarding/done" component={Done}/>
 
                                 <Route exact path="/settings" component={Settings}/>

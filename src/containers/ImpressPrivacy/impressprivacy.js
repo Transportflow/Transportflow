@@ -199,7 +199,7 @@ export default function Impress() {
             <h3 className="font-semibold text-lg">Server-Log-Dateien</h3> <p>Der Provider der Seiten erhebt und
             speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an
             uns &uuml;bermittelt. Dies sind:</p>
-            <ul>
+            <ul className="list-disc ml-6">
                 <li>Browsertyp und Browserversion</li>
                 <li>verwendetes Betriebssystem</li>
                 <li>Referrer URL</li>
@@ -207,10 +207,24 @@ export default function Impress() {
                 <li>Uhrzeit der Serveranfrage</li>
                 <li>IP-Adresse</li>
             </ul>
+            <h3 className="font-semibold text-lg">Tracker</h3> <p>Des Weiteren werden, sollten Sie zugestimmt haben,
+            personalisierte Daten durch einen Tracker erhoben.
+            Dieser wird durch den Websiten Betreiber gehostet (<a className="text-blue-600" href="https://ackee.electerious.com/">Website des Trackers</a>).
+            Erhobene Daten sind:</p>
+            <ul className="list-disc ml-6">
+                <li>Browsersprache</li>
+                <li>Bildschirmgröße</li>
+                <li>Bildschirmfarbtiefe</li>
+                <li>Gerätename</li>
+                <li>Gerätehersteller</li>
+                <li>verwendetes Betriebssystem</li>
+                <li>Browsertyp und Browserversion</li>
+                <li>Browserfenstergröße</li>
+            </ul>
             <p>Eine Zusammenf&uuml;hrung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.</p> <p>Die
             Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein
             berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner
-            Website &ndash; hierzu m&uuml;ssen die Server-Log-Files erfasst werden.</p>
+            Website &ndash; hierzu m&uuml;ssen die Server-Log-Files erfasst und der Tracker genutzt werden.</p>
             <p>Quelle: <a href="https://www.e-recht24.de">eRecht24</a></p>
         </div>
     )
