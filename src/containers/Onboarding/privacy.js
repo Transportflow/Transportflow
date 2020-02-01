@@ -15,8 +15,8 @@ class Privacy extends Component {
                     <span className="font-sans" role="img" aria-labelledby="">🎈</span> Datenerhebung
                 </h1>
                 <p className="font-inter text-gray-700 dark\:text-gray-400 mb-4 mt-4">
-                    Wir erheben sog. "personalisierte Daten"<br/>
-                    <span className="font-semibold">nur mit Ihrer Zustimmung</span>.<br/>
+                    Wir erheben personenbezogene Daten<br/>
+                    <span className="font-medium">nur mit Ihrer Zustimmung</span>.<br/>
                     Darunter fallen u.a. Betriebssystem,<br/>
                     Browserversion und Gerätename.<br/>
                     Genaueres kann unserer Datenschutzerklärung<br/>
