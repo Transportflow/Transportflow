@@ -22,7 +22,7 @@ class Privacy extends Component {
                     Genaueres kann unserer Datenschutzerklärung<br/>
                     entnommen werden.
                 </p>
-                <Checkmark className="mx-auto mt-2 mb-6" val="true" description="Personalisierte Daten senden" itemName="detailed_data"/>
+                <Checkmark className="mx-auto mt-2 mb-6" val="true" description="Personenbezogene Daten senden" itemName="detailed_data"/>
                 <RedirectingButton to="/onboarding/done"/>
                 <ImpressPrivacy centered={true}/>
             </div>
