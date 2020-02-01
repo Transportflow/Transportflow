@@ -208,8 +208,8 @@ export default function Impress() {
                 <li>IP-Adresse</li>
             </ul>
             <h3 className="font-semibold text-lg">Tracker</h3> <p>Des Weiteren werden, sollten Sie zugestimmt haben,
-            personalisierte Daten durch einen Tracker erhoben.
-            Dieser wird durch den Websiten Betreiber gehostet (<a className="text-blue-600" href="https://ackee.electerious.com/">Website des Trackers</a>).
+            personenbezogene Daten durch einen Tracker erhoben.
+            Der Tracker wird durch den Websiten Betreiber gehostet (<a className="text-blue-600" href="https://ackee.electerious.com/">Website des Trackers</a>).
             Erhobene Daten sind:</p>
             <ul className="list-disc ml-6">
                 <li>Browsersprache</li>
@@ -221,6 +221,7 @@ export default function Impress() {
                 <li>Browsertyp und Browserversion</li>
                 <li>Browserfenstergröße</li>
             </ul>
+            <p>Alle personenbezogenen Daten werden gelöscht, sobald sie nicht mehr benötigt werden.</p>
             <p>Eine Zusammenf&uuml;hrung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.</p> <p>Die
             Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein
             berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner
