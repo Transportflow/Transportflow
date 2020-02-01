@@ -34,12 +34,8 @@ class Stop extends React.Component {
         var activeModes = this.state.activeModes;
         var mode = event.target.id;
 
-        event.target.classList.toggle("sm:bg-gray-300");
-        event.target.classList.toggle("sm:bg-gray-400");
         event.target.classList.toggle("bg-gray-100");
         event.target.classList.toggle("bg-gray-300");
-        event.target.classList.toggle("sm:dark\\:bg-gray-800");
-        event.target.classList.toggle("sm:dark\\:bg-gray-700");
         event.target.classList.toggle("dark\\:bg-gray-700");
         event.target.classList.toggle("dark\\:bg-gray-500");
         if (activeModes.indexOf(mode) === -1) {
@@ -103,7 +99,7 @@ class Stop extends React.Component {
         return (
             <div>
                 <div
-                    className="p-6 pt-6 sm:p-12 lg:pl-56 bg-gray-400 dark\:bg-gray-800 trans font-sans min-h-screen"
+                    className="p-6 pt-6 sm:p-12 lg:pl-56 bg-gray-400 dark\:bg-gray-800 font-sans min-h-screen"
                 >
                     <div className="flex mb-2">
                         <BackButton large={true} to={"/monitor"} className="mr-3"/>
@@ -115,61 +111,63 @@ class Stop extends React.Component {
                         </button>
                         <DarkmodeToggle large={true}/>
                     </div>
-                    <h1 className="trans font-semibold font-inter text-2xl text-black truncate text-black dark\:text-gray-200">
+                    <h1 className="font-semibold font-inter text-2xl text-black truncate text-black dark\:text-gray-200">
                         {this.state.err ?
                             "Fehler" :
                             this.props.stop.name || "Laden..."}
                     </h1>
                     <div className="w-full sm:w-auto sm:max-w-xs flex w-full justify-left mt-2 mb-1">
                         <div
-                            className="px-1 bg-gray-300 dark\:bg-gray-700 dark\:text-white focus:outline-none trans rounded-lg flex">
+                            className="px-1 bg-gray-300 dark\:bg-gray-700 dark\:text-white focus:outline-none rounded-lg flex">
                             <button key="departures"
-                                    className="w-32 focus:outline-none"
+                                    style={{width: "7.25rem"}} className="focus:outline-none"
                                     onClick={() => {
                                         this.setState({stopInfo: false})
                                     }}
                             >
                                 <div
-                                    className={"my-1 py-1 trans bg-none rounded " + (!this.state.stopInfo ? "bg-gray-100 dark\\:bg-gray-600" : "")}>
+                                    className={"my-1 py-1 bg-none rounded " + (!this.state.stopInfo ? "bg-gray-100 dark\\:bg-gray-600" : "")}>
                                     Abfahrten
                                 </div>
                             </button>
                             <button key="stopInfo"
-                                    className="w-32 focus:outline-none"
+                                    style={{width: "7.25rem"}} className="focus:outline-none"
                                     onClick={() => {
                                         this.setState({stopInfo: true})
                                     }}
                             >
                                 <div
-                                    className={"my-1 py-1 trans bg-none rounded " + (this.state.stopInfo ? "bg-gray-100 dark\\:bg-gray-600" : "")}>
+                                    className={"my-1 py-1 bg-none rounded " + (this.state.stopInfo ? "bg-gray-100 dark\\:bg-gray-600" : "")}>
                                     Haltestelle
                                 </div>
                             </button>
                         </div>
+                        <input className="ml-2 rounded-lg w-20 p-2 px-3 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-200 focus:outline-none focus:shadow-outline"
+                               placeholder="1:17"/>
                     </div>
                     {this.state.loading === true ? (
-                        <div className="mb-6 mt-3 rounded-lg overflow-hidden max-w-xs dark\:text-gray-400">
+                        <div className="my-2 rounded-lg overflow-hidden dark\:text-gray-400" style={{width: "20.5rem"}}>
                             <BarLoader
                                 heightUnit={"px"}
                                 height={4}
                                 widthUnit={"px"}
-                                width={330}
+                                width={350}
                                 color={"#718096"}
                                 loading={this.state.loading}
                             />
                         </div>
                     ) : this.state.err !== "" ? (
-                        <p className="p-1 pl-2 bg-red-600 text-gray-300 mt-4 mb-5 max-w-xs rounded-lg font-semibold">
+                        <p className="p-1 px-2 bg-red-600 text-gray-300 mt-2 mb-2 rounded-lg font-semibold" style={{width: "20.5rem"}}>
                             {this.state.err}
                         </p>
                     ) : (
-                        <></>
+                        <hr className="my-2 mb-0 rounded-lg overflow-hidden border-gray-300 dark\:border-gray-700 border-2"
+                            style={{width: "20.25rem"}}/>
                     )}
 
                     <div
                         className={(!this.state.stopInfo ? "opacity-0" : "opacity-1") + " trans z-10 w-full sm:w-auto sm:max-w-lg"}
                         style={{
-                            transition: "all 0.25s ease-in-out",
                             display: this.state.stopInfo ? "block" : "none"
                         }}>
                         <div className="sm:w-auto sm:max-w-md py-2 rounded-lg overflow-hidden">
@@ -185,44 +183,43 @@ class Stop extends React.Component {
                             {" Route anzeigen"}
                         </a>
                     </div>
-                    <div className={(this.state.stopInfo ? "opacity-0" : "opacity-1") + " trans z-50"} style={{
-                        display: !this.state.stopInfo ? "block" : "none",
-                        transition: "all 0.25s ease-in-out"
+                    <div className={(this.state.stopInfo ? "opacity-0" : "opacity-1") + " z-50"} style={{
+                        display: !this.state.stopInfo ? "block" : "none"
                     }}>
                         {this.props.modes.length > 1 ? (
-                            <div
-                                className="flex mt-3 mb-3 overflow-scroll overflow-y-hidden scrolling-touch sm:overflow-visible custom-scrollbar w-auto rounded-lg">
-                                {this.props.modes.map((mode, index) => {
-                                    return (
-                                        <button
-                                            className="whitespace-no-wrap text-gray-900 bg-gray-300 sm:bg-gray-400 dark\:bg-gray-700 sm:dark\:bg-gray-800 dark\:text-gray-200 px-4 py-3 rounded-lg mr-3 focus:outline-none trans-bg"
-                                            onClick={this.toggleMode}
-                                            key={mode}
-                                            id={mode}
-                                        >
-                                            {mode
-                                                .replace("suburban", "S-Bahn")
-                                                .replace("subway", "U-Bahn")
-                                                .replace("tram", "Straßenbahn")
-                                                .replace("bus", "Bus")
-                                                .replace("express", "Bahn")
-                                                .replace("regionalExp", "Express")
-                                                .replace("regional", "RE/RB")
-                                                .replace("ferry", "Fähre")
-                                                .replace("nationalExpress", "ICE")
-                                                .replace("national", "IC/EC")
-                                                .replace("taxi", "Taxi")
-                                            }
-                                        </button>
-                                    )
-                                })}
-                            </div>
+                                <div
+                                    className="flex mt-2 sm:mt-0 mb-2 overflow-scroll overflow-y-hidden scrolling-touch sm:overflow-visible custom-scrollbar sm:flex-wrap sm:max-w-lg w-auto rounded-lg">
+                                    {this.props.modes.map((mode, index) => {
+                                        return (
+                                            <button
+                                                className="whitespace-no-wrap text-gray-900 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-200 px-3 py-2 rounded-lg sm:mt-2 mr-2 focus:outline-none trans-bg"
+                                                onClick={this.toggleMode}
+                                                key={mode}
+                                                id={mode}
+                                            >
+                                                {mode
+                                                    .replace("suburban", "S-Bahn")
+                                                    .replace("subway", "U-Bahn")
+                                                    .replace("tram", "Straßenbahn")
+                                                    .replace("bus", "Bus")
+                                                    .replace("express", "Bahn")
+                                                    .replace("regionalExp", "Express")
+                                                    .replace("regional", "RE/RB")
+                                                    .replace("ferry", "Fähre")
+                                                    .replace("nationalExpress", "ICE")
+                                                    .replace("national", "IC/EC")
+                                                    .replace("taxi", "Taxi")
+                                                }
+                                            </button>
+                                        )
+                                    })}
+                                </div>
                         ) : (
                             <></>
                         )}
                         <div
                             style={{height: "70vh"}}
-                            className="w-full sm:w-auto sm:max-w-lg mb-3 overflow-scroll overflow-x-hidden custom-scrollbar scrolling-touch rounded-lg pb-40 mt-3"
+                            className="w-full sm:w-auto sm:max-w-lg mb-3 overflow-scroll overflow-x-hidden custom-scrollbar scrolling-touch rounded-lg pb-40 mt-2"
                         >
                             {this.props.departures.map((departure, index) => {
                                 if (index === 0) {
@@ -244,7 +241,7 @@ class Stop extends React.Component {
                                         />
                                     );
                                 }
-
+                                return (<></>)
                             })}
                             <ImpressPrivacy inline={true}/>
                         </div>
