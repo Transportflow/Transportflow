@@ -35,6 +35,9 @@ export default function(pathname, server, opts = {}) {
         if (attributes.siteReferrer !== null && attributes.siteReferrer.includes(process.env.REACT_APP_ACKEE_URL))
             return;
 
+        if (url.href.includes(process.env.REACT_APP_ACKEE_IGNORE))
+            return;
+
         instanceRef.current.record({
             ...attributes,
             siteLocation: url.href
