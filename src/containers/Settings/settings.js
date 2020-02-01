@@ -54,8 +54,8 @@ class Settings extends Component {
 
                     <Seperator/>
 
-                    <SettingsCategory title="Datenerhebung" description={<>Wir erheben sog. "personalisierte Daten"<br/>
-                        <span className="font-semibold">nur mit Ihrer Zustimmung</span>.<br/>
+                    <SettingsCategory title="Datenerhebung" description={<>Wir erheben personenbezogene Daten<br/>
+                        <span className="font-medium">nur mit Ihrer Zustimmung</span>.<br/>
                         Darunter fallen u.a. Betriebssystem,
                         Browserversion und Gerätename.
                         Genaueres kann unserer Datenschutzerklärung
