@@ -1,5 +1,5 @@
-const { useRef, useEffect } = require('react')
-const ackeeTracker = require('ackee-tracker')
+const { useRef, useEffect } = require('react');
+const ackeeTracker = require('ackee-tracker');
 
 /**
  * Use Ackee in React.
@@ -10,7 +10,7 @@ const ackeeTracker = require('ackee-tracker')
  */
 export default function(pathname, server, opts = {}) {
 
-    const instanceRef = useRef()
+    const instanceRef = useRef();
 
     useEffect(() => {
 
@@ -25,12 +25,15 @@ export default function(pathname, server, opts = {}) {
             pathname !== ''
         )
 
-        if (hasPathname === false) return
+        if (hasPathname === false) return;
 
-        const attributes = ackeeTracker.attributes(opts.detailed)
+        const attributes = ackeeTracker.attributes(opts.detailed);
 
         // eslint-disable-next-line no-restricted-globals
-        const url = new URL(pathname, location)
+        const url = new URL(pathname, location);
+
+        if (attributes.siteReferrer !== null && attributes.siteReferrer.includes(process.env.REACT_APP_ACKEE_URL))
+            return;
 
         instanceRef.current.record({
             ...attributes,
