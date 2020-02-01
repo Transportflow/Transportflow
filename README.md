@@ -1,5 +1,3 @@
-[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J41APL0)
-
 # 🦜 Transportflow
 
 Web page to view departures or plan a route(coming soon) in germany. [Live Demo 🛰](https://transportflow.online/)<br>
