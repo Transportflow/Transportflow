@@ -17,7 +17,7 @@ export async function findLocationSuggestions(latitude, longitude, dispatch) {
     await findUtilityLocationSuggestions(baseUrl, latitude, longitude, dispatch);
 }
 
-export async function findDepartures(stopID, dispatch) {
+export async function findDepartures(stopID, dispatch, date) {
     try {
         await searchStop(baseUrl, stopID, dispatch);
     } catch (err) {
@@ -29,7 +29,7 @@ export async function findDepartures(stopID, dispatch) {
 
     let departures;
     try {
-        departures = await monitor(baseUrl, stopID, dispatch);
+        departures = await monitor(baseUrl, stopID, dispatch, date);
     } catch (err) {
         throw err;
     }

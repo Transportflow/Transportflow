@@ -36,7 +36,7 @@ async function parseSuggestions(query, dispatch) {
     dispatch({type: "SET_SUGGESTIONS", suggestions: suggestions});
 }
 
-export async function findDepartures(stopID, dispatch) {
+export async function findDepartures(stopID, dispatch, date) {
     let stops = await dvb.findStop(stopID);
     if (stops.length === 0) {
         throw new Error("Haltestelle nicht gefunden");
@@ -51,7 +51,13 @@ export async function findDepartures(stopID, dispatch) {
         }
     });
 
-    var query = await dvb.monitor(stops[0].id, 0, 80, 8000).catch(err => {
+    const offset = parseInt(moment.duration(
+        new Date(Date.parse(date)).getTime() - Date.now()+30000,
+        "milliseconds"
+    )
+        .format("m"));
+
+    var query = await dvb.monitor(stops[0].id, offset, 80, 8000).catch(err => {
         throw new Error(err)
     });
 

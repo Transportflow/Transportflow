@@ -92,8 +92,8 @@ export async function searchStop(baseUrl, stopID, dispatch) {
         }
     });
 }
-export async function monitor(baseUrl, stopID, dispatch) {
-    const monitorQuery = await axios.get(baseUrl + "/stops/" + stopID + "/departures?duration=340").catch((err) => {
+export async function monitor(baseUrl, stopID, dispatch, date) {
+    const monitorQuery = await axios.get(baseUrl + "/stops/" + stopID + "/departures?duration=340&when=" + new Date(Date.parse(date)).getTime() / 1000).catch((err) => {
         throw new Error(err.message);
     });
 

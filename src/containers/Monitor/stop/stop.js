@@ -16,6 +16,8 @@ import ImpressPrivacy from "../../../components/Buttons/ImpressPrivacy";
 import BackButton from "../../../components/Buttons/BackButton";
 import Departure from "../../../components/Departure";
 import {connect} from "react-redux";
+import Cleave from 'cleave.js/react';
+import moment from "moment";
 
 class Stop extends React.Component {
     constructor(props) {
@@ -26,7 +28,9 @@ class Stop extends React.Component {
             loading: true,
             err: "",
             activeModes: this.props.modes,
-            stopInfo: false
+            stopInfo: false,
+            currentTime: "",
+            customTime: false
         }
     }
 
@@ -52,18 +56,29 @@ class Stop extends React.Component {
     };
 
     reloadDepartures = async event => {
+        if (!this.state.customTime)
+            this.setState({currentTime: new Date().toLocaleTimeString().substr(0, 5)});
         this.findDeparturesForCurrentNetwork();
     };
 
     async findDeparturesForCurrentNetwork() {
         this.setState({loading: true});
+
+        const date = moment(this.state.currentTime, "HH:mm").toISOString(true);
+
+        this.state.activeModes.forEach((mode) => {
+            if (this.props.modes.indexOf(mode) === -1) {
+                this.setState({activeModes: []})
+            }
+        });
+
         try {
             if (this.props.match.params.network === "dvb") {
-                await dvb.findDepartures(this.state.stop, this.props.dispatch);
+                await dvb.findDepartures(this.state.stop, this.props.dispatch, date);
             } else if (this.props.match.params.network === "bvg") {
-                await bvg.findDepartures(this.state.stop, this.props.dispatch);
+                await bvg.findDepartures(this.state.stop, this.props.dispatch, date);
             } else if (this.props.match.params.network === "db") {
-                await db.findDepartures(this.state.stop, this.props.dispatch);
+                await db.findDepartures(this.state.stop, this.props.dispatch, date);
             } else {
                 throw new Error("Couldn't find Network");
             }
@@ -82,8 +97,10 @@ class Stop extends React.Component {
             stop: decodeURI(
                 this.props.match.params.id
                     .replace("%2F", "/")
-            )
+            ),
+            currentTime: new Date().toLocaleTimeString().substr(0, 5)
         });
+
         this.findDeparturesForCurrentNetwork();
     };
 
@@ -91,6 +108,23 @@ class Stop extends React.Component {
         this.props.dispatch({type: "CLEAR_DEPARTURES"});
         this.props.dispatch({type: "CLEAR_MODES"});
         this.props.dispatch({type: "CLEAR_STOP"});
+    }
+
+    async onChange(event) {
+        const time = event.target.value;
+        const previousTime = this.state.currentTime;
+
+        if (time.length < 5) {
+            await this.setState({currentTime: new Date().toLocaleTimeString().substr(0, 5), customTime: false})
+        } else {
+            await this.setState({currentTime: time, customTime: true})
+        }
+
+        if (previousTime !== this.state.currentTime) {
+            this.props.dispatch({type: "CLEAR_DEPARTURES"});
+
+            this.findDeparturesForCurrentNetwork();
+        }
     }
 
     render() {
@@ -142,8 +176,8 @@ class Stop extends React.Component {
                                 </div>
                             </button>
                         </div>
-                        <input className="ml-2 rounded-lg w-20 p-2 px-3 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-200 focus:outline-none focus:shadow-outline"
-                               placeholder="1:17"/>
+                        <Cleave options={{time: true, timePattern: ['h', 'm']}} className="ml-2 rounded-lg w-20 p-2 px-3 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-200 focus:outline-none focus:shadow-outline"
+                               placeholder={this.state.currentTime} onChange={this.onChange.bind(this)} />
                     </div>
                     {this.state.loading === true ? (
                         <div className="my-2 rounded-lg overflow-hidden dark\:text-gray-400" style={{width: "20.5rem"}}>
@@ -226,10 +260,10 @@ class Stop extends React.Component {
                                     currentlyDisplayed = 0;
                                 }
                                 if (departure.arrivalTimeRelative.includes("-")) {
-                                    return <></>
+                                    return;
                                 }
                                 if (currentlyDisplayed > 14) {
-                                    return <></>
+                                    return;
                                 }
                                 if (this.state.activeModes.includes(departure.mode) ||
                                     this.state.activeModes.length < 1) {
@@ -241,7 +275,7 @@ class Stop extends React.Component {
                                         />
                                     );
                                 }
-                                return (<></>)
+                                return;
                             })}
                             <ImpressPrivacy inline={true}/>
                         </div>
