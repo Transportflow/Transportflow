@@ -32,7 +32,7 @@ export default function(pathname, server, opts = {}) {
         // eslint-disable-next-line no-restricted-globals
         const url = new URL(pathname, location);
 
-        if (attributes.siteReferrer !== null && (attributes.siteReferrer.includes(process.env.REACT_APP_ACKEE_URL) || attributes.siteReferrer.includes(process.env.REACT_APP_NO_TRACKING_REFERRER)))
+        if (attributes.siteReferrer !== null && attributes.siteReferrer.includes(process.env.REACT_APP_ACKEE_URL))
             return;
 
         if (url.href.includes(process.env.REACT_APP_ACKEE_IGNORE))
