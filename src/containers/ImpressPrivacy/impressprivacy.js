@@ -207,11 +207,15 @@ export default function Impress() {
                 <li>Uhrzeit der Serveranfrage</li>
                 <li>IP-Adresse</li>
             </ul>
-            <h3 className="font-semibold text-lg">Tracker</h3> <p>Des Weiteren werden, sollten Sie zugestimmt haben,
-            personenbezogene Daten durch einen Tracker erhoben.
+            <h3 className="font-semibold text-lg">Tracker</h3> <p>
+            Sobald Sie die Datenschutzerklärung während des Einrichtungsprozesses akzeptieren werden im Folgenden aufgelistete Daten
+            automatisch erhoben.
             Der Tracker wird durch den Websiten Betreiber gehostet (<a className="text-blue-600" href="https://ackee.electerious.com/">Website des Trackers</a>).
             Erhobene Daten sind:</p>
             <ul className="list-disc ml-6">
+                <li>URL der besuchten Seite</li>
+                <li>Referrer URL</li>
+                <li>Uhrzeit des Besuchs</li>
                 <li>Browsersprache</li>
                 <li>Bildschirmgröße</li>
                 <li>Bildschirmfarbtiefe</li>

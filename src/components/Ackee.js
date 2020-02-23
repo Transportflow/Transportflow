@@ -10,7 +10,7 @@ function Ackee() {
         domainId: process.env.REACT_APP_ACKEE_ID
     }, {
         ignoreLocalhost: true,
-        detailed: localStorage.getItem("detailed_data") === "true"
+        detailed: localStorage.getItem("privacy") === "true"
     });
 
     return (
