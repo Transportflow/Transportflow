@@ -5,7 +5,7 @@ import BackButton from "../../components/Buttons/BackButton";
 export default function Impress() {
 
     return (
-        <div className="p-6 pt-12 bg-gray-400 dark\:text-gray-100 dark\:bg-gray-800 min-h-screen h-auto trans">
+        <div className="p-6 pt-12 mb-32 bg-gray-400 dark\:text-gray-100 dark\:bg-gray-800 min-h-screen h-auto trans">
             <div className="flex mb-5">
                 <BackButton large={true} className="mr-3"/>
                 <DarkmodeToggle large={true} onboarding={true}/>
@@ -226,10 +226,12 @@ export default function Impress() {
                 <li>Browserfenstergröße</li>
             </ul>
             <p>Alle personenbezogenen Daten werden gelöscht, sobald sie nicht mehr benötigt werden.</p>
-            <p>Eine Zusammenf&uuml;hrung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.</p> <p>Die
-            Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein
-            berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner
-            Website &ndash; hierzu m&uuml;ssen die Server-Log-Files erfasst und der Tracker genutzt werden.</p>
+            <p>Eine Zusammenf&uuml;hrung dieser Daten mit anderen Datenquellen sowie eine Weitergabe an Dritte
+            wird nicht vorgenommen.</p> 
+            <p>Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. 
+            Der Websitebetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien
+            Darstellung und der Optimierung seiner Website &ndash; hierzu m&uuml;ssen
+            die Server-Log-Files erfasst und der Tracker genutzt werden.</p>
             <p>Quelle: <a href="https://www.e-recht24.de">eRecht24</a></p>
         </div>
     )
