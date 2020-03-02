@@ -195,8 +195,7 @@ class Stop extends React.Component {
                             {this.state.err}
                         </p>
                     ) : (
-                        <hr className="my-2 mb-0 rounded-lg overflow-hidden border-gray-300 dark\:border-gray-700 border-2"
-                            style={{width: "20.25rem"}}/>
+                        <hr className="my-2 mb-0 rounded-lg overflow-hidden border-gray-300 dark\:border-gray-700 border-2 sm:max-w-xs" />
                     )}
 
                     <div
