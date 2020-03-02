@@ -43,6 +43,8 @@ class DarkmodeToggle extends Component {
                            copyShareButtonLabel={"Drücken Sie die 'Teilen' Schaltfläche in der Safari-Menüleiste."}
                            copyAddHomeButtonLabel={"Drücken Sie nun die Schaltfläche 'Zum Home-Bildschirm'"}
                            copyClosePrompt={"Abbrechen"}
+                           promptOnVisit={20}
+                           delay={100}
                            timesToShow={100}/>
                 <div className={this.props.hidden ? "hidden" : ""}>
                     {this.props.large ?
