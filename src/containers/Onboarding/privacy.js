@@ -13,16 +13,16 @@ class Privacy extends Component {
     render() {
         return (
             <div
-                className="pt-20 sm:pt-32 md:pt-40 lg:pt-56 bg-gray-400 dark\:bg-gray-800 min-h-screen text-center trans">
+                className="px-4 pt-20 sm:pt-32 md:pt-40 lg:pt-56 bg-gray-400 dark\:bg-gray-800 min-h-screen text-center trans">
                 <DarkmodeToggle hidden={true} onboarding={true}/>
                 <h1 className="font-semibold font-inter text-2xl text-black dark\:text-gray-100">
                     <span className="font-sans" role="img" aria-labelledby="">🎈</span> Datenschutz
                 </h1>
-                <p className="font-inter text-gray-700 dark\:text-gray-400 mb-4 mt-4">
+                <p className="font-inter text-gray-700 dark\:text-gray-400 mb-4 mt-4 max-w-md mx-auto">
                     Um Transportflow zu nutzen<br/>
-                    müssen Sie unserer Datenschutzerklärung zustimmen.<br/>
-                    Mit dem Klicken auf die "Akzeptieren"-Schaltfläche<br/>
-                    bestätigen Sie, die Datenschutzerklärung gelesen<br/>
+                    müssen Sie unserer Datenschutzerklärung zustimmen.
+                    Mit dem Klicken auf die "Akzeptieren"-Schaltfläche
+                    bestätigen Sie, die Datenschutzerklärung gelesen
                     zu haben und ihr zuzustimmen.
                 </p>
                 <Link to="/onboarding/done">
@@ -32,7 +32,7 @@ class Privacy extends Component {
                         <span className="mr-2">{"Akzeptieren"}</span><FontAwesomeIcon icon={faChevronRight} />
                     </button>
                 </Link>
-                <ImpressPrivacy centered={true}/>
+                <ImpressPrivacy centered={true} className={"-ml-4"}/>
             </div>
         );
     }

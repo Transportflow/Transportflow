@@ -39,7 +39,7 @@ class Index extends React.Component {
 
     render() {
         return (
-            <div className="p-6 pt-6 sm:p-12 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
+            <div className="p-4 pt-6 sm:p-12 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
                 <div className="flex mb-3">
                     <BackButton className="mr-3" to={"/"} large={true}/>
                     <DarkmodeToggle large={true}/>

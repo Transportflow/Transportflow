@@ -24,7 +24,7 @@ class Settings extends Component {
 
     render() {
         return (
-            <div className="p-6 pt-12 sm:p-20 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
+            <div className="p-4 pt-12 sm:p-20 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
                 <div className="w-full sm:w-auto sm:max-w-sm">
                     <BackButton to="/" large={true}/>
                     <h1 className="dark\:text-gray-200 font-bold font-inter text-2xl mt-5 mb-1 flex"><Twemoji options={{className: "h-8 mr-2"}}>⚙</Twemoji> Einstellungen</h1>

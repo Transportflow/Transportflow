@@ -133,7 +133,7 @@ class Stop extends React.Component {
         return (
             <div>
                 <div
-                    className="p-6 pt-6 sm:p-12 lg:pl-56 bg-gray-400 dark\:bg-gray-800 font-sans min-h-screen"
+                    className="p-4 pt-6 sm:p-12 lg:pl-56 bg-gray-400 dark\:bg-gray-800 font-sans min-h-screen"
                 >
                     <div className="flex mb-2">
                         <BackButton large={true} to={"/monitor"} className="mr-3"/>

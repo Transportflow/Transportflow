@@ -7,7 +7,7 @@ import MenuButton from "../../components/Buttons/MenuButton";
 class App extends React.Component {
     render() {
         return (
-            <div className="p-6 pt-12 sm:p-20 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
+            <div className="p-4 pt-12 sm:p-20 lg:pl-56 bg-gray-400 dark\:bg-gray-800 min-h-screen trans">
                 <div className="flex justify-between mb-5 w-full sm:w-auto sm:max-w-xs">
                     <div>
                         <h1 className="dark\:text-gray-200 font-bold font-inter text-2xl text-black flex">

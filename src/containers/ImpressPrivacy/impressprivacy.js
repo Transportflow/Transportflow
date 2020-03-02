@@ -5,7 +5,7 @@ import BackButton from "../../components/Buttons/BackButton";
 export default function Impress() {
 
     return (
-        <div className="p-6 pt-12 mb-32 bg-gray-400 dark\:text-gray-100 dark\:bg-gray-800 min-h-screen h-auto trans">
+        <div className="p-4 pt-12 mb-32 bg-gray-400 dark\:text-gray-100 dark\:bg-gray-800 min-h-screen h-auto trans">
             <div className="flex mb-5">
                 <BackButton large={true} className="mr-3"/>
                 <DarkmodeToggle large={true} onboarding={true}/>
