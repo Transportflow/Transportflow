@@ -101,6 +101,10 @@ class Stop extends React.Component {
             currentTime: new Date().toLocaleTimeString().substr(0, 5)
         });
 
+        if (!!this.props.location.search) {
+            await this.setState({currentTime: this.props.location.search.replace("?time=", ""), customTime: true})
+        }
+
         this.findDeparturesForCurrentNetwork();
     };
 
@@ -114,13 +118,18 @@ class Stop extends React.Component {
         const time = event.target.value;
         const previousTime = this.state.currentTime;
 
-        if (time.length < 5) {
-            await this.setState({currentTime: new Date().toLocaleTimeString().substr(0, 5), customTime: false})
-        } else {
-            await this.setState({currentTime: time, customTime: true})
+        if (time.length < 1) {
+            setTimeout(() => {
+                if (this.state.currentTime.length < 1) {
+                    this.props.dispatch({type: "CLEAR_DEPARTURES"});
+                    this.setState({currentTime: new Date().toLocaleTimeString().substr(0, 5), customTime: false});
+                    this.findDeparturesForCurrentNetwork();
+                }
+            }, 2000);
         }
+        await this.setState({currentTime: time, customTime: true});
 
-        if (previousTime !== this.state.currentTime) {
+        if (previousTime !== this.state.currentTime && this.state.currentTime.length === 5) {
             this.props.dispatch({type: "CLEAR_DEPARTURES"});
 
             this.findDeparturesForCurrentNetwork();
@@ -177,10 +186,10 @@ class Stop extends React.Component {
                             </button>
                         </div>
                         <Cleave options={{time: true, timePattern: ['h', 'm']}} className="ml-2 rounded-lg w-20 p-2 px-3 bg-gray-300 dark\:bg-gray-700 dark\:text-gray-200 focus:outline-none focus:shadow-outline"
-                               placeholder={this.state.currentTime} onChange={this.onChange.bind(this)} />
+                               placeholder={this.state.currentTime} onChange={this.onChange.bind(this)} value={this.state.currentTime} />
                     </div>
                     {this.state.loading === true ? (
-                        <div className="my-2 rounded-lg overflow-hidden dark\:text-gray-400" style={{width: "20.5rem"}}>
+                        <div className="my-2 mb-0 rounded-lg overflow-hidden dark\:text-gray-400" style={{width: "20.5rem"}}>
                             <BarLoader
                                 heightUnit={"px"}
                                 height={4}
