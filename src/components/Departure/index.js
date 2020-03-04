@@ -202,7 +202,7 @@ class Index extends Component {
                                                     )
                                                 })}
                                             </span>
-                                            <a href={"/monitor/"+this.state.network+"/stop/"+stop.stop.id}>
+                                            <a href={"/monitor/"+this.state.network+"/stop/"+stop.stop.id+"?time="+stop.time}>
                                                 <p className="whitespace-no-wrap text-left font-semibold hover:underline">{stop.name}</p>
                                             </a>
                                             <p className="whitespace-no-wrap text-left">{stop.timeRelative} | {stop.time}</p>
