@@ -1,71 +1,64 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {Route, BrowserRouter, Switch} from "react-router-dom";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
 import "./index.css";
 import "./css/tailwind.css";
 import * as serviceWorker from "./serviceWorker";
-import { PageTransition } from '@steveeeie/react-page-transition';
+import { PageTransition } from "@steveeeie/react-page-transition";
 import App from "./containers/Index/index";
 import Impress from "./containers/ImpressPrivacy/impressprivacy";
-import Monitor from "./containers/Monitor/search/monitor";
 import NotFound from "./containers/NotFound/notfound";
-import Stop from "./containers/Monitor/stop/stop";
-import Settings from "./containers/Settings/settings";
 import Welcome from "./containers/Onboarding/welcome";
 import Theme from "./containers/Onboarding/theme";
-import Network from "./containers/Onboarding/network";
 import Privacy from "./containers/Onboarding/privacy";
 import Done from "./containers/Onboarding/done";
 
-import {createStore} from "redux";
-import {Provider} from "react-redux";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 import reducer from "./reducers";
 import Ackee from "./components/Ackee";
 
 const store = createStore(reducer);
 let previousPathname = "";
 const routing = (
-    <Provider store={store}>
-        <BrowserRouter>
-            <Ackee/>
-            <Route
-                render={({location}) => {
-                    let preset = "moveToRightFromLeft";
-                    let exit = "moveToRight";
-                    if (location.pathname.length > previousPathname.length) {
-                        preset= "moveToLeftFromRight";
-                        exit = "moveToLeft";
-                    }
-                    previousPathname = location.pathname;
+  <Provider store={store}>
+    <BrowserRouter>
+      <Ackee />
+      <div className="bg-gray-300 dark\:bg-gray-800 transition-bg duration-200 min-h-screen">
+        <Route
+          render={({ location }) => {
+            let preset = "moveToRightFromLeft";
+            let exit = "moveToRight";
+            if (location.pathname.length > previousPathname.length) {
+              preset = "moveToLeftFromRight";
+              exit = "moveToLeft";
+            }
+            previousPathname = location.pathname;
 
-                    return (
-                        <PageTransition
-                            preset={preset}
-                            transitionKey={location.pathname}
-                            exitAnimation={exit}
-                        >
-                            <Switch location={location}>
-                                <Route exact path="/" component={App}/>
+            return (
+              <PageTransition
+                preset={preset}
+                transitionKey={location.pathname}
+                exitAnimation={exit}
+              >
+                <Switch location={location}>
+                  <Route exact path="/" component={App} />
 
-                                <Route exact path="/onboarding/welcome" component={Welcome}/>
-                                <Route exact path="/onboarding/theme" component={Theme}/>
-                                <Route exact path="/onboarding/network" component={Network}/>
-                                <Route exact path="/onboarding/privacy" component={Privacy}/>
-                                <Route exact path="/onboarding/done" component={Done}/>
+                  <Route exact path="/onboarding/welcome" component={Welcome} />
+                  <Route exact path="/onboarding/theme" component={Theme} />
+                  <Route exact path="/onboarding/privacy" component={Privacy} />
+                  <Route exact path="/onboarding/done" component={Done} />
 
-                                <Route exact path="/settings" component={Settings}/>
-                                <Route exact path="/impressprivacy" component={Impress}/>
-                                <Route exact path="/monitor" component={Monitor}/>
-                                <Route path="/monitor/:network/stop/:id" component={Stop}/>
-                                <Route component={NotFound}/>
-                            </Switch>
-                        </PageTransition>
-                    )
-                }}
-            />
-        </BrowserRouter>
-    </Provider>
-
+                  <Route exact path="/impressprivacy" component={Impress} />
+                  <Route component={NotFound} />
+                </Switch>
+              </PageTransition>
+            );
+          }}
+        />
+      </div>
+    </BrowserRouter>
+  </Provider>
 );
 ReactDOM.render(routing, document.getElementById("root"));
 
