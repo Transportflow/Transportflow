@@ -19,12 +19,11 @@ How to start the site on your system:
 - clone the repo
 - cd into it
 - run `$ yarn` to install dependencies
-- then run `$ yarn run build-css` to build the tailwind.css file
-- finally run `$ yarn start` to start the development server
-- visit [localhost:3000](http://localhost:3000/) in your browser
+- and run `$ yarn run dev` to start the development server
+- visit [localhost:5000](http://localhost:5000/) in your browser
 - enjoy 🎉
 
-Since we're using React, the page automatically reloads when you make changes during development.
+Since we're using `sirv` with Svelte, the page automatically reloads when you make changes during development.
 
 ### 🌍 Deployment
 
@@ -32,9 +31,8 @@ You can build a docker container with the Dockerfile in this repo.
 
 ### 🔨 Build with
 
-- [React](https://github.com/facebook/react)
+- [Svelte](https://svelte.dev/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [dvbjs](https://github.com/kiliankoe/dvbjs) & [hafas-client](https://github.com/public-transport/hafas-client)
 
 ### 🖋 Authors
 
