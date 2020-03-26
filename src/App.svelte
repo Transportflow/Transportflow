@@ -9,15 +9,15 @@
 
     // Darkmode
     let darkmode = !!localStorage.getItem("darkmode");
+
     function toggleDarkmode() {
         darkmode = !darkmode
     }
+
     const setDarkmode = (value) => {
         if (value) {
-            darkmode = true;
             document.documentElement.classList.add('mode-dark');
         } else {
-            darkmode = false;
             document.documentElement.classList.remove('mode-dark');
         }
     };
@@ -28,20 +28,41 @@
         setDarkmode(false);
         localStorage.removeItem("darkmode");
     }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener((value) => {
+        darkmode = value.matches;
+    });
 
     export let beta;
     export let url = "";
-    let prevUrl = "";
 
-    $: setTimeout(() => {prevUrl = url}, 500)
+    let isCtrl = false;
+    function handleKeydown(event) {
+        if (event.keyCode === 17) {
+            isCtrl = true;
+        }
+        if (isCtrl && event.keyCode === 68) {
+            darkmode = !darkmode;
+        }
+    }
+    function handleKeyup(event) {
+        if (event.keyCode === 17) {
+            isCtrl = false;
+        }
+    }
 </script>
+
+<svelte:window on:keydown={handleKeydown} on:keyup={handleKeyup}/>
 
 <main class="font-inter transition-bg duration-200 min-h-screen bg-gray-200 dark:bg-gray-800">
     <TailwindCSS/>
     <Router url="{url}">
         <div>
-            <PageAnimator path="settings" {prevUrl}><Settings path="/settings" {darkmode} {toggleDarkmode}/></PageAnimator>
-            <PageAnimator path="/" {prevUrl}><Index path="/" {beta} {toggleDarkmode}/></PageAnimator>
+            <PageAnimator path="settings">
+                <Settings {darkmode} {toggleDarkmode}/>
+            </PageAnimator>
+            <PageAnimator path="/">
+                <Index {beta}/>
+            </PageAnimator>
         </div>
     </Router>
 </main>

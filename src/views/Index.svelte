@@ -5,7 +5,7 @@
     export let beta;
 </script>
 
-<main class="p-5 pt-12 sm:p-24 sm:pt-20 w-full sm:w-auto sm:max-w-lg">
+<main>
     <div class="mb-5 flex justify-between">
         <div class="flex">
             <h1 class="text-4xl my-auto"><img alt="parrot" class="pt-1" style="height: 40px"
@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="rounded-lg overflow-hidden">
+    <div class="rounded-lg overflow-hidden ">
         <Link>
             <MenuButton icon="bus" name="Monitor" description="Echtzeit Fahrplanauskunft"/>
         </Link>
@@ -32,11 +32,8 @@
             </Link>
             <hr class="mb-1 border-0"/>
         {/if}
-        <Link>
+        <Link to="/settings">
             <MenuButton icon="cog" name="Einstellungen"/>
         </Link>
     </div>
-
-    <p class="mt-64"></p>
-    <Link to="/settings">yolo</Link>
 </main>
