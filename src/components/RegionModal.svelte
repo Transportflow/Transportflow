@@ -30,7 +30,7 @@
 
     let regions = undefined;
     let allRegions = undefined;
-    axios.get("http://192.168.1.2:4567/providers").then(res => {
+    axios.get("http://192.168.1.3:4567/providers").then(res => {
         allRegions = res.data;
         regions = allRegions;
     });
@@ -50,7 +50,7 @@
 </script>
 
 {#if modalOpen}
-    <div transition:fade on:click={closeModalInWhitespace} id="bg" style="background-color: rgba(20, 20, 20, 0.6);"
+    <div transition:fade="{{ duration: 200 }}" on:click={closeModalInWhitespace} id="bg" style="background-color: rgba(20, 20, 20, 0.6);"
          class="fixed w-full h-full top-0 left-0 flex items-center justify-center overflow-scroll">
         <div class="m-5 w-full sm:max-w-sm rounded-lg p-5 bg-white dark:bg-gray-700 shadow-lg">
             <div class="flex justify-between mb-2">
