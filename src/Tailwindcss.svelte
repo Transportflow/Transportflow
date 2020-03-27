@@ -12,6 +12,6 @@
     }
 
     .hover-shadow-outline-blue:hover {
-        box-shadow: 0 0 0 3px rgba(16, 116, 231, 1)
+        box-shadow: 0 0 0 4px rgba(16, 116, 231, 1)
     }
 </style>
