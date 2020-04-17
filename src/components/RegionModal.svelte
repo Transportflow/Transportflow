@@ -30,7 +30,7 @@
 
     let regions = undefined;
     let allRegions = undefined;
-    axios.get("http://192.168.1.3:4567/providers").then(res => {
+    axios.get("http://localhost:4567/providers").then(res => {
         allRegions = res.data;
         regions = allRegions;
     });
@@ -59,7 +59,7 @@
                     <ion-icon name="close-circle-outline" class="my-auto dark:text-white pb-1 text-2xl"></ion-icon>
                 </button>
             </div>
-            <input bind:value={search} class="rounded p-1 shadow-xs bg-gray-300 dark:bg-gray-600 dark:text-gray-100 transition duration-300 focus:outline-none"
+            <input bind:value={search} class="rounded p-1 shadow-xs bg-gray-300 dark:bg-gray-600 dark:text-gray-100 transition duration-300 focus:shadow focus:outline-none"
                    placeholder="Region suchen"/>
             <hr class="border-2 rounded border-gray-300 dark:border-gray-600 my-2"/>
             <div>
