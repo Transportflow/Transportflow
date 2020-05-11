@@ -3,6 +3,10 @@
     import PrimaryButton from "../components/PrimaryButton.svelte";
     import Button from "../components/Button.svelte";
     import BackButton from "../components/BackButton.svelte";
+    import Divider from "../components/Divider.svelte";
+    import Title from "../components/Title.svelte";
+    import Subtitle from "../components/Subtitle.svelte";
+    import Description from "../components/Description.svelte";
 
 
     export let toggleDarkmode;
@@ -20,25 +24,23 @@
 <main>
     <BackButton/>
 
-    <h1 class="mt-4 text-gray-900 dark:text-gray-100 text-2xl font-bold">⚙️ Einstellungen</h1>
+    <Title>⚙️ Einstellungen</Title>
 
-    <h2 class="text-gray-900 dark:text-gray-100 mt-4 text-xl font-semibold">Region</h2>
-    <p class="leading-snug text-gray-700 dark:text-gray-500 mb-3">
-        Ihre aktuell gewählte Region ist <b>{regionName}</b>.<br/>
+    <Subtitle>Region</Subtitle>
+    <Description>
+        Ihre aktuell gewählte Region ist <b>{regionName === null ? "N/A" : regionName}</b>.<br/>
         Hier haben Sie die Möglichkeit eine andere Region zu wählen.
-    </p>
+    </Description>
     <PrimaryButton onClick={openModal} text="Region wählen"/>
 
     <RegionModal bind:regionProp={regionName} modalOpen={modalOpen}/>
 
+    <Divider/>
 
-    <hr class="my-8"/>
-
-
-    <h2 class="text-gray-900 dark:text-gray-100 mt-4 text-xl font-semibold">Design</h2>
-    <p class="leading-snug text-gray-700 dark:text-gray-500 mb-3">
+    <Subtitle>Design</Subtitle>
+    <Description>
         Wählen Sie Ihr präferiertes Design.
-    </p>
+    </Description>
 
     <div class="flex">
     <button
