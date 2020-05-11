@@ -1,7 +1,9 @@
 <script>
     import {fade} from "svelte/transition";
-    import axios from "axios";
+    import {getRegions} from "../data";
+    import ErrorModal from "../utils/ErrorModal.svelte";
 
+    let errorVisible = true;
     export let modalOpen;
     export let regionProp = localStorage.getItem("region");
 
@@ -15,6 +17,7 @@
     }
 
     let lastClicked = regionProp;
+
     function regionClick(event) {
         regionProp = event.target.id;
         localStorage.setItem("region", event.target.id);
@@ -28,12 +31,20 @@
         lastClicked = event.target.id;
     }
 
-    let regions = undefined;
-    let allRegions = undefined;
-    axios.get("http://localhost:4567/providers").then(res => {
-        allRegions = res.data;
-        regions = allRegions;
+    let error = undefined;
+    let regions, allRegions = undefined;
+
+    getRegions((err) => {
+        error = err;
+    }).then((res) => {
+        regions = res;
+        allRegions = res;
     });
+
+    $: if (!!modalOpen && !!error) {
+        console.log("yeah")
+        errorVisible = true;
+    }
 
     let search = "";
     $: if (search !== "") {
@@ -49,10 +60,11 @@
     }
 </script>
 
+<ErrorModal {error} shown={errorVisible}/>
 {#if modalOpen}
     <div transition:fade="{{ duration: 200 }}" on:click={closeModalInWhitespace} id="bg" style="background-color: rgba(20, 20, 20, 0.6);"
          class="fixed w-full h-full top-0 left-0 flex items-center justify-center overflow-scroll">
-        <div class="m-5 w-full sm:max-w-sm rounded-lg p-5 bg-white dark:bg-gray-700 shadow-lg">
+        <div class="m-5 w-full sm:max-w-sm rounded-lg p-5 bg-white dark:bg-gray-700 transition duration-200 shadow-lg">
             <div class="flex justify-between mb-2">
                 <h1 class="text-gray-900 dark:text-gray-100 text-lg font-semibold">Region auswählen</h1>
                 <button on:click={closeModal}>
