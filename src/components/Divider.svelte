@@ -1,0 +1,1 @@
+<hr class="mb-5 mt-6 rounded border-2 border-gray-300 dark:border-gray-700"/>

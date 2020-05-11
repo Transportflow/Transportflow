@@ -1,0 +1,1 @@
+<h2 class="text-gray-900 dark:text-gray-100 mt-4 text-xl font-semibold"><slot/></h2>
