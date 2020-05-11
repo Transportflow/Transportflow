@@ -22,7 +22,7 @@
     </div>
 
     <div class="rounded-lg overflow-hidden ">
-        <Link>
+        <Link to="monitor">
             <MenuButton icon="bus" name="Monitor" description="Echtzeit Fahrplanauskunft"/>
         </Link>
         <hr class="mb-1 border-0"/>
