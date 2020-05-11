@@ -6,6 +6,7 @@
     import Index from "./views/Index.svelte";
     import Settings from "./views/Settings.svelte";
     import PageAnimator from "./utils/PageAnimator.svelte";
+    import Monitor from "./views/Monitor.svelte";
 
     // Darkmode
     let darkmode = !!localStorage.getItem("darkmode");
@@ -36,6 +37,7 @@
     export let url = "";
 
     let isCtrl = false;
+
     function handleKeydown(event) {
         if (event.keyCode === 17) {
             isCtrl = true;
@@ -44,6 +46,7 @@
             darkmode = !darkmode;
         }
     }
+
     function handleKeyup(event) {
         if (event.keyCode === 17) {
             isCtrl = false;
@@ -57,6 +60,9 @@
     <TailwindCSS/>
     <Router url="{url}">
         <div>
+            <PageAnimator path="monitor">
+                <Monitor/>
+            </PageAnimator>
             <PageAnimator path="settings">
                 <Settings {darkmode} {toggleDarkmode}/>
             </PageAnimator>
