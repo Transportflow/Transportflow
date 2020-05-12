@@ -35,7 +35,7 @@
 
     <RegionModal bind:regionProp={regionName} modalOpen={modalOpen}/>
 
-    <Divider/>
+    <Divider className="mb-5 mt-6"/>
 
     <Subtitle>Design</Subtitle>
     <Description>
