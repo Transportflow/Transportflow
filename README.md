@@ -1,33 +1,24 @@
+*work in progress*
 # 🦜 Transportflow
 
-Web page to view departures or plan a route(coming soon). [Live Demo 🛰](https://transportflow.online/)<br>
-*(Updated version of [Public Transport Information](https://github.com/Adwirawien/PublicTransportInformation))*
+Transportflow is a webpage to help people use public transport conviniently in germany.<br>
+[Live Demo of the old React Version 🛰](https://transportflow.online/)<br>
 
-### ⛸ Getting started
+### 📚 History
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Transportflow evolved from being a small project which queried local transport provider api<br>
+into a fancy application which, once finished, can show trips and monitor departures all over germany.<br>
+The first version wasn't really fancy but is still available as [Public Transport Information](https://github.com/Adwirawien/PublicTransportInformation).<br>
+This first version was followed by a react rework which is still the latest deployed version.
+Currently we're working on a svelte version of the application.<br>
+Contributions are welcome 🙃
 
-#### 📦 Prerequisites
+### 🚇 Future
 
-- [Node.js](https://nodejs.org/)
-- [yarn](https://yarnpkg.com/lang/en/)
-
-#### 💈 Installing
-
-How to start the site on your system:
-
-- clone the repo
-- cd into it
-- run `$ yarn` to install dependencies
-- and run `$ yarn run dev` to start the development server
-- visit [localhost:5000](http://localhost:5000/) in your browser
-- enjoy 🎉
-
-Since we're using `sirv` with Svelte, the page automatically reloads when you make changes during development.
-
-### 🌍 Deployment
-
-You can build a docker container with the Dockerfile in this repo.
+Once the svelte rework is finished and our unified backend manages data smoothly,<br>
+we're looking forward to programming native versions of the app.<br>
+The technology is not finally selected yet but probably will be react native,<br>
+as it's supported widely with modules and has a big community.
 
 ### 🔨 Build with
 
