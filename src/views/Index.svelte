@@ -1,15 +1,48 @@
 <script>
     import {Link} from "svelte-routing";
     import MenuButton from "../components/MenuButton.svelte";
+    import InformationModal from "../components/InformationModal.svelte";
 
     export let beta;
+
+    // modal
+    let shown = false;
+    let title = "";
+    let slot = "";
+
+    // parrot emoji
+    let unicode = "1f99c";
+
+    async function sharePage() {
+        shown = false;
+        if (navigator.share === undefined) {
+            console.error('Browser doesn\'t support native sharing, showing modal.');
+            shown = true;
+            title = "💌 Teilen";
+            slot = `<p class="dark:text-white -mt-1"><b>Transportflow</b> weiterempfehlen:<br/><div class="font-mono rounded dark:text-white p-2 text-sm leading-tight bg-gray-300 dark:bg-gray-900">Die beste ÖPNV App:<br/>https://transportflow.online/</div><button onclick="document.getElementById('shareBtn').innerHTML = 'Kopiert!'; navigator.clipboard.writeText('Die beste ÖPNV App: https://transportflow.online');" id="shareBtn" class="bg-gray-400 dark:bg-gray-700 dark:text-white rounded px-2 py-1 mt-3 w-full hover:bg-gray-500 dark-hover:bg-gray-900 transition duration-200">Kopieren</button></p>`
+            return;
+        }
+
+        try {
+            await navigator.share({url: "https://transportflow.online", title: "Transportflow"});
+            unicode = "1f389";
+        } catch (err) {
+            if (err.message === "Abort due to cancellation of share.") {
+                unicode = "1f622";
+            }
+        }
+    }
 </script>
 
 <main>
+    {#if shown}
+        <InformationModal {title} {shown} text={slot}/>
+    {/if}
+
     <div class="mb-5 flex justify-between">
         <div class="flex">
             <h1 class="text-4xl my-auto"><img alt="parrot" class="pt-1" style="height: 40px"
-                                              src="https://twemoji.maxcdn.com/v/12.1.4/72x72/1f99c.png"></h1>
+                                              src={"https://twemoji.maxcdn.com/v/12.1.4/72x72/"+unicode+".png"}></h1>
             <div class="ml-2">
                 <h1 class="-mb-1 text-gray-900 dark:text-gray-100 text-2xl font-bold">Transportflow
                     {#if beta}
@@ -35,5 +68,7 @@
         <Link to="/settings">
             <MenuButton icon="cog" name="Einstellungen"/>
         </Link>
+        <hr class="mb-1 border-0"/>
+        <MenuButton onClick={sharePage} icon="share" name="Teilen"/>
     </div>
 </main>
