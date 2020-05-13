@@ -1,29 +1,18 @@
 module.exports = {
-    theme: {
-        extend: {
-            colors: {
-                unselected: "#252e3d"
-            },
-            fontFamily: {
-                inter: ["Inter"]
-            }
-        }
-    },
-    variants: {
-        backgroundColor: ["responsive", "hover", "focus", "dark", "dark-hover", "dark-focus"],
-        cursor: ["responsive", "hover", "focus", "disabled"],
-        textColor: ["responsive", "hover", "focus", "dark", "dark-hover", "dark-focus"],
-        placeholderColor: ["responsive", "hover", "focus", "dark", "dark-hover", "dark-focus"],
-        borderColor: ["responsive", "hover", "focus", "dark", "dark-hover", "dark-focus"]
-    },
-    plugins: [
-        function({ addVariant, e }) {
-            addVariant("disabled", ({ modifySelectors, separator }) => {
-                modifySelectors(({ className }) => {
-                    return `.${e(`disabled${separator}${className}`)}:disabled`;
-                });
-            });
-        },
-        require('./tailwindcss-dark-mode.js')()
-    ]
-};
+  theme: {
+    extend: {},
+  },
+  variants: {
+    backgroundColor: ['responsive', 'hover', 'focus', 'active', 'group-hover', 'dark', 'dark-hover', 'dark-group-hover', 'dark-active', 'dark-even', 'dark-odd'],
+    textColor: ['responsive', 'hover', 'focus', 'active', 'group-hover', 'dark', 'dark-hover', 'dark-active'],
+    height: ['responsive', 'hover', 'group-hover'],
+    opacity: ['responsive', 'hover', 'group-hover'],
+    display: ['responsive', 'hover', 'group-hover'],
+    border: ['responsive', 'hover', 'group-hover'],
+    borderColor: ['responsive', 'hover', 'focus', 'active', 'group-hover', 'dark', 'dark-hover', 'dark-active'],
+    padding: ['responsive', 'group-hover']
+  },
+  plugins: [
+    require('tailwindcss-dark-mode')()
+  ],
+}
