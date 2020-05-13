@@ -72,7 +72,7 @@
     <div transition:fade="{{ duration: 200 }}" on:click={closeModalInWhitespace} id="bg"
          style="background-color: rgba(20, 20, 20, 0.6);"
          class="fixed w-full h-full top-0 left-0 flex items-center justify-center overflow-scroll">
-        <div class="m-5 w-full sm:max-w-sm rounded-lg p-5 bg-white dark:bg-gray-800 transition-all duration-200 shadow-lg">
+        <div class="m-4 w-full sm:max-w-sm rounded-lg p-5 bg-white dark:bg-gray-800 transition-all duration-200 shadow-lg">
             <div class="flex justify-between mb-2">
                 <h1 class="text-gray-900 dark:text-gray-100 text-lg font-semibold">Region auswählen</h1>
                 <button on:click={closeModal}>
@@ -90,7 +90,7 @@
                                 <div id={regionName} class="h-full"
                                      style={"background: url("+image+"); background-size: cover; background-position: center;"}>
                                     <div id={regionName}
-                                         class={"p-2 dark:text-white h-full flex "+(regionProp !== regionName ? "bg-white dark:bg-gray-800" : "bg-button-blue text-white") +" group-hover:bg-transparent group-hover:text-"+textColor+" transition duration-150"}>
+                                         class={"p-2 dark:text-white h-full flex "+(regionProp !== regionName ? "bg-white dark:bg-gray-800" : "bg-button-blue text-white") +" group-hover:bg-transparent group-hover:text-"+textColor+" transition duration-200"}>
                                         <h3 id={regionName} class="mr-auto font-bold">{regionName}</h3>
                                     </div>
                                 </div>
