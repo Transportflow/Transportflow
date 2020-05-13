@@ -9,7 +9,7 @@ Transportflow is a webpage to help people use public transport conviniently in g
 Transportflow evolved from being a small project which queried local transport provider api<br>
 into a fancy application which, once finished, can show trips and monitor departures all over germany.<br>
 The first version wasn't really fancy but is still available as [Public Transport Information](https://github.com/Adwirawien/PublicTransportInformation).<br>
-This first version was followed by a react rework which is still the latest deployed version.
+This first version was followed by a react rework which is still the latest deployed version.<br>
 Currently we're working on a svelte version of the application.<br>
 Contributions are welcome 🙃
 
