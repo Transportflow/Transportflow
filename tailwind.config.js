@@ -10,7 +10,8 @@ module.exports = {
     display: ['responsive', 'hover', 'group-hover'],
     border: ['responsive', 'hover', 'group-hover'],
     borderColor: ['responsive', 'hover', 'focus', 'active', 'group-hover', 'dark', 'dark-hover', 'dark-active'],
-    padding: ['responsive', 'group-hover']
+    padding: ['responsive', 'group-hover'],
+    translate: ['responsive', 'hover', 'group-hover']
   },
   plugins: [
     require('tailwindcss-dark-mode')()
