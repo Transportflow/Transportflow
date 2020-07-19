@@ -1,10 +1,11 @@
 import {getRegions} from "./regions";
+import {getStops, getNearbyStops} from "./query";
 
 import axios from "axios";
-axios.defaults.baseURL = "https://localhost:5678";
+axios.defaults.baseURL = "http://localhost:4567";
 
 function getAxios() {
     return axios;
 }
 
-export {getAxios, getRegions};
+export {getAxios, getRegions, getStops, getNearbyStops};

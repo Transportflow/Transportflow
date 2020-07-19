@@ -1937,6 +1937,11 @@ svelte-routing@^1.4.2:
   resolved "https://registry.yarnpkg.com/svelte-routing/-/svelte-routing-1.4.2.tgz#291160b537c9c73e711731eb099c48bb24cc3419"
   integrity sha512-CSCKRLeOp9vjsDGGOEgL9DPm9HZLgZuTNehyTCl3K+6fCVH1Aw/K/WicavAVNcbsHmdR4wgF//0YVR9hrcdvGA==
 
+svelte-spinner@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/svelte-spinner/-/svelte-spinner-2.0.2.tgz#ec090651dd7ef2ccdaa5ba972ee456a2e306ae2c"
+  integrity sha512-tIsvy/udEdVxwf5HYg9zFvXVxGmS1O+zq2K1ush6ojNZy0DY+ZoW8lRYQEbvXMkU6ur2NfTECGV5ZSA4Rw6XRg==
+
 svelte@^3.0.0:
   version "3.20.1"
   resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.20.1.tgz#8417fcd883a2f534b642a0737368272e651cf3ac"

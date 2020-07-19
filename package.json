@@ -4,7 +4,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public -s"
+    "start": "sirv public -s -H 0.0.0.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.0",
@@ -26,6 +26,7 @@
     "svelte-loading-spinners": "^0.0.17",
     "svelte-preprocess": "^3.5.0",
     "svelte-routing": "^1.4.2",
+    "svelte-spinner": "^2.0.2",
     "tailwindcss": "^1.2.0"
   }
 }
