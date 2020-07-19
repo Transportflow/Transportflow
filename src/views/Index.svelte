@@ -16,10 +16,9 @@
     async function sharePage() {
         shown = false;
         if (navigator.share === undefined) {
-            console.error('Browser doesn\'t support native sharing, showing modal.');
             shown = true;
             title = "💌 Teilen";
-            slot = `<p class="dark:text-white -mt-1"><b>Transportflow</b> weiterempfehlen:<br/><div class="font-mono rounded dark:text-white p-2 text-sm leading-tight bg-gray-300 dark:bg-gray-900">Die beste ÖPNV App:<br/>https://transportflow.online/</div><button onclick="document.getElementById('shareBtn').innerHTML = 'Kopiert!'; navigator.clipboard.writeText('Die beste ÖPNV App: https://transportflow.online');" id="shareBtn" class="bg-gray-400 dark:bg-gray-700 dark:text-white rounded px-2 py-1 mt-3 w-full hover:bg-gray-500 dark-hover:bg-gray-900 transition duration-200">Kopieren</button></p>`
+            slot = `<p class="dark:text-white -mt-1"><b>Transportflow</b> weiterempfehlen:<br/><div class="font-mono rounded dark:text-white p-2 text-sm leading-tight bg-gray-300 dark:bg-gray-900">Hast Du schon von Transportflow gehört?<br/>https://transportflow.online</div><button onclick="document.getElementById('shareBtn').innerHTML = 'Kopiert!'; navigator.clipboard.writeText('Hast Du schon von Transportflow gehört? https://transportflow.online');" id="shareBtn" class="bg-gray-400 dark:bg-gray-700 dark:text-white rounded px-2 py-1 mt-3 w-full hover:bg-gray-500 dark-hover:bg-gray-900 transition duration-200">Kopieren</button></p>`
             return;
         }
 

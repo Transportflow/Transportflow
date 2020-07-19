@@ -45,8 +45,8 @@
     });
 
     $: if (!!modalOpen && !!error) {
-        console.log("yeah")
         errorVisible = true;
+        closeModal();
     }
 
     let search = "";

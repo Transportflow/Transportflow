@@ -36,20 +36,20 @@
     export let beta;
     export let url = "";
 
-    let isCtrl = false;
+    let isAlt = false;
 
     function handleKeydown(event) {
-        if (event.keyCode === 17) {
-            isCtrl = true;
+        if (event.keyCode === 18) {
+            isAlt = true;
         }
-        if (isCtrl && event.keyCode === 68) {
+        if (isAlt && event.keyCode === 76) {
             darkmode = !darkmode;
         }
     }
 
     function handleKeyup(event) {
-        if (event.keyCode === 17) {
-            isCtrl = false;
+        if (event.keyCode === 18) {
+            isAlt = false;
         }
     }
 </script>
