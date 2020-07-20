@@ -1,5 +1,6 @@
 <script>
     import Button from "./Button.svelte";
+    import InformationModal from "./InformationModal.svelte";
 
     function goBack() {
         window.history.back();
@@ -11,8 +12,15 @@
         }
     }
 
+    let reportingModalShown = false;
+    function openReportingModal() {
+        reportingModalShown = false;
+        reportingModalShown = true;
+    }
+
 </script>
 
+<InformationModal shown={reportingModalShown} title="🤖 Problem melden" text="<b>Sie haben einen Fehler gefunden?</b><br/>Schreiben Sie eine Mail an <a href='mailto:hello@transportflow.online'>hello@transportflow.online</a>" />
 <div class="flex justify-between">
     <Button onClick={goBack}
             className="bg-gray-200 dark:bg-gray-800 dark-hover:bg-gray-900 hover:bg-gray-300 text-gray-700 dark:text-gray-400 shadow-none">
@@ -32,7 +40,7 @@
             <div style="max-height: 120px"
                  class="w-56 absolute rounded text-sm text-right h-0 group-hover:py-1 group-hover:h-auto overflow-hidden transition-all duration-200 font-light bg-gray-100 dark:text-gray-200 dark:bg-gray-900 -mt-1 shadow-lg">
                 <p class="h-0 group-hover:h-auto">
-                    <button class="px-2 py-1 w-full hover:bg-gray-200 dark-hover:bg-black text-right">
+                    <button on:click={openReportingModal} class="px-2 py-1 w-full hover:bg-gray-200 dark-hover:bg-black text-right">
                         Problem melden 🤖
                     </button>
                 </p>
