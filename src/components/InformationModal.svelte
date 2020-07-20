@@ -23,7 +23,7 @@
                 <ion-icon id="close" name="close-circle-outline" class="my-auto dark:text-white pb-1 text-2xl"></ion-icon>
             </button>
         </div>
-        {@html text}
+        <p class="dark:text-gray-300">{@html text}</p>
     </div>
 </div>
 {/if}
