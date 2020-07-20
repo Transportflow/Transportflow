@@ -9,7 +9,13 @@
     import {getStops, getNearbyStops} from "../data";
 
     function handleInput(event) {
+        inputValue = event.target.value;
         loading = true;
+        if (event.target.value === "") {
+            stops = [];
+            loading = false;
+            return;
+        }
         getStops(event.target.value, (err) => {
             error = err
         }).then(res => {
@@ -20,7 +26,6 @@
 
     function loadNearbyStops() {
         navigator.geolocation.getCurrentPosition(function (location) {
-            console.log(location)
             loading = true;
             getNearbyStops(location.coords.latitude, location.coords.longitude, (err) => {
                 error = err;
@@ -36,6 +41,7 @@
         loadNearbyStops();
     })
 
+    let inputValue = "";
     let error = null;
     let loading = false;
     let stops = [];
@@ -46,13 +52,12 @@
 
     <ErrorModal shown={error != null} {error}/>
     <Title className="flex">
-        {#if !loading}
-            <img class="mr-2" style="margin-top: 0.2rem;height: 1.75rem;"
-                 src="https://twemoji.maxcdn.com/v/12.1.4/72x72/1f687.png" alt="">
-        {:else}
-            <div class="-ml-1 mr-1">
+        <img class="mr-2" style="margin-top: 0.2rem;height: 1.75rem;"
+             src="https://twemoji.maxcdn.com/v/12.1.4/72x72/1f687.png" alt="">
+        {#if loading}
+            <div style="margin-left: -8.52px; margin-top: -5px;" class="absolute">
                 <Spinner
-                        size="36"
+                        size="45"
                         speed="1000"
                         color="#85cb37"
                         thickness="2"
@@ -62,23 +67,26 @@
         {/if}
         <span> Monitor</span>
     </Title>
-    <Description>Region: {localStorage.getItem("region")}</Description>
+    <Description>Region: {localStorage.getItem("region") || "N/A"}</Description>
 
     <InputField placeholder="Haltestelle" onInput={handleInput}/>
 
     <hr class="mt-2 mb-1 h-0 opacity-0"/>
 
-    {#if stops != null}
-        {#each stops as stop}
-            <div class="my-1 px-2 py-1 rounded dark:text-gray-300 hover:bg-gray-300 dark-hover:bg-gray-900 transition duration-200 cursor-pointer">
+    {#if (stops != null && inputValue !== "") || nearbyStops != null}
+        {#each inputValue !== "" && stops != null ? stops : nearbyStops as stop}
+            <div class="my-1 px-2 py-1 rounded dark:text-gray-300 hover:bg-gray-300 dark-hover:bg-gray-900 transition duration-200 cursor-pointer select-none flex justify-between">
+                <div>
                 {#if stop.products}
                     <div class="flex pt-1">
                         {#each stop.products as product}
-                            <img class="h-5 w-5 mr-1" src={product.img}/>
+                            <img class="h-5 w-5 mr-1" src={product.img} alt=""/>
                         {/each}
                     </div>
                 {/if}
                 <p style="font-size: 0.965rem;">{stop.name}</p>
+                </div>
+                <p style="font-size: 0.965rem;" class="mt-auto text-gray-600">{stop.distance > 0 ? stop.distance + "m" : ""}</p>
             </div>
         {/each}
     {/if}
