@@ -1,4 +1,5 @@
 <script>
+    import {Link} from "svelte-routing";
     import {onMount} from "svelte";
     import BackButton from "../components/BackButton.svelte";
     import Description from "../components/Description.svelte";
@@ -75,6 +76,7 @@
 
     {#if (stops != null && inputValue !== "") || nearbyStops != null}
         {#each inputValue !== "" && stops != null ? stops : nearbyStops as stop}
+        <Link to="/monitor/{localStorage.getItem('region')}/{stop.id}">
             <div class="my-1 px-2 py-1 rounded dark:text-gray-300 hover:bg-gray-300 dark-hover:bg-gray-900 transition duration-200 cursor-pointer select-none flex justify-between">
                 <div>
                 {#if stop.products}
@@ -88,6 +90,7 @@
                 </div>
                 <p style="font-size: 0.965rem;" class="mt-auto text-gray-600">{stop.distance > 0 ? stop.distance + "m" : ""}</p>
             </div>
+        </Link>
         {/each}
     {/if}
 

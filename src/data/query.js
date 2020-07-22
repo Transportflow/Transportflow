@@ -35,3 +35,21 @@ export async function getNearbyStops(lat, lng, onError) {
     });
     return response.data;
 }
+
+export async function getDepartures(city, stopId, onError) {
+    let response = await getAxios().get(`/${city.toLowerCase()}/departures/${stopId}`).catch(err => {
+        if (err.message === "Network Error") {
+            onError(NETWORK_ERROR);
+            return;
+        }
+        if (err.response)
+            onError("<b>"+err.response.data+"</b>")
+        else
+            onError("<b>"+err.message+"</b>")
+    })
+    if (!response) {
+        onError("<b>Haltestelleninformationen aktuell nicht verfügbar</b>")
+        return null;
+    }
+    return response.data;
+}

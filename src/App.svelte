@@ -1,5 +1,5 @@
 <script>
-    import {Router} from "svelte-routing";
+    import {Router, Route} from "svelte-routing";
 
     import TailwindCSS from "./Tailwindcss.svelte";
 
@@ -7,6 +7,7 @@
     import Settings from "./views/Settings.svelte";
     import PageAnimator from "./utils/PageAnimator.svelte";
     import Monitor from "./views/Monitor.svelte";
+    import Departures from "./views/monitor/Departures.svelte";
 
     // Darkmode
     let darkmode = !!localStorage.getItem("darkmode");
@@ -60,6 +61,7 @@
     <TailwindCSS/>
     <Router url="{url}">
         <div>
+            <Route path="monitor/:city/:stopId" component="{Departures}" />
             <PageAnimator path="monitor">
                 <Monitor/>
             </PageAnimator>
