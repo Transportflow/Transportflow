@@ -12,10 +12,12 @@
 
     function closeModalInWhitespace(event) {
         if (event.target.id === "bg")
-            modalOpen = false;
+            closeModal();
     }
 
     function closeModal() {
+        search = "";
+        regions = allRegions;
         modalOpen = false;
     }
 
@@ -71,17 +73,19 @@
 {#if modalOpen}
     <div transition:fade="{{ duration: 200 }}" on:click={closeModalInWhitespace} id="bg"
          style="background-color: rgba(20, 20, 20, 0.6);"
-         class="fixed w-full h-full top-0 left-0 flex items-center justify-center overflow-scroll">
-        <div class="m-4 w-full sm:max-w-sm rounded-lg p-5 bg-white dark:bg-gray-800 transition-all duration-200 shadow-lg">
-            <div class="flex justify-between mb-2">
-                <h1 class="text-gray-900 dark:text-gray-100 text-lg font-semibold">Region auswählen</h1>
-                <button on:click={closeModal}>
-                    <ion-icon name="close-circle-outline" class="my-auto dark:text-white pb-1 text-2xl"></ion-icon>
-                </button>
+         class="fixed w-full h-full top-0 left-0 flex items-center justify-center overflow-auto">
+        <div class="m-4 w-full sm:max-w-sm rounded-lg p-3 bg-white dark:bg-gray-800 transition-all duration-200 shadow-lg">
+            <div class="px-2 pt-2">
+                <div class="flex justify-between mb-2">
+                    <h1 class="text-gray-900 dark:text-gray-100 text-lg font-semibold">Region auswählen</h1>
+                    <button on:click={closeModal}>
+                        <ion-icon name="close-circle-outline" class="my-auto dark:text-white pb-1 text-2xl"></ion-icon>
+                    </button>
+                </div>
+                <InputField placeholder="Suche" onInput={searchRegion}/>
+                <Divider className="mt-2"/>
             </div>
-            <InputField placeholder="Suche" onInput={searchRegion}/>
-            <Divider className="my-2"/>
-            <div>
+            <div style="max-height: 300px;" class="overflow-y-scroll p-2 transition-all duration-200">
                 {#if regions !== undefined}
                     {#each regions as {regionName, image, textColor}}
                         <div id={regionName} on:click={regionClick} class="pb-1 group cursor-pointer">

@@ -28,8 +28,8 @@
 
     <Subtitle>Region</Subtitle>
     <Description>
-        Ihre aktuell gewählte Region ist <b>{regionName === null ? "N/A" : regionName}</b>.<br/>
-        Hier haben Sie die Möglichkeit eine andere Region zu wählen.
+        Ihre aktuell gewählte Region ist <b>{regionName === null ? "N/A" : regionName}</b>.
+        <br/>Hier haben Sie die Möglichkeit eine andere Region zu wählen.
     </Description>
     <PrimaryButton onClick={openModal} text="Region wählen"/>
 

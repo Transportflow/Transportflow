@@ -67,7 +67,7 @@
         {/if}
         <span> Monitor</span>
     </Title>
-    <Description>Region: {localStorage.getItem("region") || "N/A"}</Description>
+    <Description>Region: <b>{localStorage.getItem("region") || "N/A"}</b></Description>
 
     <InputField placeholder="Haltestelle" onInput={handleInput}/>
 
