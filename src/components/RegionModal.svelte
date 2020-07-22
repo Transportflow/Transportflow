@@ -5,6 +5,14 @@
     import InputField from "./InputField.svelte";
     import Divider from "./Divider.svelte";
     import Description from "./Description.svelte";
+    import InformationModal from "./InformationModal.svelte";
+
+    let addRegionVisible = false;
+    function showRegionSuggestion() {
+        closeModal();
+        addRegionVisible = false;
+        addRegionVisible = true;
+    }
 
     let errorVisible = true;
     export let modalOpen;
@@ -69,6 +77,7 @@
     }
 </script>
 
+<InformationModal shown={addRegionVisible} title="🗺 Region vorschlagen" text="<b>Transportflow ist nicht in Ihrer Region verfügbar?</b><br/>Schreiben Sie uns einfach eine Mail, in der Sie erläutern, warum wir Ihre Region hinzufügen sollten 📫 <br/><br/><i>hello@transportflow.online</i>" />
 <ErrorModal {error} shown={errorVisible}/>
 {#if modalOpen}
     <div transition:fade="{{ duration: 200 }}" on:click={closeModalInWhitespace} id="bg"
@@ -95,14 +104,16 @@
                                      style={"background: url("+image+"); background-size: cover; background-position: center;"}>
                                     <div id={regionName}
                                          class={"p-2 dark:text-white h-full flex "+(regionProp !== regionName ? "bg-white dark:bg-gray-800" : "bg-button-blue text-white") +" group-hover:bg-transparent group-hover:text-"+textColor+" transition duration-200"}>
-                                        <h3 id={regionName} class="mr-auto font-bold">{regionName}</h3>
+                                        <h3 id={regionName} class="mr-auto font-bold">{regionName.split("(")[0]} <span class="opacity-0 group-hover:opacity-100">{!!regionName.split("(")[1] ? "("+regionName.split("(")[1] : ""}</span></h3>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     {/each}
                     {#if regions.length === 0}
-                        <Description className="-mb-1">Keine Region gefunden</Description>
+                        <button on:click={showRegionSuggestion} class="p-2 w-full rounded dark:text-white h-full flex bg-white hover:bg-gray-300 dark-hover:bg-gray-900 dark:bg-gray-800 transition duration-200">
+                            <ion-icon name="add-circle-outline" class="mr-1" style="zoom: 1.5;"></ion-icon> Region vorschlagen
+                        </button>
                     {/if}
                 {:else}
                     <Description>Loading....</Description>
