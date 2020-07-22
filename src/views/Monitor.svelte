@@ -18,7 +18,8 @@
             return;
         }
         getStops(event.target.value, (err) => {
-            error = err
+            error = null;
+            error = err;
         }).then(res => {
             stops = res;
             loading = false;
@@ -29,6 +30,7 @@
         navigator.geolocation.getCurrentPosition(function (location) {
             loading = true;
             getNearbyStops(location.coords.latitude, location.coords.longitude, (err) => {
+                error = null;
                 error = err;
             }).then(res => {
                 nearbyStops = res;

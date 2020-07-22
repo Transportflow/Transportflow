@@ -15,6 +15,7 @@
     let monitor = {};
 
     getDepartures(city, stopId, (err) => {
+        error = null;
         error = err;
         loading = false;
     }).then((res) => {
