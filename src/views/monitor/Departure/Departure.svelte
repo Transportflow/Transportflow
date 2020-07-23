@@ -1,5 +1,10 @@
 <script>
     import {onMount} from "svelte";
+    import UpcomingStops from "./UpcomingStops.svelte";
+
+    export let city;
+    export let stopId;
+
 
     let open = false;
 
@@ -53,7 +58,7 @@
         <div class="w-1/4 sm:w-1/5 md:w-1/6 bg-gray-400 dark:bg-gray-800 rounded-lg object-right p-2 sm:m-1 transition duration-200">
             <p class="text-center leading-tight">
                 <span class="font-semibold text-2xl text-gray-800 dark:text-gray-200">
-                    {stopover.relativeWhen}
+                    {stopover.relativeWhen.replace("+", "")}
                 </span>
                 <br/>
                 <span class="font-thin text-gray-800 dark:text-gray-200 text-base">
@@ -63,7 +68,14 @@
         </div>
     </div>
     <div class={(open ? "opacity-100" : "opacity-0") + " overflow-hidden text-sm tracking-wide text-center trans"}
-         style="transition: all 0.25s ease-in-out; max-height: {open ? '60px' : '0'}">
-        <p>N/A</p>
+         style="transition: all 0.25s ease-in-out; max-height: {open ? '80px' : '0'}">
+        <UpcomingStops {city}
+                       tripId={stopover.tripId}
+                       currentStopId={stopId}
+                       lineName={stopover.line.name}
+                       when={stopover.rawWhen || 0}
+                       relativeTo={stopover.when}
+                       relativeWhen={stopover.relativeWhen}
+        />
     </div>
 </div>

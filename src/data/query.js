@@ -11,9 +11,9 @@ export async function getStops(query, onError) {
             return;
         }
         if (err.response)
-            onError("<b>"+err.response.data+"</b>")
+            onError("<b>" + err.response.data + "</b>")
         else
-            onError("<b>"+err.message+"</b>")
+            onError("<b>" + err.message + "</b>")
     });
     return response.data;
 }
@@ -29,9 +29,9 @@ export async function getNearbyStops(lat, lng, onError) {
             return;
         }
         if (err.response)
-            onError("<b>"+err.response.data+"</b>")
+            onError("<b>" + err.response.data + "</b>")
         else
-            onError("<b>"+err.message+"</b>")
+            onError("<b>" + err.message + "</b>")
     });
     return response.data;
 }
@@ -43,12 +43,30 @@ export async function getDepartures(city, stopId, onError) {
             return;
         }
         if (err.response)
-            onError("<b>"+err.response.data+"</b>")
+            onError("<b>" + err.response.data + "</b>")
         else
-            onError("<b>"+err.message+"</b>")
+            onError("<b>" + err.message + "</b>")
     })
     if (!response) {
         onError("<b>Haltestelleninformationen aktuell nicht verfügbar</b>")
+        return null;
+    }
+    return response.data;
+}
+
+export async function getUpcomingStops(city, tripId, currentStopId, lineName, when, relativeTo, onError) {
+    let response = await getAxios().get(`/${city.toLowerCase()}/upcoming/${tripId}?currentstopid=${currentStopId}&linename=${lineName}&when=${when}&relativeto=${relativeTo}`).catch(err => {
+        if (err.message === "Network Error") {
+            onError(NETWORK_ERROR);
+            return;
+        }
+        if (err.response)
+            onError("<b>" + err.response.data + "</b>")
+        else
+            onError("<b>" + err.message + "</b>")
+    })
+    if (!response) {
+        onError("<b>Kommende Haltestellen aktuell nicht verfügbar</b>")
         return null;
     }
     return response.data;
