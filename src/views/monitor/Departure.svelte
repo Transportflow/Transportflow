@@ -16,7 +16,7 @@
     })
 </script>
 
-<div class="trans-bg bg-gray-300 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-medium font-inter rounded-lg overflow-hidden mb-2 p-2 pl-3 select-none cursor-pointer"
+<div class="trans-bg bg-gray-300 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-medium font-inter rounded-lg overflow-hidden mb-2 p-2 pl-3 select-none cursor-pointer transition duration-200"
      on:click={toggleOpen}>
     <div
             class={(open ? "opacity-100 pb-1" : "opacity-0") + " overflow-hidden font-semibold text-sm tracking-wide uppercase text-center trans"}
@@ -24,7 +24,16 @@
         {#if stopover.cancelled}
             <span>Fällt aus</span>
         {:else}
-            <span>Steig 9 3/4</span>
+            {#if stopover.delay == "0"}
+                <span>Pünktlich</span>
+            {:else if parseInt(stopover.delay) > 0}
+                <span>+{stopover.delay} min verspätung</span>
+            {:else}
+                <span>{stopover.delay} min zu früh</span>
+            {/if}
+            {#if stopover.platform}
+                <span>| Steig {stopover.platform}</span>
+            {/if}
         {/if}
     </div>
     <div class="flex flex-shrink justify-between rounded-lg">
@@ -41,7 +50,7 @@
                 <span>{stopover.direction}</span>
             </p>
         </div>
-        <div class="w-1/4 sm:w-1/5 md:w-1/6 bg-gray-400 dark:bg-gray-800 rounded-lg object-right p-2 sm:m-1">
+        <div class="w-1/4 sm:w-1/5 md:w-1/6 bg-gray-400 dark:bg-gray-800 rounded-lg object-right p-2 sm:m-1 transition duration-200">
             <p class="text-center leading-tight">
                 <span class="font-semibold text-2xl text-gray-800 dark:text-gray-200">
                     {stopover.relativeWhen}

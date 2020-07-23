@@ -19,6 +19,16 @@
         reportingModalShown = true;
     }
 
+    function toggleDarkmode() {
+        if (document.documentElement.classList.contains("mode-dark")) {
+            document.documentElement.classList.remove("mode-dark")
+            localStorage.removeItem("darkmode");
+        } else {
+            document.documentElement.classList.add("mode-dark")
+            localStorage.setItem("darkmode", "true");
+        }
+    }
+
 </script>
 
 <InformationModal shown={reportingModalShown} title="🤖 Problem melden"
@@ -51,7 +61,7 @@
                     </button>
                 </p>
                 <p class="h-0 group-hover:h-auto">
-                    <button on:click={() => document.documentElement.classList.toggle("mode-dark")}
+                    <button on:click={toggleDarkmode}
                             class="px-2 py-1 w-full hover:bg-gray-200 dark-hover:bg-black text-right">
                         Darkmode 🌙
                     </button>

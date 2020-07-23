@@ -57,20 +57,18 @@
 
 <svelte:window on:keydown={handleKeydown} on:keyup={handleKeyup}/>
 
-<main class="font-inter transition-bg duration-200 min-h-screen bg-gray-200 dark:bg-gray-800">
+<main class="font-inter transition-bg duration-200 min-h-screen h-full bg-gray-200 dark:bg-gray-800">
     <TailwindCSS/>
     <Router url="{url}">
-        <div>
-            <Route path="monitor/:city/:stopId" component="{Departures}" />
-            <PageAnimator path="monitor">
-                <Monitor/>
-            </PageAnimator>
-            <PageAnimator path="settings">
-                <Settings {toggleDarkmode}/>
-            </PageAnimator>
-            <PageAnimator path="/">
-                <Index {beta}/>
-            </PageAnimator>
-        </div>
+        <Route path="monitor/:city/:stopId" component="{Departures}"/>
+        <PageAnimator path="monitor">
+            <Monitor/>
+        </PageAnimator>
+        <PageAnimator path="settings">
+            <Settings {toggleDarkmode}/>
+        </PageAnimator>
+        <PageAnimator path="/">
+            <Index {beta}/>
+        </PageAnimator>
     </Router>
 </main>
