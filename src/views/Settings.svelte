@@ -10,7 +10,6 @@
 
 
     export let toggleDarkmode;
-    export let darkmode;
 
     let modalOpen = false;
     let regionName;
@@ -46,7 +45,7 @@
     <button
             class="my-auto focus:outline-none rounded-full bg-gray-800 dark:bg-gray-200 mr-2"
             style="width: 48px; height: 48px"
-            on:click={toggleDarkmode()}>{darkmode ? "🌒" : "🌔"}</button>
-    <p class="my-auto text-gray-700 dark:text-gray-400">{darkmode ? "hell" : "dunkel"}</p>
+            on:click={toggleDarkmode()}><span class="dark:hidden">🌔</span><span class="hidden dark:block">🌒</span></button>
+    <p class="my-auto text-gray-700 dark:text-gray-400"><span class="dark:hidden">hell</span><span class="hidden dark:block">dunkel</span></p>
     </div>
 </main>

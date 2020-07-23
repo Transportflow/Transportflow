@@ -66,7 +66,7 @@
                 <Monitor/>
             </PageAnimator>
             <PageAnimator path="settings">
-                <Settings {darkmode} {toggleDarkmode}/>
+                <Settings {toggleDarkmode}/>
             </PageAnimator>
             <PageAnimator path="/">
                 <Index {beta}/>

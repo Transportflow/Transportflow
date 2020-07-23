@@ -7,7 +7,7 @@ module.exports = {
     textColor: ['responsive', 'hover', 'focus', 'active', 'group-hover', 'dark', 'dark-hover', 'dark-active'],
     height: ['responsive', 'hover', 'group-hover'],
     opacity: ['responsive', 'hover', 'group-hover'],
-    display: ['responsive', 'hover', 'group-hover'],
+    display: ['responsive', 'hover', 'group-hover', 'dark'],
     border: ['responsive', 'hover', 'group-hover'],
     borderColor: ['responsive', 'hover', 'focus', 'active', 'group-hover', 'dark', 'dark-hover', 'dark-active'],
     padding: ['responsive', 'group-hover'],
