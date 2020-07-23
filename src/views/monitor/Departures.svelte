@@ -25,6 +25,7 @@
     $: {
         Object.assign([], [city, stopId]);
         monitor.stop = null;
+        activeModes = [];
         allModes = [];
         loadDepartures();
     }
@@ -132,7 +133,7 @@
         </div>
         <div style="max-height: 75vh;" class="scrollbar-none overflow-scroll overflow-x-hidden pb-56 rounded-lg">
             {#if displayedDepartures}
-                {#each displayedDepartures as stopover (stopover.tripId+stopover.plannedWhen+stopover.platform)}
+                {#each displayedDepartures as stopover (stopover.tripId+stopover.direction+stopover.plannedWhen+stopover.platform)}
                     <Departure {stopover} {city} {stopId} />
                 {/each}
             {/if}
