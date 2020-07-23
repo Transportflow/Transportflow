@@ -1,4 +1,6 @@
 <script>
+    import {onMount} from "svelte";
+
     let open = false;
 
     function toggleOpen() {
@@ -7,6 +9,11 @@
 
     export let stopover;
 
+    onMount(() => {
+        if (stopover.cancelled) {
+            open = true;
+        }
+    })
 </script>
 
 <div class="trans-bg bg-gray-300 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-medium font-inter rounded-lg overflow-hidden mb-2 p-2 pl-3 select-none cursor-pointer"
@@ -14,15 +21,19 @@
     <div
             class={(open ? "opacity-100 pb-1" : "opacity-0") + " overflow-hidden font-semibold text-sm tracking-wide uppercase text-center trans"}
             style="transition: all 0.25s ease-in-out; max-height: {open ? '60px' : '0'}">
-        <span>Fällt aus | pünktlich | Steig 1</span>
+        {#if stopover.cancelled}
+            <span>Fällt aus</span>
+        {:else}
+            <span>Steig 9 3/4</span>
+        {/if}
     </div>
     <div class="flex flex-shrink justify-between rounded-lg">
         <div class="w-3/4 sm:ml-1 my-auto">
             <p class="font-semibold text-2xl flex items-center leading-tight">
                 <img
-                    style="height:26px;margin-right:0.5rem;"
-                    alt=""
-                    src={stopover.line.product.img}
+                        style="height:26px;margin-right:0.5rem;"
+                        alt=""
+                        src={stopover.line.product.img}
                 />
                 <span class="truncate pt-1">{stopover.line.name}</span>
             </p>

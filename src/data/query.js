@@ -37,7 +37,7 @@ export async function getNearbyStops(lat, lng, onError) {
 }
 
 export async function getDepartures(city, stopId, onError) {
-    let response = await getAxios().get(`/${city.toLowerCase()}/departures/${stopId}`).catch(err => {
+    let response = await getAxios().get(`/${city.toLowerCase()}/departures/${stopId}?when=${new Date().getTime()}`).catch(err => {
         if (err.message === "Network Error") {
             onError(NETWORK_ERROR);
             return;
