@@ -7,7 +7,7 @@
     import BackButton from "../../components/BackButton.svelte";
     import Button from "../../components/Button.svelte";
     import Title from "../../components/Title.svelte";
-    import Departure from "./Departure.svelte";
+    import Departure from "./Departure/Departure.svelte";
 
     let loading = true;
     let error = null;
@@ -22,9 +22,12 @@
     let activeModes = [];
     let allModes = [];
 
-    onMount(() => {
+    $: {
+        Object.assign([], [city, stopId]);
+        monitor.stop = null;
+        allModes = [];
         loadDepartures();
-    })
+    }
 
     function loadDepartures() {
         loading = true;
@@ -77,7 +80,7 @@
 <ErrorModal shown={error != null} {error}/>
 <div class="overflow-hidden absolute w-full p-4 pt-12 sm:p-24 sm:pl-40 sm:pt-20" transition:fade="{{ duration: 100 }}">
     <div class="sm:max-w-lg">
-        <BackButton>
+        <BackButton backTo="/monitor">
             <Button onClick={loadDepartures}
                     className="bg-gray-200 dark:bg-gray-800 dark-hover:bg-gray-900 hover:bg-gray-300 text-gray-700 dark:text-gray-400 shadow-none">
                 <div class="flex">
@@ -130,7 +133,7 @@
         <div style="max-height: 75vh;" class="scrollbar-none overflow-scroll overflow-x-hidden pb-56 rounded-lg">
             {#if displayedDepartures}
                 {#each displayedDepartures as stopover (stopover.tripId+stopover.plannedWhen+stopover.platform)}
-                    <Departure {stopover}/>
+                    <Departure {stopover} {city} {stopId} />
                 {/each}
             {/if}
         </div>

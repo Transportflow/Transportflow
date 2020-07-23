@@ -72,12 +72,6 @@
         else
             loadStops(inputValue);
     })
-
-    $: {
-        console.log(loading)
-    }
-
-
 </script>
 <main>
     <BackButton>

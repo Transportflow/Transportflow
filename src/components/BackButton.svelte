@@ -1,9 +1,15 @@
 <script>
     import Button from "./Button.svelte";
     import InformationModal from "./InformationModal.svelte";
+    import { navigate } from 'svelte-routing';
+
+    export let backTo = null;
 
     function goBack() {
-        window.history.back();
+        if (!backTo)
+            window.history.back();
+        else
+            navigate(backTo)
     }
 
     function toggleDropdown(event) {
