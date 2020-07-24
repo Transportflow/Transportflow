@@ -66,7 +66,7 @@ export async function getUpcomingStops(city, tripId, currentStopId, lineName, wh
             onError("<b>" + err.message + "</b>")
     })
     if (!response) {
-        onError("<b>Kommende Haltestellen aktuell nicht verfügbar</b>")
+        onError("<b>Weitere Haltestelleninformationen aktuell nicht verfügbar</b>")
         return null;
     }
     return response.data;

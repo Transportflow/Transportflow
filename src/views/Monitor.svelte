@@ -55,7 +55,9 @@
                 stops = nearbyStops;
                 loading = false;
             })
-        });
+        }, function (err) {
+            loading = false;
+        })
 
     }
 
@@ -74,7 +76,7 @@
     })
 </script>
 <main>
-    <BackButton>
+    <BackButton backTo="/">
         {#if inputValue.length > 0}
             <Button onClick={clearInput}
                     className="bg-gray-200 dark:bg-gray-800 dark-hover:bg-gray-900 hover:bg-gray-300 text-gray-700 dark:text-gray-400 shadow-none">

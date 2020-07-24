@@ -74,6 +74,7 @@
             if (activeModes.indexOf(stopover.line.product.title) !== -1 || activeModes.length === 0)
                 toDisplay.push(stopover)
         })
+        console.log(toDisplay)
         displayedDepartures = toDisplay;
     }
 </script>
@@ -133,7 +134,7 @@
         </div>
         <div style="max-height: 75vh;" class="scrollbar-none overflow-scroll overflow-x-hidden pb-56 rounded-lg">
             {#if displayedDepartures}
-                {#each displayedDepartures as stopover (stopover.tripId+stopover.direction+stopover.plannedWhen+stopover.platform)}
+                {#each displayedDepartures as stopover (stopover.tripId+stopover.direction+stopover.line.fahrtNr+stopover.line.name+stopover.plannedWhen+stopover.platform)}
                     <Departure {stopover} {city} {stopId} />
                 {/each}
             {/if}

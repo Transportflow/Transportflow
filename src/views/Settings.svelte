@@ -21,7 +21,7 @@
 </script>
 
 <main>
-    <BackButton/>
+    <BackButton backTo="/"/>
 
     <Title>⚙️ Einstellungen</Title>
 
