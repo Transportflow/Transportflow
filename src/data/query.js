@@ -71,3 +71,51 @@ export async function getUpcomingStops(city, tripId, currentStopId, lineName, wh
     }
     return response.data;
 }
+
+export async function getWagenreihung(lineName, plannedDeparture, onError) {
+    if (lineName.includes("RE") || lineName.includes("RB") || lineName.includes("S") || lineName.includes("U") || lineName.toLowerCase().includes("tram")) {
+        onError("Train not applicable")
+        return null;
+    }
+    let response = await getAxios().get(`/deutsche bahn/wagenreihung/${lineName}?when=${plannedDeparture}`).catch(err => {
+        if (err.message === "Network Error") {
+            onError(NETWORK_ERROR);
+            return;
+        }
+        if (err.response)
+            onError("<b>" + err.response.data + "</b>")
+        else
+            onError("<b>" + err.message + "</b>")
+    })
+    if (!response) {
+        onError("<b>Wagenreihung aktuell nicht verfügbar</b>")
+        return null;
+    }
+
+    let d = response.data.data.istformation;
+
+    let wagons = [];
+    for (const i in d.allFahrzeuggruppe) {
+        for (const w of d.allFahrzeuggruppe[i].allFahrzeug) {
+            wagons.push(createWagon(w, +i))
+        }
+    }
+
+    return ({
+        initializationDate: response.data.meta.created,
+        product: d.zuggattung,
+        trainNumber: d.zugnummer,
+        serviceId: d.serviceid,
+        wagons
+    })
+}
+
+let createWagon = (w, group) => ({
+    group,
+    type: w.kategorie,
+    id: w.fahrzeugnummer,
+    wagonNumber: +w.wagenordnungsnummer || null,
+    fahrzeugsektor: w.fahrzeugsektor,
+    status: w.status
+    // todo: other attributes
+});

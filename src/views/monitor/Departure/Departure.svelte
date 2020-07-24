@@ -1,18 +1,20 @@
 <script>
     import {onMount} from "svelte";
     import UpcomingStops from "./UpcomingStops.svelte";
+    import Wagenreihung from "./Wagenreihung.svelte";
 
     export let city;
     export let stopId;
+    export let stopover;
 
-
+    let loadData = false;
     let open = false;
 
     function toggleOpen() {
         open = !open;
+        if (open)
+            loadData = true;
     }
-
-    export let stopover;
 
     onMount(() => {
         if (stopover.cancelled) {
@@ -68,14 +70,19 @@
         </div>
     </div>
     <div class={(open ? "opacity-100" : "opacity-0") + " overflow-hidden text-sm tracking-wide text-center trans"}
-         style="transition: all 0.25s ease-in-out; max-height: {open ? '80px' : '0'}">
-        <UpcomingStops {city}
-                       tripId={stopover.tripId}
-                       currentStopId={stopId}
-                       lineName={stopover.line.name}
-                       when={stopover.rawWhen || 0}
-                       relativeTo={stopover.when}
-                       relativeWhen={stopover.relativeWhen}
-        />
+         style="transition: all 0.25s ease-in-out; max-height: {open ? '200px' : '0'}">
+        {#if !stopover.cancelled && loadData}
+            {#if stopover.line.mode === "train" && stopover.line.product.name !== "tram"}
+                <Wagenreihung lineName={stopover.line.name} plannedDeparture={stopover.plannedWhen}/>
+            {/if}
+            <UpcomingStops {city}
+                           tripId={stopover.tripId}
+                           currentStopId={stopId}
+                           lineName={stopover.line.name}
+                           when={stopover.rawWhen || 0}
+                           relativeTo={stopover.when}
+                           relativeWhen={stopover.relativeWhen}
+            />
+        {/if}
     </div>
 </div>

@@ -1,5 +1,5 @@
 import {getRegions} from "./regions";
-import {getStops, getNearbyStops, getDepartures, getUpcomingStops} from "./query";
+import {getStops, getNearbyStops, getDepartures, getUpcomingStops, getWagenreihung} from "./query";
 
 import axios from "axios";
 import {createMemorySource} from "svelte-routing/src/history";
@@ -12,4 +12,4 @@ function getAxios() {
     return axios;
 }
 
-export {getAxios, getRegions, getStops, getNearbyStops, getDepartures, getUpcomingStops};
+export {getAxios, getRegions, getStops, getNearbyStops, getDepartures, getUpcomingStops, getWagenreihung};
