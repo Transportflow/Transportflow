@@ -74,7 +74,6 @@
             if (activeModes.indexOf(stopover.line.product.title) !== -1 || activeModes.length === 0)
                 toDisplay.push(stopover)
         })
-        console.log(toDisplay)
         displayedDepartures = toDisplay;
     }
 </script>
@@ -96,7 +95,9 @@
         {#if monitor != null && monitor.stop != null && monitor.stop.products != null}
             <div class="flex mt-2 -mb-1" style="padding-left: 36px;">
                 {#each monitor.stop.products as product}
-                    <img class="h-5 w-5 mr-1" alt="" src="{product.img}"/>
+                    {#if product.img !== ""}
+                        <img class="h-5 w-5 mr-1" alt="" src="{product.img}"/>
+                    {/if}
                 {/each}
             </div>
         {/if}
@@ -134,8 +135,8 @@
         </div>
         <div style="max-height: 75vh;" class="scrollbar-none overflow-scroll overflow-x-hidden pb-56 rounded-lg">
             {#if displayedDepartures}
-                {#each displayedDepartures as stopover (stopover.tripId+stopover.direction+stopover.line.fahrtNr+stopover.line.name+stopover.plannedWhen+stopover.platform)}
-                    <Departure {stopover} {city} {stopId} />
+                {#each displayedDepartures as stopover (stopover.tripId+stopover.direction+stopover.line.fahrtNr+stopover.line.name+stopover.when+stopover.platform)}
+                    <Departure {stopover} {city} {stopId}/>
                 {/each}
             {/if}
         </div>

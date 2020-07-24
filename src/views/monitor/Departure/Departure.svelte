@@ -46,11 +46,13 @@
     <div class="flex flex-shrink justify-between rounded-lg">
         <div class="w-3/4 sm:ml-1 my-auto">
             <p class="font-semibold text-2xl flex items-center leading-tight">
-                <img
-                        style="height:26px;margin-right:0.5rem;"
-                        alt=""
-                        src={stopover.line.product.img}
-                />
+                {#if stopover.line.product.img !== ""}
+                    <img
+                            style="height:26px;margin-right:0.5rem;"
+                            alt=""
+                            src={stopover.line.product.img}
+                    />
+                {/if}
                 <span class="truncate pt-1">{stopover.line.name}</span>
             </p>
             <p class="text-lg font-normal truncate text-gray-800 dark:text-gray-200">

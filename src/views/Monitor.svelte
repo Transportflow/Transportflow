@@ -120,7 +120,9 @@
                         {#if stop.products}
                             <div class="flex pt-1">
                                 {#each stop.products as product}
-                                    <img class="h-5 w-5 mr-1" src={product.img} alt=""/>
+                                    {#if product.img !== ""}
+                                        <img class="h-5 w-5 mr-1" src={product.img} alt=""/>
+                                    {/if}
                                 {/each}
                             </div>
                         {/if}
