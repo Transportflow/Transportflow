@@ -123,7 +123,7 @@
                 <span class="py-1"> Fehler</span>
             {/if}
         </Title>
-        <div class="mb-2 rounded overflow-scroll sm:overflow-x-hidden overflow-y-hidden flex flex-no-wrap sm:flex-wrap scrollbar-none">
+        <div class="mb-2 rounded overflow-scroll sm:overflow-x-hidden overflow-y-hidden scrolling-touch flex flex-no-wrap sm:flex-wrap scrollbar-none">
             {#if allModes.length > 1}
                 {#each allModes as mode}
                     <Button onClick={toggleMode.bind(null, mode)}
@@ -133,7 +133,7 @@
                 {/each}
             {/if}
         </div>
-        <div style="max-height: 75vh;" class="scrollbar-none overflow-scroll overflow-x-hidden pb-56 rounded-lg">
+        <div style="max-height: 75vh;" class="scrollbar-none overflow-scroll overflow-x-hidden scrolling-touch pb-56 rounded-lg">
             {#if displayedDepartures}
                 {#each displayedDepartures as stopover (stopover.tripId+stopover.direction+stopover.line.fahrtNr+stopover.line.name+stopover.when+stopover.platform)}
                     <Departure {stopover} {city} {stopId}/>

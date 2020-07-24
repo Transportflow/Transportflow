@@ -32,7 +32,7 @@
         <Spinner size="30" speed="1000" color="#85cb37" thickness="2" gap="40"/>
         <span class="my-auto">Lade Haltestelleninformationen</span></p>
 {:else}
-    <div class="flex flex-no-wrap overflow-scroll overflow-y-hidden scrollbar-none pt-2 pb-1">
+    <div class="flex flex-no-wrap overflow-scroll overflow-y-hidden scrollbar-none scrolling-touch pt-2 pb-1">
         {#each upcoming as stopover}
             <div style="margin-right: {(stopover.stop.products ? stopover.stop.products.length : 3)/2}rem"
                  class="text-left">
