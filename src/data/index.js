@@ -3,7 +3,7 @@ import {getStops, getNearbyStops, getDepartures, getUpcomingStops, getWagenreihu
 
 import axios from "axios";
 import {createMemorySource} from "svelte-routing/src/history";
-axios.defaults.baseURL = "http://192.168.1.3:4567";
+axios.defaults.baseURL = "https://backend.transportflow.online";
 
 export let REGION_NOT_AVAILABLE = "<b>Region nicht verfügbar</b><br/>Bitte wählen Sie Ihre Region in den Einstellungen aus.";
 export let NETWORK_ERROR = "<b>Netzwerkfehler</b><br/>Vergewissern Sie sich, dass ihr Gerät mit dem Internet verbunden ist.";
