@@ -86,16 +86,5 @@
         transition: background-image 0.5s;
     }
 
-    /* BG Images for random display */
-    :global(.bg-vienna) {
-        background: url("https://images.unsplash.com/photo-1581458701105-93b74f5066a4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
-    }
-
-    :global(.bg-vienna-2) {
-        background: url("https://images.unsplash.com/photo-1581458887064-1593e7cada23?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80");
-    }
-
-    :global(.bg-berlin) {
-        background: url("https://images.unsplash.com/photo-1572083272166-b2a0855fcbb3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
-    }
+    
 </style>
