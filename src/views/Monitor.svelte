@@ -9,6 +9,7 @@
     import Spinner from 'svelte-spinner';
     import ErrorModal from "../utils/ErrorModal.svelte";
     import {getStops, getNearbyStops} from "../data";
+    import OnboardingCheck from "../components/OnboardingCheck.svelte";
 
     let inputValue = localStorage.getItem("lastStopSearch") || "";
     let loading = true;
@@ -76,6 +77,7 @@
     })
 </script>
 <main>
+    <OnboardingCheck/>
     <BackButton backTo="/">
         {#if inputValue.length > 0}
             <Button onClick={clearInput}

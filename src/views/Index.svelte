@@ -2,6 +2,7 @@
     import {Link} from "svelte-routing";
     import MenuButton from "../components/MenuButton.svelte";
     import InformationModal from "../components/InformationModal.svelte";
+    import OnboardingCheck from "../components/OnboardingCheck.svelte";
 
     export let beta;
 
@@ -34,6 +35,7 @@
 </script>
 
 <main>
+    <OnboardingCheck/>
     {#if shown}
         <InformationModal {title} {shown} text={slot}/>
     {/if}

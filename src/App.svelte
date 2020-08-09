@@ -8,6 +8,7 @@
     import PageAnimator from "./utils/PageAnimator.svelte";
     import Monitor from "./views/Monitor.svelte";
     import Departures from "./views/monitor/Departures.svelte";
+    import Onboarding from "./views/Onboarding.svelte";
 
     // Darkmode
     let darkmode = !!localStorage.getItem("darkmode");
@@ -67,6 +68,7 @@
         <PageAnimator path="settings">
             <Settings {toggleDarkmode}/>
         </PageAnimator>
+        <Route path="onboarding" component="{Onboarding}"/>
         <PageAnimator path="/">
             <Index {beta}/>
         </PageAnimator>

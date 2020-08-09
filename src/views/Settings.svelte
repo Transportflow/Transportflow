@@ -7,6 +7,7 @@
     import Title from "../components/Title.svelte";
     import Subtitle from "../components/Subtitle.svelte";
     import Description from "../components/Description.svelte";
+    import OnboardingCheck from "../components/OnboardingCheck.svelte";
 
 
     export let toggleDarkmode;
@@ -21,6 +22,7 @@
 </script>
 
 <main>
+    <OnboardingCheck/>
     <BackButton backTo="/"/>
 
     <Title>⚙️ Einstellungen</Title>
