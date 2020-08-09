@@ -38,14 +38,12 @@ export async function getNearbyStops(lat, lng, onError) {
 
 export async function getDepartures(city, stopId, onError) {
 
-    /*let currentDate = new Date();
+    let currentDate = new Date();
     let currentTime = currentDate.getTime();
     let localOffset = (-1) * currentDate.getTimezoneOffset() * 60000;
     let stamp = Math.round(new Date(currentTime + localOffset).getTime() / 1000);
-    console.log(stamp)
-    console.log(currentTime)*/
 
-    let response = await getAxios().get(`/${city.toLowerCase()}/departures/${stopId}?when=${Math.round(new Date().getTime() /1000)}`).catch(err => {
+    let response = await getAxios().get(`/${city.toLowerCase()}/departures/${stopId}?when=${stamp}`).catch(err => {
         if (err.message === "Network Error") {
             onError(NETWORK_ERROR);
             return;
