@@ -63,6 +63,9 @@
             {/if}
         </div>
     </div>
+    <Link to="impressprivacy">
+        <p class="text-gray-200 opacity-50 hover:opacity-100 absolute bottom-0 text-center w-full mb-2 transition duration-1000">Impressum & Datenschutz</p>
+    </Link>
     <RegionModal bind:regionProp={regionName} modalOpen={modalOpen}/>
 </div>
 

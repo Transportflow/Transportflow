@@ -9,6 +9,9 @@
     import Monitor from "./views/Monitor.svelte";
     import Departures from "./views/monitor/Departures.svelte";
     import Onboarding from "./views/Onboarding.svelte";
+    import ImpressPrivacy from "./views/ImpressPrivacy.svelte";
+
+
 
     // Darkmode
     let darkmode = !!localStorage.getItem("darkmode");
@@ -68,9 +71,18 @@
         <PageAnimator path="settings">
             <Settings {toggleDarkmode}/>
         </PageAnimator>
+        <Route path="impressprivacy" component="{ImpressPrivacy}"/>
         <Route path="onboarding" component="{Onboarding}"/>
         <PageAnimator path="/">
             <Index {beta}/>
         </PageAnimator>
+        <Route>
+            <div class="h-screen flex justify-center items-center dark:text-white">
+                <div class="mb-12">
+                    <h1 class="text-4xl font-black">404</h1>
+                    <p class="dark:text-gray-500 text-gray-700">Seite nicht gefunden.</p>
+                </div>
+            </div>
+        </Route>
     </Router>
 </main>

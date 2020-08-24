@@ -8,6 +8,7 @@
     import Subtitle from "../components/Subtitle.svelte";
     import Description from "../components/Description.svelte";
     import OnboardingCheck from "../components/OnboardingCheck.svelte";
+    import {Link} from "svelte-routing";
 
 
     export let toggleDarkmode;
@@ -44,10 +45,17 @@
     </Description>
 
     <div class="flex">
-    <button
-            class="my-auto focus:outline-none rounded-full bg-gray-800 dark:bg-gray-200 mr-2"
-            style="width: 48px; height: 48px"
-            on:click={toggleDarkmode()}><span class="dark:hidden">🌔</span><span class="hidden dark:block">🌒</span></button>
-    <p class="my-auto text-gray-700 dark:text-gray-400"><span class="dark:hidden">hell</span><span class="hidden dark:block">dunkel</span></p>
+        <button
+                class="my-auto focus:outline-none rounded-full bg-gray-800 dark:bg-gray-200 mr-2"
+                style="width: 48px; height: 48px"
+                on:click={toggleDarkmode()}><span class="dark:hidden">🌔</span><span class="hidden dark:block">🌒</span>
+        </button>
+        <p class="my-auto text-gray-700 dark:text-gray-400"><span class="dark:hidden">hell</span><span
+                class="hidden dark:block">dunkel</span></p>
     </div>
+
+    <Link to="impressprivacy">
+        <p class="text-black dark:text-gray-200 opacity-50 hover:opacity-100 w-full mt-5 transition duration-1000">
+            Impressum & Datenschutz</p>
+    </Link>
 </main>
