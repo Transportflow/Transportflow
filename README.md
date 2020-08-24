@@ -20,17 +20,6 @@ we're looking forward to programming native versions of the app.<br>
 The technology is not finally selected yet but probably will be react native,<br>
 as it's supported widely with modules and has a big community.
 
-### 🍍 Environment Variables
-
-| Key     | Description |
-| ------- | ----------- |
-| `BACKEND_URL` | URL of backend |
-| `IMPRESS_RESPONSIBLE` | Name of responsible person for impress |
-| `IMPRESS_STREET` | Street of responsible person for impress |
-| `IMPRESS_CITY` | City of responsible person for impress |
-| `IMPRESS_PHONE` | Phone of responsible person for impress |
-| `IMPRESS_MAIL` | Mail of responsible person for impress |
-
 ### 🔨 Build with
 
 - [Svelte](https://svelte.dev/)

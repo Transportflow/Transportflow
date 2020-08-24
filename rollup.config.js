@@ -8,6 +8,8 @@ import replace from '@rollup/plugin-replace';
 
 const production = !process.env.ROLLUP_WATCH;
 
+require('dotenv').config()
+
 export default {
     input: 'src/main.js',
     output: {
