@@ -118,15 +118,18 @@
             {#if allModes.length > 1}
                 {#each allModes as mode}
                     <Button onClick={toggleMode.bind(null, mode)}
-                            className="{activeModes.indexOf(mode) !== -1 ? 'dark:bg-gray-900 bg-gray-400' : ''} whitespace-no-wrap mr-2 sm:my-1 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-400 shadow-none">
-                        <span class="flex">
+                            className="{activeModes.indexOf(mode) !== -1 ? 'dark:bg-gray-900 bg-gray-400' : ''} whitespace-no-wrap flex items-center mr-2 sm:my-1 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-400 shadow-none">
                             {#each monitor.stop.products as product}
                                 {#if product.title === mode}
-                                    <img class="h-5 w-5 -ml-2 mr-2" alt="" src="{product.img}"/>
+                                    <img class="h-5 w-5 -ml-2 mr-1" alt="" src="{product.img}"/>
                                 {/if}
                             {/each}
                             {mode}
-                        </span>
+                        {#each monitor.stop.products as product}
+                            {#if product.title === mode}
+                                <span class="w-3"/>
+                            {/if}
+                        {/each}
                     </Button>
                 {/each}
             {/if}
