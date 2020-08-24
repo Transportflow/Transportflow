@@ -20,6 +20,15 @@
         modalOpen = false;
         modalOpen = true;
     }
+
+    function unregisterWorker() {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.ready.then(registration => {
+                registration.unregister();
+            });
+        }
+        window.location.reload(true);
+    }
 </script>
 
 <main>
@@ -58,4 +67,8 @@
         <p class="text-black dark:text-gray-200 opacity-50 hover:opacity-100 w-full mt-5 transition duration-1000">
             Impressum & Datenschutz</p>
     </Link>
+        <button on:click={unregisterWorker}
+                class="w-auto text-black dark:text-gray-200 opacity-50 hover:opacity-100 transition duration-1000">
+            Cache leeren
+        </button>
 </main>
