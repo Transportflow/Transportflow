@@ -3,6 +3,7 @@
     import MenuButton from "../components/MenuButton.svelte";
     import InformationModal from "../components/InformationModal.svelte";
     import OnboardingCheck from "../components/OnboardingCheck.svelte";
+    import {onMount} from "svelte";
 
     export let beta;
 
@@ -13,6 +14,16 @@
 
     // parrot emoji
     let unicode = "1f99c";
+
+    onMount(() => {
+        shown = false;
+        if (localStorage.getItem("network")) {
+            localStorage.removeItem("network");
+            shown = true;
+            title = "💚 Lieber Transportflow Nutzer";
+            slot = `<p class="dark:text-white -mt-1">Nach einer langen Entwicklungszeit haben wir mit diesem Update zahlreiche Verkehrsbetriebe hinzugefügt, sowie Design, Funktionalität und Zuverlässigkeit verbessert. Ohne Verbesserungsvorschläge und Ideen vieler Transportflow Nutzer wäre das nicht möglich gewesen.<br/><b>Vielen Dank, dass du Transportflow nutzt.</b><br/><br/>Kein Auto, kein Problem. 🦜<br/><i>Adrian - Gründer & CEO von Transportflow</i></p>`
+        }
+    })
 
     async function sharePage() {
         shown = false;
