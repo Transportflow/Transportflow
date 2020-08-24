@@ -176,11 +176,6 @@
         z-index: 10;
     }
 
-    /* DARKMODE */
-    :global(.mode-dark) .wagon .wagon-parts > .box {
-        border-color: #f7fafc transparent #f7fafc transparent;
-    }
-
     .wagon .wagon-parts > .triangle-back {
         position: absolute;
         height: 25px;
@@ -189,12 +184,6 @@
         border-color: transparent transparent #1a202c;
         overflow: hidden;
         z-index: 10;
-    }
-
-    /* DARKMODE */
-    :global(.mode-dark) .wagon .wagon-parts > .triangle-back {
-        border: 2px solid #f7fafc;
-        border-color: transparent transparent #f7fafc;
     }
 
     .wagon .wagon-parts > .triangle-top,
@@ -206,12 +195,6 @@
         border: 2px solid;
         border-radius: 15px;
         border-color: #1a202c transparent transparent transparent;
-    }
-
-    /* DARKMODE */
-    :global(.mode-dark) .wagon .wagon-parts > .triangle-top,
-    :global(.mode-dark) .wagon.first-class .wagon-parts > .triangle-back .triangle-inside {
-        border-color: #f7fafc transparent transparent transparent;
     }
 
     .wagon.engine-left .wagon-parts > .triangle-top,
@@ -257,13 +240,5 @@
     .wagon.first-class.engine-left .triangle-inside {
         background-color: #1a202c;
         color: white;
-    }
-
-
-    :global(.mode-dark) .wagon.first-class .box,
-    :global(.mode-dark) .wagon.first-class.engine-right .triangle-inside,
-    :global(.mode-dark) .wagon.first-class.engine-left .triangle-inside {
-        background-color: #f7fafc;
-        color: #1a202c;
     }
 </style>

@@ -41,9 +41,16 @@
 
             // Determine available MoTs
             monitor.stopovers.forEach(stopover => {
-                let mot = stopover.line.product.title;
-                if (allModes.indexOf(mot) === -1)
-                    allModes.push(mot);
+                let mode = stopover.line.product;
+
+                let index = -1;
+                allModes.forEach((m, i) => {
+                    if (m.title === mode.title)
+                        index = i;
+                })
+
+                if (index === -1)
+                    allModes.push(mode);
             })
             allModes = Object.assign([], allModes)
 
@@ -52,13 +59,20 @@
         })
     }
 
-    function toggleMode(name) {
-        if (activeModes.indexOf(name) === -1) {
+    function toggleMode(mode) {
+        let index = -1;
+
+        activeModes.forEach((m, i) => {
+            if (m.title === mode.title)
+                index = i;
+        })
+
+        if (index === -1) {
             // activate mode
-            activeModes.push(name);
+            activeModes.push(mode);
         } else {
             // remove active mode
-            activeModes.splice(activeModes.indexOf(name), 1);
+            activeModes.splice(index, 1);
         }
         // trigger layout reload
         activeModes = Object.assign([], activeModes);
@@ -71,7 +85,14 @@
         monitor.stopovers.forEach((stopover) => {
             if (toDisplay.length > maxDisplayedDepartures)
                 return;
-            if (activeModes.indexOf(stopover.line.product.title) !== -1 || activeModes.length === 0)
+
+            let index = -1;
+            activeModes.forEach((mode, i) => {
+                if (mode.title === stopover.line.product.title)
+                    index = i;
+            })
+
+            if (index !== -1 || activeModes.length === 0)
                 toDisplay.push(stopover)
         })
         displayedDepartures = toDisplay;
@@ -116,20 +137,11 @@
         </Title>
         <div class="mb-2 rounded overflow-scroll sm:overflow-x-hidden overflow-y-hidden scrolling-touch flex flex-no-wrap sm:flex-wrap scrollbar-none">
             {#if allModes.length > 1}
-                {#each allModes as mode}
+                {#each allModes as mode (mode.title + mode.img)}
                     <Button onClick={toggleMode.bind(null, mode)}
-                            className="{activeModes.indexOf(mode) !== -1 ? 'dark:bg-gray-900 bg-gray-400' : ''} whitespace-no-wrap flex items-center mr-2 sm:my-1 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-400 shadow-none">
-                            {#each monitor.stop.products as product}
-                                {#if product.title === mode}
-                                    <img class="h-5 w-5 -ml-2 mr-1" alt="" src="{product.img}"/>
-                                {/if}
-                            {/each}
-                            {mode}
-                        {#each monitor.stop.products as product}
-                            {#if product.title === mode}
-                                <span class="w-3"/>
-                            {/if}
-                        {/each}
+                            className="{activeModes.indexOf(mode) !== -1 ? 'dark:bg-gray-900 bg-gray-400' : ''} relative flex mr-2 sm:my-1 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-400 shadow-none">
+                        <span class="ml-6 whitespace-no-wrap">{mode.title}</span>
+                        <img class="absolute h-5 w-5 mr-1" alt="" src="{mode.img}"/>
                     </Button>
                 {/each}
             {/if}

@@ -12,6 +12,8 @@
     let title = "";
     let slot = "";
 
+    let slogan = "Kein Auto, kein Problem.";
+
     // parrot emoji
     let unicode = "1f99c";
 
@@ -23,6 +25,9 @@
             title = "💚 Lieber Transportflow Nutzer";
             slot = `<p class="dark:text-white -mt-1">Nach einer langen Entwicklungszeit haben wir mit diesem Update zahlreiche Verkehrsbetriebe hinzugefügt, sowie Design, Funktionalität und Zuverlässigkeit verbessert. Ohne Verbesserungsvorschläge und Ideen vieler Transportflow Nutzer wäre das nicht möglich gewesen.<br/><b>Vielen Dank, dass Du Transportflow nutzt.</b><br/><br/>Kein Auto, kein Problem. 🦜<br/><i>Adrian - Gründer & CEO von Transportflow</i></p>`
         }
+
+        if (new Date().getDate() === 24 && new Date().getMonth() === 7)
+            slogan = "Torben hat heute Geburtstag 🎉"
     })
 
     async function sharePage() {
@@ -61,7 +66,7 @@
                         <span class="uppercase font-semibold text-xs parrot-green rounded align-text-top text-white tracking-wider ml-1 p-1 px-2">beta</span>
                     {/if}
                 </h1>
-                <p class="ml-1 text-gray-900 dark:text-gray-100">Kein Auto, kein Problem.</p>
+                <p class="ml-1 text-gray-900 dark:text-gray-100">{slogan}</p>
             </div>
         </div>
     </div>
