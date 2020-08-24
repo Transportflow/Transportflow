@@ -10,6 +10,7 @@
     import ErrorModal from "../utils/ErrorModal.svelte";
     import {getStops, getNearbyStops} from "../data";
     import OnboardingCheck from "../components/OnboardingCheck.svelte";
+    import RegionModal from "../components/RegionModal.svelte";
 
     let inputValue = localStorage.getItem("lastStopSearch") || "";
     let loading = true;
@@ -75,6 +76,24 @@
         else
             loadStops(inputValue);
     })
+
+    let modalOpen = false;
+    let regionName = localStorage.getItem("region") || "N/A";
+
+    $: {
+        regionName;
+
+        if (inputValue === "")
+            loadNearbyStops();
+        else
+            loadStops(inputValue);
+    }
+
+    function openModal() {
+        modalOpen = false;
+        modalOpen = true;
+    }
+
 </script>
 <main>
     <OnboardingCheck/>
@@ -108,7 +127,8 @@
         {/if}
         <span> Monitor</span>
     </Title>
-    <Description>Region: <b>{localStorage.getItem("region") || "N/A"}</b></Description>
+    <Description>Region: <button on:click={openModal}><b>{regionName}</b></button></Description>
+    <RegionModal bind:regionProp={regionName} modalOpen={modalOpen}/>
 
     <InputField value={inputValue} placeholder="Haltestelle" onInput={handleInput}/>
 

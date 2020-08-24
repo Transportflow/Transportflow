@@ -92,15 +92,6 @@
             </Button>
         </BackButton>
 
-        {#if monitor != null && monitor.stop != null && monitor.stop.products != null}
-            <div class="flex mt-2 -mb-1" style="padding-left: 36px;">
-                {#each monitor.stop.products as product}
-                    {#if product.img !== ""}
-                        <img class="h-5 w-5 mr-1" alt="" src="{product.img}"/>
-                    {/if}
-                {/each}
-            </div>
-        {/if}
         <Title className="flex leading-tight">
             <img class="mr-2" style="margin-top: 0.2rem;height: 1.75rem;"
                  src="https://twemoji.maxcdn.com/v/12.1.4/72x72/1f68f.png" alt="">
@@ -128,14 +119,22 @@
                 {#each allModes as mode}
                     <Button onClick={toggleMode.bind(null, mode)}
                             className="{activeModes.indexOf(mode) !== -1 ? 'dark:bg-gray-900 bg-gray-400' : ''} whitespace-no-wrap mr-2 sm:my-1 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-400 shadow-none">
-                        {mode}
+                        <span class="flex">
+                            {#each monitor.stop.products as product}
+                                {#if product.title === mode}
+                                    <img class="h-5 w-5 -ml-2 mr-2" alt="" src="{product.img}"/>
+                                {/if}
+                            {/each}
+                            {mode}
+                        </span>
                     </Button>
                 {/each}
             {/if}
         </div>
-        <div style="max-height: 75vh;" class="scrollbar-none overflow-scroll overflow-x-hidden scrolling-touch pb-56 rounded-lg">
+        <div style="max-height: 75vh;"
+             class="scrollbar-none overflow-scroll overflow-x-hidden scrolling-touch pb-56 rounded-lg">
             {#if displayedDepartures}
-                {#each displayedDepartures as stopover (stopover.tripId+stopover.direction+stopover.line.fahrtNr+stopover.line.name+stopover.when+stopover.platform)}
+                {#each displayedDepartures as stopover (stopover.tripId + stopover.direction + stopover.line.fahrtNr + stopover.line.name + stopover.when + stopover.platform)}
                     <Departure {stopover} {city} {stopId}/>
                 {/each}
             {/if}

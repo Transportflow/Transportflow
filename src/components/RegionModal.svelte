@@ -83,7 +83,7 @@
 <ErrorModal {error} shown={errorVisible}/>
 {#if modalOpen}
     <div transition:fade="{{ duration: 200 }}" on:click={closeModalInWhitespace} id="bg"
-         style="background-color: rgba(20, 20, 20, 0.6);"
+         style="background-color: rgba(20, 20, 20, 0.6); z-index: 400;"
          class="fixed w-full h-full top-0 left-0 flex items-center justify-center overflow-auto">
         <div class="m-4 w-full sm:max-w-sm rounded-lg p-3 bg-white dark:bg-gray-800 transition-all duration-200 shadow-lg">
             <div class="px-2 pt-2">
