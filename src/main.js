@@ -7,7 +7,7 @@ if ('serviceWorker' in navigator) {
 const app = new App({
   target: document.body,
   props: {
-    beta: true
+    beta: false
   }
 });
 
