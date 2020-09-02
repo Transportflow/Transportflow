@@ -62,7 +62,7 @@ export async function getDepartures(city, stopId, onError) {
 }
 
 export async function getUpcomingStops(city, tripId, currentStopId, lineName, when, relativeTo, onError) {
-    let response = await getAxios().get(`/${city.toLowerCase()}/upcoming/${tripId}?currentstopid=${currentStopId}&linename=${lineName}&when=${when}&relativeto=${relativeTo}`).catch(err => {
+    let response = await getAxios().get(`/${city.toLowerCase()}/upcoming/${tripId.replace(/#/g, "%23")}?currentstopid=${currentStopId}&linename=${lineName}&when=${when}&relativeto=${relativeTo}`).catch(err => {
         if (err.message === "Network Error") {
             onError(NETWORK_ERROR);
             return;
