@@ -43,7 +43,7 @@ export async function getDepartures(city, stopId, onError) {
     let localOffset = (-1) * currentDate.getTimezoneOffset() * 60000;
     let stamp = Math.round(new Date(currentTime + localOffset).getTime() / 1000);
 
-    let response = await getAxios().get(`/${city.toLowerCase()}/departures/${stopId}`).catch(err => { // ?when=${stamp} - removed temporarily, was causing issues
+    let response = await getAxios().get(`/${city.toLowerCase()}/departures/${stopId}?when=${stamp}`).catch(err => {
         if (err.message === "Network Error") {
             onError(NETWORK_ERROR);
             return;
