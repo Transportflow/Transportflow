@@ -1,5 +1,6 @@
 import {getRegions} from "./regions";
 import {getStops, getNearbyStops, getDepartures, getUpcomingStops, getWagenreihung} from "./query";
+import {relativeTime, clockTime} from "./time";
 
 import axios from "axios";
 axios.defaults.baseURL = process.env.BACKEND_URL;
@@ -11,4 +12,4 @@ function getAxios() {
     return axios;
 }
 
-export {getAxios, getRegions, getStops, getNearbyStops, getDepartures, getUpcomingStops, getWagenreihung};
+export {getAxios, getRegions, getStops, getNearbyStops, getDepartures, getUpcomingStops, getWagenreihung, relativeTime, clockTime};
