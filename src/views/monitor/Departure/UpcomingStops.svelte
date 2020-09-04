@@ -48,7 +48,7 @@
                 </div>
                 <a use:link href="/monitor/{city}/{stopover.stop.id}"
                    class="whitespace-no-wrap">{stopover.stop.name}</a>
-                <p class="whitespace-no-wrap">{relativeTime(stopover.departure)} · {clockTime(stopover.departure)}</p>
+                <p class="whitespace-no-wrap">{relativeTime(stopover.departure || stopover.arrival)} · {clockTime(stopover.departure || stopover.arrival)}</p>
             </div>
         {/each}
     </div>

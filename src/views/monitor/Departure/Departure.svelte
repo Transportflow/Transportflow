@@ -63,7 +63,7 @@
         <div class="w-1/4 sm:w-1/5 md:w-1/6 bg-gray-400 dark:bg-gray-800 rounded-lg object-right p-2 sm:m-1 transition duration-200">
             <p class="text-center leading-tight">
                 <span class="font-semibold text-2xl text-gray-800 dark:text-gray-200">
-                    {relativeTime(stopover.when)}
+                    {relativeTime(stopover.when).replace("+", "")}
                 </span>
                 <br/>
                 <span class="font-thin text-gray-800 dark:text-gray-200 text-base">
