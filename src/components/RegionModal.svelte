@@ -100,20 +100,19 @@
                 {#if regions !== undefined}
                     {#each regions as {regionName, image, textColor, beta}}
                         <div id={regionName} on:click={regionClick} class="group cursor-pointer">
-
                             <div id={regionName}
                                  class={"rounded transition-all duration-200 h-10 group-hover:h-32 overflow-hidden " + (lastClicked === regionName ? "hover-shadow-outline-blue" : "")}>
                                 <div id={regionName} class="h-full"
                                      style={"background: url("+image+"); background-size: cover; background-position: center;"}>
                                     <div id={regionName}
-                                         class={"p-2 dark:text-white h-full flex "+(regionProp !== regionName ? "bg-white dark:bg-gray-800" : "bg-button-blue text-white") +" group-hover:bg-transparent group-hover:text-"+textColor+" transition duration-200"}>
+                                         class={"p-2 dark:text-white h-full flex "+(regionProp !== regionName ? "bg-white dark:bg-gray-800" : "bg-button-blue") +" group-hover:bg-transparent group-hover:text-"+textColor+" transition duration-200 " + (regionProp === regionName ? "text-white" : "")}>
                                         <h3 id={regionName} class="mr-auto font-bold"><span id={regionName} class="uppercase text-xs align-text-top font-semibold mb-1">{beta ? "beta " : ""}</span>{regionName.split("(")[0]}
                                             <span id={regionName} class="opacity-0 group-hover:opacity-100">{!!regionName.split("(")[1] ? "("+regionName.split("(")[1] : ""}</span>
                                             </h3>
                                     </div>
                                 </div>
                             </div>
-                        <div id={regionName} class="h-1"></div>
+                            <div id={regionName} class="h-1"></div>
                         </div>
                     {/each}
                     {#if regions.length === 0}
