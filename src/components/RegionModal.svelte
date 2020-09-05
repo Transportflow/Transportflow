@@ -85,7 +85,7 @@
     <div transition:fade="{{ duration: 200 }}" on:click={closeModalInWhitespace} id="bg"
          style="background-color: rgba(20, 20, 20, 0.6); z-index: 400;"
          class="fixed w-full h-full top-0 left-0 flex items-center justify-center overflow-auto">
-        <div class="m-4 w-full sm:max-w-sm rounded-lg p-3 bg-white dark:bg-gray-800 transition-all duration-200 shadow-lg">
+        <div class="m-4 w-full sm:max-w-md rounded-lg p-3 bg-white dark:bg-gray-800 transition-all duration-200 shadow-lg">
             <div class="px-2 pt-2">
                 <div class="flex justify-between mb-2">
                     <h1 class="text-gray-900 dark:text-gray-100 text-lg font-semibold">Region auswählen</h1>
@@ -96,12 +96,13 @@
                 <InputField placeholder="Suche" onInput={searchRegion}/>
                 <Divider className="mt-2"/>
             </div>
-            <div style="max-height: 300px;" class="overflow-y-scroll p-2 transition-all duration-200">
+            <div style="max-height: 350px;" class="overflow-y-scroll p-2 transition-all duration-200">
                 {#if regions !== undefined}
                     {#each regions as {regionName, image, textColor, beta}}
                         <div id={regionName} on:click={regionClick} class="group cursor-pointer">
+
                             <div id={regionName}
-                                 class={"mb-1 rounded transition-all duration-200 h-10 group-hover:h-32 overflow-hidden " + (lastClicked === regionName ? "hover-shadow-outline-blue" : "")}>
+                                 class={"rounded transition-all duration-200 h-10 group-hover:h-32 overflow-hidden " + (lastClicked === regionName ? "hover-shadow-outline-blue" : "")}>
                                 <div id={regionName} class="h-full"
                                      style={"background: url("+image+"); background-size: cover; background-position: center;"}>
                                     <div id={regionName}
@@ -112,6 +113,7 @@
                                     </div>
                                 </div>
                             </div>
+                        <div id={regionName} class="h-1"></div>
                         </div>
                     {/each}
                     {#if regions.length === 0}
