@@ -105,7 +105,7 @@
                                 <div id={regionName} class="h-full"
                                      style={"background: url("+image+"); background-size: cover; background-position: center;"}>
                                     <div id={regionName}
-                                         class={"p-2 dark:text-white h-full flex "+(regionProp !== regionName ? "bg-white dark:bg-gray-800" : "bg-button-blue") +" group-hover:bg-transparent group-hover:text-"+textColor+" transition duration-200 " + (regionProp === regionName ? "text-white" : "")}>
+                                         class={"p-2 dark:text-white h-full flex "+(regionProp !== regionName ? "bg-white dark:bg-gray-800" : "bg-button-blue text-white") +" group-hover:bg-transparent hover-text-"+textColor+" transition duration-200"}>
                                         <h3 id={regionName} class="mr-auto font-bold"><span id={regionName} class="uppercase text-xs align-text-top font-semibold mb-1">{beta ? "beta " : ""}</span>{regionName.split("(")[0]}
                                             <span id={regionName} class="opacity-0 group-hover:opacity-100">{!!regionName.split("(")[1] ? "("+regionName.split("(")[1] : ""}</span>
                                             </h3>
