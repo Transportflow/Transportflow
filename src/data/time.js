@@ -1,5 +1,9 @@
 export function relativeTime(when) {
-    let output = (new Date(Date.parse(when + " UTC")).getTime() - Date.now()) / 60000
+    return relativeToTime(when, Date.now())
+}
+
+export function relativeToTime(when, relative) {
+    let output = (new Date(Date.parse(when + " UTC")).getTime() - relative) / 60000
     if (output > 0)
         output = Math.floor(output)
     else

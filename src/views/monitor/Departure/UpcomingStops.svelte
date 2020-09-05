@@ -2,7 +2,7 @@
     import {link} from "svelte-routing";
     import Spinner from 'svelte-spinner';
     import {getUpcomingStops} from "../../../data";
-    import {relativeTime, clockTime} from "../../../data"
+    import {relativeTime, relativeToTime, clockTime} from "../../../data"
 
     export let city, tripId, currentStopId, lineName, when, relativeTo, relativeWhen;
     let error = null;
@@ -48,7 +48,7 @@
                 </div>
                 <a use:link href="/monitor/{city}/{stopover.stop.id}"
                    class="whitespace-no-wrap">{stopover.stop.name}</a>
-                <p class="whitespace-no-wrap">{relativeTime(stopover.departure || stopover.arrival)} · {clockTime(stopover.departure || stopover.arrival)}</p>
+                <p class="whitespace-no-wrap">{relativeToTime(stopover.arrival || stopover.departure, new Date(Date.parse(relativeTo + " UTC")))} · {clockTime(stopover.arrival || stopover.departure)}</p>
             </div>
         {/each}
     </div>
