@@ -39,6 +39,11 @@
         }).then((res) => {
             monitor = res;
 
+            if (monitor === null) {
+                loading = false;
+                return
+            }
+
             // Determine available MoTs
             monitor.stopovers.forEach(stopover => {
                 let mode = stopover.line.product;
@@ -127,7 +132,7 @@
                     />
                 </div>
             {/if}
-            {#if monitor == null || monitor.stop == null}
+            {#if loading && (monitor == null || monitor.stop == null)}
                 <span class="py-1"> Lade...</span>
             {:else if monitor != null && monitor.stop != null}
                 <span class="py-1"> {monitor.stop.name}</span>
@@ -135,6 +140,9 @@
                 <span class="py-1"> Fehler</span>
             {/if}
         </Title>
+        {#if monitor === null}
+            <p>Keine Abfahrten gefunden.</p>
+        {/if}
         <div class="mb-2 rounded overflow-scroll sm:overflow-x-hidden overflow-y-hidden scrolling-touch flex flex-no-wrap sm:flex-wrap scrollbar-none">
             {#if allModes.length > 1}
                 {#each allModes as mode (mode.title + mode.img)}
