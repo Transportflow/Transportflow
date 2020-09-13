@@ -8,6 +8,7 @@
     import InformationModal from "./InformationModal.svelte";
 
     let addRegionVisible = false;
+
     function showRegionSuggestion() {
         closeModal();
         addRegionVisible = false;
@@ -52,6 +53,7 @@
     getRegions((err) => {
         error = err;
     }).then((res) => {
+        console.log(res)
         regions = res;
         allRegions = res;
     });
@@ -79,7 +81,8 @@
     }
 </script>
 
-<InformationModal shown={addRegionVisible} title="🗺 Region vorschlagen" text="<b>Transportflow ist nicht in Ihrer Region verfügbar?</b><br/>Schreiben Sie uns einfach eine Mail, in der Sie erläutern, warum wir Ihre Region hinzufügen sollten 📫 <br/><br/><i>hello@transportflow.online</i>" />
+<InformationModal shown={addRegionVisible} title="🗺 Region vorschlagen"
+                  text="<b>Transportflow ist nicht in Ihrer Region verfügbar?</b><br/>Schreiben Sie uns einfach eine Mail, in der Sie erläutern, warum wir Ihre Region hinzufügen sollten 📫 <br/><br/><i>hello@transportflow.online</i>"/>
 <ErrorModal {error} shown={errorVisible}/>
 {#if modalOpen}
     <div transition:fade="{{ duration: 200 }}" on:click={closeModalInWhitespace} id="bg"
@@ -98,26 +101,39 @@
             </div>
             <div style="max-height: 350px;" class="overflow-y-scroll p-2 transition-all duration-200">
                 {#if regions !== undefined}
-                    {#each regions as {regionName, image, textColor, beta}}
+                    {#each regions as {regionName, image, textColor, products, beta}}
                         <div id={regionName} on:click={regionClick} class="group cursor-pointer">
                             <div id={regionName}
-                                 class={"rounded transition-all duration-200 h-10 group-hover:h-32 overflow-hidden " + (lastClicked === regionName ? "hover-shadow-outline-blue" : "")}>
-                                <div id={regionName} class="h-full"
+                                 class={"rounded transition-all duration-200 h-10 group-hover:h-40 overflow-hidden " + (lastClicked === regionName ? "hover-shadow-outline-blue" : "")}>
+                                <div id={regionName} class="h-32"
                                      style={"background: url("+image+"); background-size: cover; background-position: center;"}>
                                     <div id={regionName}
                                          class={"p-2 dark:text-white h-full flex "+(regionProp !== regionName ? "bg-white dark:bg-gray-800" : "bg-button-blue text-white") +" group-hover:bg-transparent hover-text-"+textColor+" transition duration-200"}>
-                                        <h3 id={regionName} class="mr-auto font-bold"><span id={regionName} class="uppercase text-xs align-text-top font-semibold mb-1">{beta ? "beta " : ""}</span>{regionName.split("(")[0]}
-                                            <span id={regionName} class="opacity-0 group-hover:opacity-100">{!!regionName.split("(")[1] ? "("+regionName.split("(")[1] : ""}</span>
-                                            </h3>
+                                        <h3 id={regionName} class="mr-auto font-bold"><span id={regionName}
+                                                                                            class="uppercase text-xs align-text-top font-semibold mb-1">{beta ? "beta " : ""}</span>{regionName.split("(")[0]}
+                                            <span id={regionName}
+                                                  class="opacity-0 group-hover:opacity-100">{!!regionName.split("(")[1] ? "(" + regionName.split("(")[1] : ""}</span>
+                                        </h3>
                                     </div>
+                                </div>
+                                <div class="bg-gray-900 h-8 flex pl-1 py-auto">
+                                    {#each products as {img, title}}
+                                        {#if !img.includes("walk") && !img.includes("stairs") && !img.includes("escalator") && !img.includes("elevator") && !img.includes("sit")}
+                                            <img class="w-6 h-6 ml-1" style="margin-top: 0.25rem;"
+                                                 alt="{title}"
+                                                 src="{img}"/>
+                                        {/if}
+                                    {/each}
                                 </div>
                             </div>
                             <div id={regionName} class="h-1"></div>
                         </div>
                     {/each}
                     {#if regions.length === 0}
-                        <button on:click={showRegionSuggestion} class="p-2 w-full rounded dark:text-white h-full flex bg-white hover:bg-gray-300 dark-hover:bg-gray-900 dark:bg-gray-800 transition duration-200">
-                            <ion-icon name="add-circle-outline" class="mr-1" style="zoom: 1.5;"></ion-icon> Region vorschlagen
+                        <button on:click={showRegionSuggestion}
+                                class="p-2 w-full rounded dark:text-white h-full flex bg-white hover:bg-gray-300 dark-hover:bg-gray-900 dark:bg-gray-800 transition duration-200">
+                            <ion-icon name="add-circle-outline" class="mr-1" style="zoom: 1.5;"></ion-icon>
+                            Region vorschlagen
                         </button>
                     {/if}
                 {:else}
