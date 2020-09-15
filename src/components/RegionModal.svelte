@@ -104,7 +104,7 @@
                     {#each regions as {regionName, image, textColor, products, beta}}
                         <div id={regionName} on:click={regionClick} class="group cursor-pointer">
                             <div id={regionName}
-                                 class={"rounded transition-all duration-200 h-10 group-hover:h-40 overflow-hidden " + (lastClicked === regionName ? "hover-shadow-outline-blue" : "")}>
+                                 class={"rounded transition-all duration-200 h-10 group-hover:h-32 overflow-hidden " + (lastClicked === regionName ? "hover-shadow-outline-blue" : "")}>
                                 <div id={regionName} class="h-32"
                                      style={"background: url("+image+"); background-size: cover; background-position: center;"}>
                                     <div id={regionName}
@@ -115,15 +115,6 @@
                                                   class="opacity-0 group-hover:opacity-100">{!!regionName.split("(")[1] ? "(" + regionName.split("(")[1] : ""}</span>
                                         </h3>
                                     </div>
-                                </div>
-                                <div class="bg-gray-900 h-8 flex pl-1 py-auto">
-                                    {#each products as {img, title}}
-                                        {#if !img.includes("walk") && !img.includes("stairs") && !img.includes("escalator") && !img.includes("elevator") && !img.includes("sit")}
-                                            <img class="w-6 h-6 ml-1" style="margin-top: 0.25rem;"
-                                                 alt="{title}"
-                                                 src="{img}"/>
-                                        {/if}
-                                    {/each}
                                 </div>
                             </div>
                             <div id={regionName} class="h-1"></div>
