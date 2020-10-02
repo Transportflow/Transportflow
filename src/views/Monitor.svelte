@@ -1,6 +1,6 @@
 <script>
-    import {Link} from "svelte-routing";
     import {onMount} from "svelte";
+    import {Link} from "svelte-routing";
     import BackButton from "../components/BackButton.svelte";
     import Button from "../components/Button.svelte";
     import Description from "../components/Description.svelte";
@@ -8,7 +8,7 @@
     import InputField from "../components/InputField.svelte";
     import Spinner from 'svelte-spinner';
     import ErrorModal from "../utils/ErrorModal.svelte";
-    import {getStops, getNearbyStops} from "../data";
+    import {getNearbyStops, getStops} from "../data";
     import OnboardingCheck from "../components/OnboardingCheck.svelte";
     import RegionModal from "../components/RegionModal.svelte";
 
@@ -40,6 +40,7 @@
         }).then(res => {
             if (value !== inputValue)
                 return;
+            processStops(res)
             stops = res;
             loading = false;
         })
@@ -48,11 +49,14 @@
     function loadNearbyStops() {
         loading = true;
         navigator.geolocation.getCurrentPosition(function (location) {
+            latitude = location.coords.latitude
+            longitude = location.coords.longitude
             getNearbyStops(location.coords.latitude, location.coords.longitude, (err) => {
                 error = null;
                 error = err;
                 loading = false;
             }).then(res => {
+                processStops(res)
                 nearbyStops = res;
                 stops = nearbyStops;
                 loading = false;
@@ -61,6 +65,23 @@
             loading = false;
         })
 
+    }
+
+    function processStops(stops) {
+        stops.forEach(stop => {
+            const stopLatitude = stop.location.latitude
+            const stopLongitude = stop.location.longitude
+
+            const lat1 = latitude * Math.PI / 180; // φ, λ in radians
+            const lat2 = stopLatitude * Math.PI / 180;
+            const deltaLon = (stopLongitude - longitude) * Math.PI / 180;
+
+            const y = Math.sin(deltaLon) * Math.cos(lat2);
+            const x = Math.cos(lat1) * Math.sin(lat2) -
+                Math.sin(lat1) * Math.cos(lat2) * Math.cos(deltaLon);
+            const gamma = Math.atan2(y, x);
+            stop.bearing = (gamma * 180 / Math.PI + 360) % 360
+        })
     }
 
     function clearInput() {
@@ -75,8 +96,20 @@
             loadNearbyStops();
         else
             loadStops(inputValue);
+
+
+        if ("DeviceOrientationEvent" in window && DeviceOrientationEvent.requestPermission) {
+            console.log("Supports Orientation! 🎉")
+            requestPermission()
+            window.addEventListener('deviceorientation', function (event) {
+                compass = event.webkitCompassHeading || event.alpha
+            });
+        }
     })
 
+    let latitude = null;
+    let longitude = null;
+    let compass = null;
     let modalOpen = false;
     let regionName = localStorage.getItem("region") || "N/A";
 
@@ -94,6 +127,13 @@
         modalOpen = true;
     }
 
+    function requestPermission() {
+        DeviceOrientationEvent.requestPermission().then(value => {
+            console.log(value)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
 </script>
 <main>
     <OnboardingCheck/>
@@ -127,7 +167,9 @@
         {/if}
         <span> Monitor</span>
     </Title>
-    <Description>Region: <button on:click={openModal}><b>{regionName}</b></button></Description>
+    <Description>Region:
+        <button on:click={openModal}><b>{regionName}</b></button>
+    </Description>
     <RegionModal bind:regionProp={regionName} modalOpen={modalOpen}/>
 
     <InputField value={inputValue} placeholder="Haltestelle" onInput={handleInput}/>
@@ -151,7 +193,12 @@
                         <p style="font-size: 0.965rem;">{stop.name}</p>
                     </div>
                     <p style="font-size: 0.965rem;"
-                       class="mt-auto text-gray-600">{stop.distance > 0 ? stop.distance + "m" : ""}</p>
+                       class="mt-auto text-gray-600">{stop.distance > 0 ? stop.distance + "m" : ""}
+                        {#if compass != null}
+                            <ion-icon name="navigate"
+                                      style={"transform: rotate("+ ((stop.bearing-compass) -45) + "deg)"}></ion-icon>
+                        {/if}
+                    </p>
                 </div>
             </Link>
         {/each}
