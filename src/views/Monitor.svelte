@@ -69,6 +69,9 @@
 
     function processStops(stops) {
         stops.forEach(stop => {
+            if (!stop.location)
+                return
+
             const stopLatitude = stop.location.latitude
             const stopLongitude = stop.location.longitude
 
