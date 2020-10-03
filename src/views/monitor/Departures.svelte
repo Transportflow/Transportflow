@@ -8,6 +8,7 @@
     import Button from "../../components/Button.svelte";
     import Title from "../../components/Title.svelte";
     import Departure from "./Departure/Departure.svelte";
+    import Map from "./Map.svelte";
 
     let loading = true;
     let error = null;
@@ -18,6 +19,7 @@
 
     let maxDisplayedDepartures = 17;
     let displayedDepartures = [];
+    let showMap = false;
 
     let activeModes = [];
     let allModes = [];
@@ -144,7 +146,11 @@
             <p>Keine Abfahrten gefunden.</p>
         {/if}
         <div class="mb-2 rounded overflow-scroll sm:overflow-x-hidden overflow-y-hidden scrolling-touch flex flex-no-wrap sm:flex-wrap scrollbar-none">
-            {#if allModes.length > 1}
+            <Button onClick={() => {showMap = !showMap;}}
+                    className="{showMap ? 'dark:bg-gray-900 bg-gray-400' : ''} mr-2 sm:my-1 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-400 shadow-none">
+                <ion-icon name="map" class="pt-1 text-gray-700 dark:text-gray-400"></ion-icon>
+            </Button>
+            {#if allModes.length > 1 && !showMap}
                 {#each allModes as mode (mode.title + mode.img)}
                     <Button onClick={toggleMode.bind(null, mode)}
                             className="{activeModes.indexOf(mode) !== -1 ? 'dark:bg-gray-900 bg-gray-400' : ''} relative flex mr-2 sm:my-1 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-400 shadow-none">
@@ -156,7 +162,9 @@
         </div>
         <div style="max-height: 75vh;"
              class="scrollbar-none overflow-scroll overflow-x-hidden scrolling-touch pb-56 rounded-lg">
-            {#if displayedDepartures}
+            {#if showMap}
+                <Map lat={monitor.stop.location.latitude} lng={monitor.stop.location.longitude} />
+            {:else if displayedDepartures}
                 {#each displayedDepartures as stopover (stopover.tripId + stopover.direction + stopover.line.fahrtNr + stopover.line.name + stopover.when + stopover.platform)}
                     <Departure {stopover} {city} {stopId}/>
                 {/each}
