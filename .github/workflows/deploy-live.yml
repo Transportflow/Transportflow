@@ -28,7 +28,7 @@ jobs:
         # Username used to log in to a Docker registry. If not set then no login will occur
         username: ${{ secrets.DOCKER_USER }}
         # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
-        password: ${{ secrets.ACCESS_TOKEN }}
+        password: ${{ secrets.GITHUB_TOKEN }}
         # Server address of Docker registry. If not set then will default to Docker Hub
         registry: docker.pkg.github.com
         # Docker repository to tag the image with
