@@ -69,7 +69,7 @@
 
     function processStops(stops) {
         stops.forEach(stop => {
-            if (!stop.location)
+            if (stop.location === undefined)
                 return
 
             const stopLatitude = stop.location.latitude
@@ -101,12 +101,19 @@
             loadStops(inputValue);
 
 
-        if ("DeviceOrientationEvent" in window && DeviceOrientationEvent.requestPermission) {
+        if ("DeviceOrientationEvent" in window) {
             console.log("Supports Orientation! 🎉")
-            requestPermission()
-            window.addEventListener('deviceorientation', function (event) {
-                compass = event.webkitCompassHeading || event.alpha
-            });
+
+            requestPermission().then(result => {
+                console.log(result)
+                console.log("Adding event listener")
+                window.addEventListener('deviceorientation', function (event) {
+                    console.log(event)
+                    compass = event.webkitCompassHeading || event.alpha
+                });
+            }).catch(err => {
+                console.log("Permission failed!")
+            })
         }
     })
 
@@ -130,11 +137,17 @@
         modalOpen = true;
     }
 
-    function requestPermission() {
-        DeviceOrientationEvent.requestPermission().then(value => {
-            console.log(value)
-        }).catch(err => {
-            console.log(err)
+    async function requestPermission() {
+        return new Promise((resolve, reject) => {
+            if (DeviceOrientationEvent.requestPermission) {
+                DeviceOrientationEvent.requestPermission().then(value => {
+                    resolve(value)
+                }).catch(err => {
+                    reject(err)
+                })
+            } else {
+                resolve(null)
+            }
         })
     }
 </script>
@@ -196,7 +209,8 @@
                         <p style="font-size: 0.965rem;">{stop.name}</p>
                     </div>
                     <p style="font-size: 0.965rem;"
-                       class="mt-auto text-gray-600">{stop.distance > 0 ? stop.distance + "m" : ""}
+                       class="mt-auto text-gray-600">
+                        {stop.distance > 0 ? stop.distance + "m" : ""}
                         {#if compass != null}
                             <ion-icon name="navigate"
                                       style={"transform: rotate("+ ((stop.bearing-compass) -45) + "deg)"}></ion-icon>
