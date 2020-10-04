@@ -16,14 +16,14 @@ jobs:
       uses: benjlevesque/short-sha@v1.1
       id: short-sha
       with:
-        length: 6
+        length: 7
     - name: Checkout master
       uses: actions/checkout@master
       
     - uses: TickX/var-to-dotenv@v1.1.1
       with:
         key: 'VERSION'
-        value: 'v${{ env.SHA }}'
+        value: ${{ env.SHA }}
     - uses: TickX/var-to-dotenv@v1.1.1
       with:
         key: 'BACKEND_URL'
