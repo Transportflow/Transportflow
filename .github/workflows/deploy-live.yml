@@ -18,6 +18,8 @@ jobs:
     steps:
     - name: Tag output
       run: echo "Using tag ${{ github.event.inputs.tag }}"
+    - name: Checkout master
+      uses: actions/checkout@master
     - name: Build and push Docker images
       # You may pin to the exact commit or the version.
       # uses: docker/build-push-action@ab83648e2e224cfeeab899e23b639660765c3a89
@@ -33,7 +35,6 @@ jobs:
         repository: transportflow/transportflow-web/frontend
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
         tags: ${{ github.event.inputs.tag }}
-        path: /
         # Whether to push the image
         push: true
     - name: Install doctl
