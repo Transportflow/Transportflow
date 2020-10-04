@@ -33,6 +33,7 @@ jobs:
         repository: transportflow/transportflow-web/frontend
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
         tags: ${{ github.event.inputs.tag }}
+        path: /
         # Whether to push the image
         push: true
     - name: Install doctl
