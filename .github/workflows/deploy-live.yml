@@ -41,6 +41,8 @@ jobs:
       uses: digitalocean/action-doctl@v2
       with:
         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+    - name: Save DigitalOcean kubeconfig
+      run: doctl kubernetes cluster kubeconfig save k8s-1-16-6-do-2-fra1-1584545136798
     - name: Get deployments
       run: kubectl get deployments -n transportflow
 
