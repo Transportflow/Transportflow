@@ -32,7 +32,7 @@ jobs:
 
     - run: echo $TEXT
       env:
-        TEXT: ${{ steps.hello.outputs }}
+        TEXT: ${{ steps.hello.outputs.text }}
     
     - name: Build and push Docker images
       # You may pin to the exact commit or the version.
