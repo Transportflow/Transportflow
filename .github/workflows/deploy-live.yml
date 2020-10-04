@@ -1,9 +1,7 @@
 # This will trigger updating kubernetes to specified container version
 
-name: Manual workflow
+name: Build and Deploy Master to Live
 
-# Controls when the action will run. Workflow runs when manually triggered using the UI
-# or API.
 on:
   workflow_dispatch:
     # Inputs the workflow accepts.
@@ -13,15 +11,34 @@ on:
         default: 'latest'
         required: true
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "greet"
-  greet:
-    # The type of runner that the job will run on
+  buildAndPush:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Test output
+    - name: Tag output
       run: echo "Using tag ${{ github.event.inputs.tag }}"
+    - name: Build and push Docker images
+      # You may pin to the exact commit or the version.
+      # uses: docker/build-push-action@ab83648e2e224cfeeab899e23b639660765c3a89
+      uses: docker/build-push-action@v1.1.1
+      with:
+        # Username used to log in to a Docker registry. If not set then no login will occur
+        username: ${{ secrets.DOCKER_USER }}
+        # Password or personal access token used to log in to a Docker registry. If not set then no login will occur
+        password: ${{ secrets.ACCESS_TOKEN }}
+        # Server address of Docker registry. If not set then will default to Docker Hub
+        registry: https://docker.pkg.github.com
+        # Docker repository to tag the image with
+        repository: Transportflow/Transportflow-Web/frontend
+        # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
+        tags: ${{ github.event.inputs.tag }}
+        # Whether to push the image
+        push: true
+    - name: Install doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+    - name: Get deployments
+      run: kubectl get deployments -n transportflow
+
