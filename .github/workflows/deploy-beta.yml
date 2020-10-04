@@ -12,15 +12,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Tag output
-      run: echo "Using tag ${{ github.sha }}"
+    - name: Getting short version sha
+      uses: benjlevesque/short-sha@v1.1
+      id: short-sha
+      with:
+        length: 6
     - name: Checkout master
       uses: actions/checkout@master
       
     - uses: TickX/var-to-dotenv@v1.1.1
       with:
         key: 'VERSION'
-        value: ${{ github.sha }}
+        value: 'v${{ env.SHA }}'
     - uses: TickX/var-to-dotenv@v1.1.1
       with:
         key: 'BACKEND_URL'
@@ -64,7 +67,7 @@ jobs:
         # Docker repository to tag the image with
         repository: transportflow/transportflow-web/beta
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
-        tags: ${{ github.sha }}
+        tags: ${{ env.SHA }}
         # Whether to push the image
         push: true
     - name: Install doctl
@@ -74,5 +77,5 @@ jobs:
     - name: Save DigitalOcean kubeconfig
       run: doctl kubernetes cluster kubeconfig save k8s-1-16-6-do-2-fra1-1584545136798
     - name: Update deployment
-      run: kubectl set image deployments/transportflow-beta transportflow-beta=docker.pkg.github.com/transportflow/transportflow-web/beta:${{ github.sha }} -n transportflow
+      run: kubectl set image deployments/transportflow-beta transportflow-beta=docker.pkg.github.com/transportflow/transportflow-web/beta:${{ env.SHA }} -n transportflow
 

@@ -24,7 +24,7 @@ jobs:
     - uses: TickX/var-to-dotenv@v1.1.1
       with:
         key: 'VERSION'
-        value: ${{ github.event.inputs.tag }}
+        value: 'v${{ github.event.inputs.tag }}'
     - uses: TickX/var-to-dotenv@v1.1.1
       with:
         key: 'BACKEND_URL'
