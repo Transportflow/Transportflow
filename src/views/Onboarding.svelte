@@ -23,14 +23,18 @@
     })
 
     function loadRandomWallpaper() {
-        let selection = [];
-        bgs.forEach((bg) => {
-            if (document.getElementById("onboarding").classList.contains("bg-" + bg))
-                document.getElementById("onboarding").classList.remove("bg-" + bg)
-            else
-                selection.push(bg);
-        })
-        document.getElementById("onboarding").classList.add("bg-" + selection[Math.round(Math.random() * (selection.length - 1))])
+        try {
+            let selection = [];
+            bgs.forEach((bg) => {
+                if (document.getElementById("onboarding").classList.contains("bg-" + bg))
+                    document.getElementById("onboarding").classList.remove("bg-" + bg)
+                else
+                    selection.push(bg);
+            })
+            document.getElementById("onboarding").classList.add("bg-" + selection[Math.round(Math.random() * (selection.length - 1))])
+        } catch (e) {
+            
+        }
         setTimeout(loadRandomWallpaper, 7000)
     }
 </script>
