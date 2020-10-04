@@ -34,6 +34,7 @@ export default {
             "process.env.NODE_ENV": production ? "'production'" : "'development'",
             process: JSON.stringify({
                 env: {
+                    VERSION: process.env.VERSION || "0.0.0",
                     BACKEND_URL: process.env.BACKEND_URL || "https://backend.transportflow.online",
                     MAPBOX_TOKEN: process.env.MAPBOX_TOKEN,
                     IMPRESS_RESPONSIBLE: process.env.IMPRESS_RESPONSIBLE,
