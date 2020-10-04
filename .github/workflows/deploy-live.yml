@@ -24,6 +24,8 @@ jobs:
       # You may pin to the exact commit or the version.
       # uses: docker/build-push-action@ab83648e2e224cfeeab899e23b639660765c3a89
       uses: docker/build-push-action@v1.1.1
+      env:
+        IMPRESS_RESPONSIBLE: ${{ secrets.IMPRESS_RESPONSIBLE }}
       with:
         # Username used to log in to a Docker registry. If not set then no login will occur
         username: ${{ secrets.DOCKER_USER }}
