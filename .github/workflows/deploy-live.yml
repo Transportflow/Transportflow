@@ -44,5 +44,5 @@ jobs:
     - name: Save DigitalOcean kubeconfig
       run: doctl kubernetes cluster kubeconfig save k8s-1-16-6-do-2-fra1-1584545136798
     - name: Get deployments
-      run: kubectl get deployments -n transportflow
+      run: kubectl set image deployments/transportflow transportflow=docker.pkg.github.com/transportflow/transportflow-web/frontend:${{ github.event.inputs.tag }}
 
