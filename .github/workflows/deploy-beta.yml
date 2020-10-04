@@ -1,6 +1,6 @@
 # This will trigger updating kubernetes to specified container version
 
-name: Build and Deploy Master to Live
+name: Build and Deploy Master to Beta
 
 on:
   push:
