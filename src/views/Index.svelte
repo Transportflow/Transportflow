@@ -25,9 +25,6 @@
             title = "💚 Lieber Transportflow Nutzer";
             slot = `<p class="dark:text-white -mt-1">Nach einer langen Entwicklungszeit haben wir mit diesem Update zahlreiche Verkehrsbetriebe hinzugefügt, sowie Design, Funktionalität und Zuverlässigkeit verbessert. Ohne Verbesserungsvorschläge und Ideen vieler Transportflow Nutzer wäre das nicht möglich gewesen.<br/><b>Vielen Dank, dass Du Transportflow nutzt.</b><br/><br/>Kein Auto, kein Problem. 🦜<br/><i>Adrian - Gründer & CEO von Transportflow</i></p>`
         }
-
-        if (new Date().getDate() === 24 && new Date().getMonth() === 7)
-            slogan = "Torben hat heute Geburtstag 🎉"
     })
 
     async function sharePage() {
@@ -71,7 +68,7 @@
         </div>
     </div>
 
-    <div class="rounded-lg overflow-hidden ">
+    <div class="rounded-lg overflow-hidden">
         <Link to="monitor">
             <MenuButton icon="bus" name="Monitor" description="Echtzeit Fahrplanauskunft"/>
         </Link>
@@ -88,4 +85,6 @@
         <hr class="mb-1 border-0"/>
         <MenuButton onClick={sharePage} icon="share" name="Teilen"/>
     </div>
+
+    <p class="mt-3 select-none text-center text-gray-400 dark:text-gray-700 transition duration-200"><span class="font-medium">{process.env.VERSION}</span></p>
 </main>

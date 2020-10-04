@@ -1,7 +1,7 @@
 import App from "./App.svelte";
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/serviceWorker.js')
+  navigator.serviceWorker.register('/serviceWorker.js?version='+process.env.VERSION)
 }
 
 const app = new App({
