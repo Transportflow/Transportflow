@@ -25,6 +25,14 @@ jobs:
       with:
         key: 'IMPRESS_RESPONSIBLE'
         value: ${{secrets.IMPRESS_RESPONSIBLE}}
+    - uses: pCYSl5EDgo/cat@master
+      id: hello
+      with:
+        path: .env
+
+    - run: echo $TEXT
+      env:
+        TEXT: ${{ steps.hello.outputs }}
     
     - name: Build and push Docker images
       # You may pin to the exact commit or the version.
