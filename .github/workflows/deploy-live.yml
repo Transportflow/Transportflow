@@ -30,7 +30,7 @@ jobs:
         # Server address of Docker registry. If not set then will default to Docker Hub
         registry: https://docker.pkg.github.com
         # Docker repository to tag the image with
-        repository: Transportflow/Transportflow-Web/frontend
+        repository: transportflow/transportflow-web/frontend
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
         tags: ${{ github.event.inputs.tag }}
         # Whether to push the image
