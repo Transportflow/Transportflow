@@ -62,7 +62,7 @@ jobs:
         # Server address of Docker registry. If not set then will default to Docker Hub
         registry: docker.pkg.github.com
         # Docker repository to tag the image with
-        repository: transportflow/transportflow-web/frontend
+        repository: transportflow/transportflow-web/beta
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
         tags: ${{ github.sha }}
         # Whether to push the image
@@ -74,5 +74,5 @@ jobs:
     - name: Save DigitalOcean kubeconfig
       run: doctl kubernetes cluster kubeconfig save k8s-1-16-6-do-2-fra1-1584545136798
     - name: Update deployment
-      run: kubectl set image deployments/transportflow-beta transportflow-beta=docker.pkg.github.com/transportflow/transportflow-web/frontend:${{ github.sha }} -n transportflow
+      run: kubectl set image deployments/transportflow-beta transportflow-beta=docker.pkg.github.com/transportflow/transportflow-web/beta:${{ github.sha }} -n transportflow
 
