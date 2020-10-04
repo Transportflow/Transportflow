@@ -15,6 +15,11 @@
             loading = false;
         };
     })
+
+    function openMapApp() {
+        const url = "http://maps.apple.com/?daddr=" + lat + "," + lng + "&dirflg=w";
+        window.open(url, "_blank");
+    }
 </script>
 
 <div class="flex justify-center items-center">
@@ -27,5 +32,5 @@
                 gap="40"
         />
     {/if}
-    <img alt="map location" class="rounded-lg" src={imageSource} bind:this={mapImage}/>
+    <img alt="map location" class="rounded-lg cursor-pointer" src={imageSource} bind:this={mapImage} on:click={openMapApp}/>
 </div>
