@@ -143,7 +143,12 @@
             {/if}
         </Title>
         {#if monitor === null}
-            <p>Keine Abfahrten gefunden.</p>
+            <div class="flex items-center justify-center h-64">
+                <div class="text-gray-700 dark:text-gray-300 text-center">
+                    <p class="text-4xl -mb-2"><ion-icon name="alert-circle"></ion-icon></p>
+                    <p>Keine Abfahrten gefunden</p>
+                </div>
+            </div>
         {/if}
         <div class="mb-2 rounded overflow-scroll sm:overflow-x-hidden overflow-y-hidden scrolling-touch flex flex-no-wrap sm:flex-wrap scrollbar-none">
             {#if monitor !== null && !loading}
