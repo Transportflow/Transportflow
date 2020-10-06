@@ -1,6 +1,6 @@
 
 [![Website](https://img.shields.io/website?label=transportflow&up_message=online&url=https%3A%2F%2Ftransportflow.online)](https://transportflow.online)
-[![Website](https://img.shields.io/website?label=betaseed&up_message=online&url=https%3A%2F%2Fbetaseed.transportflow.online)](https://betaseed.transportflow.online)
+[![Website](https://img.shields.io/website?label=betaseed&up_message=online&up_color=yellow&url=https%3A%2F%2Fbetaseed.transportflow.online)](https://betaseed.transportflow.online)
 
 # 🦜 Transportflow
 
