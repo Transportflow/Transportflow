@@ -1,9 +1,10 @@
-*work in progress*
+
+[![Website](https://img.shields.io/website?label=transportflow&up_message=online&url=https%3A%2F%2Ftransportflow.online)](https://transportflow.online)
+[![Website](https://img.shields.io/website?label=betaseed&up_message=online&url=https%3A%2F%2Fbetaseed.transportflow.online)](https://betaseed.transportflow.online)
 
 # 🦜 Transportflow
 
 Transportflow is a webpage to help people use public transport conviniently in germany.<br>
-[Live Demo 🛰](https://transportflow.online/)
 
 ### 📚 History
 
