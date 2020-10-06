@@ -151,10 +151,10 @@
             </div>
         {/if}
         <div class="mb-2 rounded overflow-scroll sm:overflow-x-hidden overflow-y-hidden scrolling-touch flex flex-no-wrap sm:flex-wrap scrollbar-none">
-            {#if monitor !== null && !loading}
-                <Button style="display: flex; align-items: center" onClick={() => {showMap = !showMap;}}
+            {#if monitor !== null && monitor.stopovers != undefined}
+                <Button style="display: flex; align-items: center; height: 37px" onClick={() => {showMap = !showMap;}}
                         className="{showMap ? 'dark:bg-gray-900 bg-gray-400' : ''} mr-2 sm:my-1 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-400 shadow-none">
-                    <ion-icon style="padding-top: 0" name="map" class="pt-1 text-gray-700 dark:text-gray-400"></ion-icon>
+                    <ion-icon name="map" class="text-gray-700 dark:text-gray-400"></ion-icon>
                 </Button>
             {/if}
             {#if allModes.length > 1 && !showMap}
