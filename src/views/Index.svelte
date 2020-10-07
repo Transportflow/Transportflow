@@ -26,7 +26,7 @@
             slot = `<p class="dark:text-white -mt-1">Nach einer langen Entwicklungszeit haben wir mit diesem Update zahlreiche Verkehrsbetriebe hinzugefügt, sowie Design, Funktionalität und Zuverlässigkeit verbessert. Ohne Verbesserungsvorschläge und Ideen vieler Transportflow Nutzer wäre das nicht möglich gewesen.<br/><b>Vielen Dank, dass Du Transportflow nutzt.</b><br/><br/>Kein Auto, kein Problem. 🦜<br/><i>Adrian - Gründer & CEO von Transportflow</i></p>`
         }
 
-        if (location.hostname === "localhost") {
+        if (location.hostname === "transportflow.de") {
             shown = true;
             title = "🚧 Achtung"
             slot = `<p class="dark:text-white -mt-1 leading-snug">Wir werden <span class="text-blue-600">transportflow.de</span> nur noch bis zum 14.12.2020 betreiben.<br>Sie können Transportflow weiterhin unter <span class="text-blue-600">transportflow.online</span> nutzen.</p><div class="mb-2 mt-4"><a href="https://transportflow.online" target="_blank" class="px-4 py-2 rounded cursor-pointer shadow transition-bg duration-200 font-medium text-sm text-gray-100 focus:outline-none bg-button-blue hover:shadow-outline active:bg-blue-700">Öffnen</a></div>`
