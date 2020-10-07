@@ -104,11 +104,8 @@
         if ("DeviceOrientationEvent" in window) {
             console.log("Supports Orientation! 🎉")
 
-            requestPermission().then(result => {
-                console.log(result)
-                console.log("Adding event listener")
+            requestPermission().then(() => {
                 window.addEventListener('deviceorientation', function (event) {
-                    console.log(event)
                     compass = event.webkitCompassHeading || event.alpha
                 });
             }).catch(err => {
