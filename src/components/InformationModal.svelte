@@ -6,9 +6,10 @@
     export let text;
 
     function closeModal(event) {
-        event.preventDefault();
-        if (event.target.id === "close")
+        if (event.target.id === "close") {
+            event.preventDefault();
             shown = false
+        }
     }
 </script>
 
