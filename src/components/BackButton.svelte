@@ -33,6 +33,7 @@
             document.documentElement.classList.add("mode-dark")
             localStorage.setItem("darkmode", "true");
         }
+        window.dispatchEvent( new Event('storage') );
     }
 
 </script>
