@@ -26,6 +26,7 @@
         } else {
             document.documentElement.classList.remove('mode-dark');
         }
+        window.dispatchEvent( new Event('storage') );
     };
     $: if (darkmode) {
         setDarkmode(true);
