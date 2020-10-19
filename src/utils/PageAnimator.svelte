@@ -7,7 +7,7 @@
 
 
 <Route {path}>
-    <div style="z-index: 1" class="absolute w-full p-4 pt-12 sm:p-24 sm:pl-40 sm:pt-20" transition:fade="{{ duration: 100 }}">
+    <div class="absolute w-full p-4 pt-12 sm:p-24 sm:pl-40 sm:pt-20" transition:fade="{{ duration: 100 }}">
         <div class="sm:max-w-xs">
             <slot/>
         </div>

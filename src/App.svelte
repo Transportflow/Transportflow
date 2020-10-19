@@ -12,21 +12,6 @@
     import ImpressPrivacy from "./views/ImpressPrivacy.svelte";
 
 
-    // Language, Localisation
-    import {addMessages, getLocaleFromNavigator, init, locale, locales, _} from 'svelte-i18n'
-    import de from "./lang/de.json"
-    import en from "./lang/en.json"
-
-    addMessages('de', de)
-    addMessages('en', en)
-
-    init({
-        fallbackLocale: 'en',
-        initialLocale: getLocaleFromNavigator(),
-    })
-
-    locale.set("en")
-
 
     // Darkmode
     let darkmode = !!localStorage.getItem("darkmode");
@@ -41,7 +26,7 @@
         } else {
             document.documentElement.classList.remove('mode-dark');
         }
-        window.dispatchEvent(new Event('storage'));
+        window.dispatchEvent( new Event('storage') );
     };
     $: if (darkmode) {
         setDarkmode(true);
