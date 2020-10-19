@@ -54,6 +54,7 @@
         darkmode = value.matches;
     });
 
+    let development = process.env.VERSION === "development"
     export let beta;
     export let url = "";
 
@@ -77,7 +78,27 @@
 
 <svelte:window on:keydown={handleKeydown} on:keyup={handleKeyup}/>
 
+
+
 <main class="font-inter transition-bg duration-200 min-h-screen h-full bg-gray-200 dark:bg-gray-800">
+
+    {#if development}
+        <div class="text-sm bg-black text-white font-mono flex justify-between">
+            <p>Transportflow - WIP</p>
+            <div class="flex space-x-2">
+                <div class="group">
+                    <p class="cursor-pointer group-hover:bg-gray-300 group-hover:text-black">Locale</p>
+                    <div style="z-index: 3000" class="absolute hidden group-hover:block text-left bg-black">
+                        {#each $locales as l}
+                            <button class="pl-1 pr-8 {$locale === l ? 'bg-blue-600' : ''}" on:click={() => locale.set(l)}>{l}</button><br/>
+                        {/each}
+                    </div>
+                </div>
+                <p class="cursor-pointer hover:bg-gray-300 hover:text-black" on:click={toggleDarkmode}>Darkmode</p>
+            </div>
+        </div>
+    {/if}
+
     <TailwindCSS/>
     <Router url="{url}">
         <Route path="monitor/:city/:stopId" component="{Departures}"/>
