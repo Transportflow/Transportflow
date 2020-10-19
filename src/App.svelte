@@ -87,14 +87,14 @@
             <p>Transportflow - WIP</p>
             <div class="flex space-x-2">
                 <div class="group">
-                    <p class="cursor-pointer group-hover:bg-gray-300 group-hover:text-black">Locale</p>
+                    <button class="cursor-pointer group-hover:bg-gray-300 group-hover:text-black">Locale</button>
                     <div style="z-index: 3000" class="absolute hidden group-hover:block text-left bg-black">
                         {#each $locales as l}
                             <button class="pl-1 pr-8 {$locale === l ? 'bg-blue-600' : ''}" on:click={() => locale.set(l)}>{l}</button><br/>
                         {/each}
                     </div>
                 </div>
-                <p class="cursor-pointer hover:bg-gray-300 hover:text-black" on:click={toggleDarkmode}>Darkmode</p>
+                <button class="cursor-pointer hover:bg-gray-300 hover:text-black" on:click={toggleDarkmode}>Darkmode</button>
             </div>
         </div>
     {/if}
