@@ -1,0 +1,59 @@
+{
+  "onboarding": {
+    "slogan_1": "ÖPNV Abfahrtsmonitor.",
+    "slogan_2": "Schnell und einfach.",
+    "setup": "Einrichten",
+    "done": "Fertig!",
+    "setup_done": "Transportflow ist eingerichtet.",
+    "lets_go": "Los geht's",
+    "privacy_consent": "Durch klicken auf 'Los geht's' stimmen Sie unserer Datenschutzerklärung zu."
+  },
+
+  "index": {
+    "slogan": "Kein Auto, kein Problem.",
+    "monitor": "Monitor",
+    "monitor_description": "Echtzeit Fahrplanauskunft",
+    "settings": "Einstellungen",
+    "share": "Teilen",
+
+    "share_modal": {
+      "text": "<b>Transportflow</b> weiterempfehlen:",
+      "message_text": "Hast du schon von Transportflow gehört?",
+      "copied": "Kopiert!",
+      "copy": "Kopieren"
+    }
+  },
+
+  "settings": {
+    "title": "Einstellungen",
+    "region_title": "Region",
+    "region_text": "Ihre aktuell gewählte Region ist<br/><b>{region}</b><br>Hier haben Sie die Möglichkeit eine andere Region zu wählen.",
+    "choose_region": "Region wählen",
+
+    "appearance_title": "Erscheinungsbild",
+    "appearance_text": "Wählen Sie Ihr präferiertes Erscheinungsbild.",
+    "light": "hell",
+    "dark": "dunkel",
+
+    "clear_cache": "Cache leeren"
+  },
+
+  "utility": {
+    "report_a_problem": "Problem melden",
+    "darkmode": "Darkmode",
+    "impress_privacy": "Impressum & Datenschutz",
+    "page_not_found": "Seite nicht gefunden",
+    "back": "Zurück",
+
+    "modals": {
+      "report_a_problem": "<b>Sie haben einen Fehler gefunden?</b><br/>Schreiben Sie eine Mail an <a href='mailto:hello@transportflow.online'>hello@transportflow.online</a>",
+      "suggest_region": "<b>Transportflow ist nicht in Ihrer Region verfügbar?</b><br/>Schreiben Sie uns einfach eine Mail, in der Sie erläutern, warum wir Ihre Region hinzufügen sollten 📫 <br/><br/><i>hello@transportflow.online</i>"
+    }
+  },
+
+  "region": {
+    "choose_region": "Region wählen",
+    "search": "Suche",
+    "suggest": "Region vorschlagen"
+  }
+}
