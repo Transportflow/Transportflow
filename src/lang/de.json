@@ -11,9 +11,6 @@
 
   "index": {
     "slogan": "Kein Auto, kein Problem.",
-    "monitor": "Monitor",
-    "monitor_description": "Echtzeit Fahrplanauskunft",
-    "settings": "Einstellungen",
     "share": "Teilen",
 
     "share_modal": {
@@ -22,6 +19,15 @@
       "copied": "Kopiert!",
       "copy": "Kopieren"
     }
+  },
+
+  "monitor": {
+    "title": "Monitor",
+    "description": "Echtzeit Fahrplanauskunft",
+    "clear_search": "Eingabe löschen",
+    "region": "Region",
+    "stop": "Haltestelle",
+    "no_stops": "Keine Haltestellen in der Nähe<br/>Genießen Sie die Idylle"
   },
 
   "departures": {

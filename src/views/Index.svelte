@@ -75,7 +75,7 @@
 
     <div class="rounded-lg overflow-hidden">
         <Link to="monitor">
-            <MenuButton icon="bus" name={$_('index.monitor')} description={$_('index.monitor_description')}/>
+            <MenuButton icon="bus" name={$_('monitor.title')} description={$_('monitor.description')}/>
         </Link>
         <hr class="mb-1 border-0"/>
         {#if false}
@@ -85,7 +85,7 @@
             <hr class="mb-1 border-0"/>
         {/if}
         <Link to="/settings">
-            <MenuButton icon="cog" name={$_('index.settings')}/>
+            <MenuButton icon="cog" name={$_('settings.title')}/>
         </Link>
         <hr class="mb-1 border-0"/>
         <MenuButton onClick={sharePage} icon="share" name={$_('index.share')}/>

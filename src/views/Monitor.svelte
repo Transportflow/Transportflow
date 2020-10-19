@@ -11,6 +11,7 @@
     import {getNearbyStops, getStops} from "../data";
     import OnboardingCheck from "../components/OnboardingCheck.svelte";
     import RegionModal from "../components/RegionModal.svelte";
+    import {_} from "svelte-i18n";
 
     let inputValue = localStorage.getItem("lastStopSearch") || "";
     let loading = true;
@@ -157,7 +158,7 @@
                 <div class="flex">
                     <ion-icon style="zoom: 1;" class="my-auto -ml-1 mr-1 text-gray-900 dark:text-gray-400"
                               name="close"></ion-icon>
-                    <p>Eingabe löschen</p>
+                    <p>{$_('monitor.clear_search')}</p>
                 </div>
             </Button>
         {/if}
@@ -178,14 +179,14 @@
                 />
             </div>
         {/if}
-        <span> Monitor</span>
+        <span> {$_('monitor.title')}</span>
     </Title>
-    <Description>Region:
+    <Description>{$_('monitor.region')}:
         <button on:click={openModal}><b>{regionName}</b></button>
     </Description>
     <RegionModal bind:regionProp={regionName} modalOpen={modalOpen}/>
 
-    <InputField value={inputValue} placeholder="Haltestelle" onInput={handleInput}/>
+    <InputField value={inputValue} placeholder="{$_('monitor.stop')}" onInput={handleInput}/>
 
     <hr class="mt-2 mb-1 h-0 opacity-0"/>
 
@@ -220,8 +221,7 @@
     {#if !loading && ((stops == null || stops.length < 1) && (nearbyStops == null || nearbyStops.length === 0))}
         <div class="w-full mt-12">
             <img class="mx-auto" alt="" src="/idyll.svg"/>
-            <p class="text-center italic text-gray-700 dark:text-gray-300">Keine Haltestellen in der Nähe<br/>Genießen
-                Sie die Idylle</p>
+            <p class="text-center italic text-gray-700 dark:text-gray-300">{@html $_('monitor.no_stops')}</p>
         </div>
     {/if}
 </main>

@@ -11,9 +11,6 @@
 
   "index": {
     "slogan": "No Car, no Problem.",
-    "monitor": "Monitor",
-    "monitor_description": "Realtime departures",
-    "settings": "Settings",
     "share": "Share",
 
     "share_modal": {
@@ -24,6 +21,14 @@
     }
   },
 
+  "monitor": {
+    "title": "Monitor",
+    "description": "Realtime departures",
+    "clear_search": "Clear search",
+    "region": "Region",
+    "stop": "Stop",
+    "no_stops": "No stops nearby<br/>Enjoy the idyll"
+  },
 
   "departures": {
     "refresh": "Refresh",
