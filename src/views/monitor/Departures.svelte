@@ -9,6 +9,7 @@
     import Title from "../../components/Title.svelte";
     import Departure from "./Departure/Departure.svelte";
     import Map from "./Map.svelte";
+    import {_} from "svelte-i18n";
 
     let loading = true;
     let error = null;
@@ -115,7 +116,7 @@
                 <div class="flex">
                     <ion-icon style="zoom: 1;" class="my-auto -ml-1 mr-1 text-gray-900 dark:text-gray-400"
                               name="refresh-circle"></ion-icon>
-                    <p>Aktualisieren</p>
+                    <p>{$_('departures.refresh')}</p>
                 </div>
             </Button>
         </BackButton>
@@ -135,18 +136,18 @@
                 </div>
             {/if}
             {#if loading && (monitor == null || monitor.stop == null)}
-                <span class="py-1"> Lade...</span>
+                <span class="py-1"> {$_('departures.loading')}</span>
             {:else if monitor != null && monitor.stop != null}
                 <span class="py-1"> {monitor.stop.name}</span>
             {:else}
-                <span class="py-1"> Fehler</span>
+                <span class="py-1"> {$_('departures.error')}</span>
             {/if}
         </Title>
         {#if monitor === null}
             <div class="flex items-center justify-center h-64">
                 <div class="text-gray-700 dark:text-gray-300 text-center">
                     <p class="text-4xl -mb-2"><ion-icon name="alert-circle"></ion-icon></p>
-                    <p>Keine Abfahrten gefunden</p>
+                    <p>{$_("departures.no_departures")}</p>
                 </div>
             </div>
         {/if}

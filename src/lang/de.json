@@ -24,6 +24,20 @@
     }
   },
 
+  "departures": {
+    "refresh": "Aktualisieren",
+    "loading": "Lade...",
+    "loading_wagons": "Lade Wagenreihung",
+    "loading_stop_information": "Lade Haltestelleninformationen",
+    "error": "Fehler",
+    "no_departures": "Keine Abfahrten gefunden",
+    "cancelled": "Fällt aus",
+    "in_time": "Pünktlich",
+    "too_late": "Verspätung",
+    "too_early": "zu früh",
+    "platform": "Steig"
+  },
+
   "settings": {
     "title": "Einstellungen",
     "region_title": "Region",

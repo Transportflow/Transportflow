@@ -24,6 +24,21 @@
     }
   },
 
+
+  "departures": {
+    "refresh": "Refresh",
+    "loading": "Loading...",
+    "loading_wagons": "Loading wagon order",
+    "loading_stop_information": "Loading stop informations",
+    "error": "Error",
+    "no_departures": "No departures found",
+    "cancelled": "Cancelled",
+    "in_time": "In time",
+    "too_late": "late",
+    "too_early": "too early",
+    "platform": "Platform"
+  },
+
   "settings": {
     "title": "Settings",
     "region_title": "Region",

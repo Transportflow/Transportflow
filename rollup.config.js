@@ -20,8 +20,6 @@ export default {
         file: 'public/build/bundle.js'
     },
     plugins: [
-        json(),
-
         svelte({
             preprocess: sveltePreprocess({postcss: true}),
             // enable run-time checks when not in production
@@ -32,6 +30,8 @@ export default {
                 css.write('public/build/bundle.css');
             }
         }),
+
+        json(),
 
         replace({
             "process.env.NODE_ENV": production ? "'production'" : "'development'",
