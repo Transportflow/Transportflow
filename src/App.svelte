@@ -117,7 +117,7 @@
             <div class="h-screen flex justify-center items-center dark:text-white">
                 <div class="mb-12">
                     <h1 class="text-4xl font-black">404</h1>
-                    <p class="dark:text-gray-500 text-gray-700">Seite nicht gefunden.</p>
+                    <p class="dark:text-gray-500 text-gray-700">{$_('utility.page_not_found')}</p>
                 </div>
             </div>
         </Route>
