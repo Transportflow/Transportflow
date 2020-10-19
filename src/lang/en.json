@@ -59,10 +59,14 @@
     "impress_privacy": "Impress & Privacy",
     "page_not_found": "Page not found",
     "back": "Back",
+    "error": "Error",
+    "for_more_help": "For more help please contact",
 
     "modals": {
       "report_a_problem": "<b>Found something that's not working?</b><br/>We'd love to hear from you! <a href='mailto:hello@transportflow.online'>hello@transportflow.online</a>",
-      "suggest_region": "<b>Transportflow is not available in your region?</b><br/>We'd love to hear from you! Write us an email explaining why we should add your region to Transportflow 📫 <br/><br/><i>hello@transportflow.online</i>"
+      "suggest_region": "<b>Transportflow is not available in your region?</b><br/>We'd love to hear from you! Write us an email explaining why we should add your region to Transportflow 📫 <br/><br/><i>hello@transportflow.online</i>",
+      "region_not_available": "<b>Region not available</b><br/>Please select a region in settings.",
+      "network_error": "<b>Network error</b><br/>Please make sure that your device is connected to the internet."
     }
   },
 

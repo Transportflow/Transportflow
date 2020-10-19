@@ -1,15 +1,37 @@
+import {format as $format} from 'svelte-i18n'
 import {getRegions} from "./regions";
 import {getStops, getNearbyStops, getDepartures, getUpcomingStops, getWagenreihung} from "./query";
 import {relativeTime, relativeToTime, clockTime} from "./time";
 
 import axios from "axios";
+
 axios.defaults.baseURL = localStorage.getItem("baseURL") || process.env.BACKEND_URL;
 
-export let REGION_NOT_AVAILABLE = "<b>Region nicht verfügbar</b><br/>Bitte wählen Sie Ihre Region in den Einstellungen aus.";
-export let NETWORK_ERROR = "<b>Netzwerkfehler</b><br/>Vergewissern Sie sich, dass ihr Gerät mit dem Internet verbunden ist.";
+let format
+$format.subscribe(f => format = f)
+
+function REGION_NOT_AVAILABLE() {
+    return format('utility.modals.region_not_available')
+}
+function NETWORK_ERROR() {
+    return format('utility.modals.network_error')
+}
 
 function getAxios() {
     return axios;
 }
 
-export {getAxios, getRegions, getStops, getNearbyStops, getDepartures, getUpcomingStops, getWagenreihung, relativeTime, relativeToTime, clockTime};
+export {
+    REGION_NOT_AVAILABLE,
+    NETWORK_ERROR,
+    getAxios,
+    getRegions,
+    getStops,
+    getNearbyStops,
+    getDepartures,
+    getUpcomingStops,
+    getWagenreihung,
+    relativeTime,
+    relativeToTime,
+    clockTime
+};

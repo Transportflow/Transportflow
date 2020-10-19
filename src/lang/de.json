@@ -58,10 +58,14 @@
     "impress_privacy": "Impressum & Datenschutz",
     "page_not_found": "Seite nicht gefunden",
     "back": "Zurück",
+    "error": "Fehler",
+    "for_more_help": "Für weitere Hilfe kontaktieren Sie bitte",
 
     "modals": {
       "report_a_problem": "<b>Sie haben einen Fehler gefunden?</b><br/>Schreiben Sie eine Mail an <a href='mailto:hello@transportflow.online'>hello@transportflow.online</a>",
-      "suggest_region": "<b>Transportflow ist nicht in Ihrer Region verfügbar?</b><br/>Schreiben Sie uns einfach eine Mail, in der Sie erläutern, warum wir Ihre Region hinzufügen sollten 📫 <br/><br/><i>hello@transportflow.online</i>"
+      "suggest_region": "<b>Transportflow ist nicht in Ihrer Region verfügbar?</b><br/>Schreiben Sie uns einfach eine Mail, in der Sie erläutern, warum wir Ihre Region hinzufügen sollten 📫 <br/><br/><i>hello@transportflow.online</i>",
+      "region_not_available": "<b>Region nicht verfügbar</b><br/>Bitte wählen Sie Ihre Region in den Einstellungen aus.",
+      "network_error": "<b>Netzwerkfehler</b><br/>Vergewissern Sie sich, dass ihr Gerät mit dem Internet verbunden ist."
     }
   },
 
