@@ -5,7 +5,6 @@ import livereload from 'rollup-plugin-livereload';
 import {terser} from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import replace from '@rollup/plugin-replace';
-import json from '@rollup/plugin-json';
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -37,7 +36,7 @@ export default {
             "process.env.NODE_ENV": production ? "'production'" : "'development'",
             process: JSON.stringify({
                 env: {
-                    VERSION: process.env.VERSION || "development",
+                    VERSION: process.env.VERSION || "0.0.0",
                     BACKEND_URL: process.env.BACKEND_URL || "https://backend.transportflow.online",
                     MAPBOX_TOKEN: process.env.MAPBOX_TOKEN,
                     IMPRESS_RESPONSIBLE: process.env.IMPRESS_RESPONSIBLE,

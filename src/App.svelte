@@ -24,8 +24,7 @@
         fallbackLocale: 'en',
         initialLocale: localStorage.getItem("language") || getLocaleFromNavigator(),
     })
-
-
+  
     // Darkmode
     let darkmode = !!localStorage.getItem("darkmode");
 
@@ -39,7 +38,7 @@
         } else {
             document.documentElement.classList.remove('mode-dark');
         }
-        window.dispatchEvent(new Event('storage'));
+        window.dispatchEvent( new Event('storage') );
     };
     $: if (darkmode) {
         setDarkmode(true);
