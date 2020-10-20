@@ -20,6 +20,8 @@
 
     onMount(() => {
         loadRandomWallpaper()
+
+        localStorage.setItem("version", process.env.VERSION)
     })
 
     function loadRandomWallpaper() {

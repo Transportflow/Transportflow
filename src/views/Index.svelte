@@ -21,7 +21,7 @@
 
         // changelog
         try {
-            let version = parseFloat(localStorage.getItem("version").replace(".", ""))
+            let version = parseFloat((localStorage.getItem("version")||"0.0.0").replace(".", ""))
             if (version < 230) {
                 shown = true;
                 title = "👾 Update 2.3.0"
