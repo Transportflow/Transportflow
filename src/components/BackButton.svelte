@@ -2,6 +2,7 @@
     import Button from "./Button.svelte";
     import InformationModal from "./InformationModal.svelte";
     import {navigate, Link} from 'svelte-routing';
+    import {_} from "svelte-i18n";
 
     export let backTo = null;
 
@@ -33,13 +34,13 @@
             document.documentElement.classList.add("mode-dark")
             localStorage.setItem("darkmode", "true");
         }
-        window.dispatchEvent( new Event('storage') );
+        window.dispatchEvent(new Event('storage'));
     }
 
 </script>
 
-<InformationModal shown={reportingModalShown} title="🤖 Problem melden"
-                  text="<b>Sie haben einen Fehler gefunden?</b><br/>Schreiben Sie eine Mail an <a href='mailto:hello@transportflow.online'>hello@transportflow.online</a>"/>
+<InformationModal shown={reportingModalShown} title="🤖 {$_('utility.report_a_problem')}"
+                  text="{$_('utility.modals.report_a_problem')}"/>
 <div class="flex justify-between">
     <div>
         <Button onClick={goBack}
@@ -47,7 +48,7 @@
             <div class="flex">
                 <ion-icon class="-ml-1 mr-1 my-auto text-gray-900 dark:text-gray-400"
                           name="chevron-back-outline"></ion-icon>
-                Zurück
+                {$_('utility.back')}
             </div>
         </Button>
         <slot/>
@@ -64,19 +65,19 @@
                 <p class="h-0 group-hover:h-auto">
                     <button on:click={openReportingModal}
                             class="px-2 py-1 w-full hover:bg-gray-200 dark-hover:bg-black text-right">
-                        Problem melden 🤖
+                        {$_('utility.report_a_problem')} 🤖
                     </button>
                 </p>
                 <p class="h-0 group-hover:h-auto">
                     <button on:click={toggleDarkmode}
                             class="px-2 py-1 w-full hover:bg-gray-200 dark-hover:bg-black text-right">
-                        Darkmode 🌙
+                        {$_('utility.darkmode')} 🌙
                     </button>
                 </p>
                 <p class="h-0 group-hover:h-auto">
                     <Link to="impressprivacy">
                         <button class="px-2 py-1 w-full hover:bg-gray-200 dark-hover:bg-black text-right">
-                            Impressum & Datenschutz 🎈
+                            {$_('utility.impress_privacy')} 🎈
                         </button>
                     </Link>
                 </p>

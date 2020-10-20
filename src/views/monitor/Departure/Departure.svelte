@@ -3,6 +3,7 @@
     import UpcomingStops from "./UpcomingStops.svelte";
     import Wagenreihung from "./Wagenreihung.svelte";
     import {relativeTime, clockTime} from "../../../data";
+    import {_} from "svelte-i18n";
 
     export let city;
     export let stopId;
@@ -30,17 +31,17 @@
             class={(open ? "opacity-100 pb-1" : "opacity-0") + " overflow-hidden font-semibold text-sm tracking-wide uppercase text-center trans"}
             style="transition: all 0.25s ease-in-out; max-height: {open ? '60px' : '0'}">
         {#if stopover.cancelled}
-            <span>Fällt aus</span>
+            <span>{$_("departures.cancelled")}</span>
         {:else}
             {#if stopover.delay == "0"}
-                <span>Pünktlich</span>
+                <span>{$_('departures.in_time')}</span>
             {:else if parseInt(stopover.delay) > 0}
-                <span>+{stopover.delay} min verspätung</span>
+                <span>+{stopover.delay} min {$_('departures.too_late')}</span>
             {:else}
-                <span>{stopover.delay} min zu früh</span>
+                <span>{stopover.delay} min {$_('departures.too_early')}</span>
             {/if}
             {#if stopover.platform}
-                <span>| Steig {stopover.platform}</span>
+                <span>| {$_('departures.platform')} {stopover.platform}</span>
             {/if}
         {/if}
     </div>

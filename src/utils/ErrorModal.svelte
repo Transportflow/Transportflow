@@ -1,5 +1,6 @@
 <script>
     import {fade} from "svelte/transition";
+    import {_} from "svelte-i18n"
 
     export let error = null;
     export let shown;
@@ -17,14 +18,14 @@
          class="fixed w-full h-full top-0 left-0 flex items-center justify-center overflow-scroll scrollbar-none">
         <div class="m-4 w-full sm:max-w-sm rounded-lg p-5 bg-white dark:bg-gray-800 transition duration-200 shadow-lg">
             <div class="flex justify-between mb-2">
-                <h1 class="text-gray-900 dark:text-gray-100 text-lg font-semibold">🤖 Fehler</h1>
+                <h1 class="text-gray-900 dark:text-gray-100 text-lg font-semibold">🤖 {$_('utility.error')}</h1>
                 <button on:click={closeModal} id="close">
                     <ion-icon name="close-circle-outline" id="close"
                               class="my-auto dark:text-white pb-1 text-2xl"></ion-icon>
                 </button>
             </div>
             <p class="dark:text-white">{@html error}</p>
-            <p class="text-gray-600 dark:text-gray-500 text-sm italic mt-3">Für weitere Hilfe kontaktieren Sie bitte <a href="mailto:hello@transportflow.online">hello@transportflow.online</a></p>
+            <p class="text-gray-600 dark:text-gray-500 text-sm italic mt-3">{$_('utility.for_more_help')} <a href="mailto:hello@transportflow.online">hello@transportflow.online</a></p>
         </div>
     </div>
 {/if}

@@ -1,6 +1,7 @@
 <script>
     import Spinner from "svelte-spinner";
     import {getWagenreihung} from "../../../data";
+    import {_} from "svelte-i18n";
 
     export let lineName;
     export let plannedDeparture;
@@ -64,7 +65,7 @@
 {#if loading}
 <p class="flex">
     <Spinner size="30" speed="1000" color="#85cb37" thickness="2" gap="40"/>
-    <span class="my-auto">Lade Wagenreihung</span>
+    <span class="my-auto">{$_('departures.loading_wagons')}</span>
 </p>
 {:else if trainSectors.length > 0}
     <div class="station">

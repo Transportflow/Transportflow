@@ -1,0 +1,92 @@
+{
+  "onboarding": {
+    "slogan_1": "ÖPNV Abfahrtsmonitor.",
+    "slogan_2": "Schnell und einfach.",
+    "setup": "Einrichten",
+    "done": "Fertig!",
+    "setup_done": "Transportflow ist eingerichtet.",
+    "lets_go": "Los geht's",
+    "privacy_consent": "Durch klicken auf 'Los geht's' stimmen Sie unserer Datenschutzerklärung zu."
+  },
+
+  "index": {
+    "slogan": "Kein Auto, kein Problem.",
+    "share": "Teilen",
+
+    "share_modal": {
+      "text": "<b>Transportflow</b> weiterempfehlen:",
+      "message_text": "Hast du schon von Transportflow gehört?",
+      "copied": "Kopiert!",
+      "copy": "Kopieren"
+    }
+  },
+
+  "monitor": {
+    "title": "Monitor",
+    "description": "Echtzeit Fahrplanauskunft",
+    "clear_search": "Eingabe löschen",
+    "region": "Region",
+    "stop": "Haltestelle",
+    "no_stops": "Keine Haltestellen in der Nähe<br/>Genießen Sie die Idylle"
+  },
+
+  "departures": {
+    "refresh": "Aktualisieren",
+    "loading": "Lade...",
+    "loading_wagons": "Lade Wagenreihung",
+    "loading_stop_information": "Lade Haltestelleninformationen",
+    "error": "Fehler",
+    "no_departures": "Keine Abfahrten gefunden",
+    "cancelled": "Fällt aus",
+    "in_time": "Pünktlich",
+    "too_late": "Verspätung",
+    "too_early": "zu früh",
+    "platform": "Steig"
+  },
+
+  "settings": {
+    "title": "Einstellungen",
+    "region_title": "Region",
+    "region_text": "Ihre aktuell gewählte Region ist<br/><b>{region}</b>",
+    "choose_region": "Region wählen",
+
+    "language_title": "Sprache",
+    "language_text": "Wählen Sie die passende Sprache.",
+
+    "appearance_title": "Erscheinungsbild",
+    "appearance_text": "Wählen Sie Ihr präferiertes Erscheinungsbild.",
+    "light": "hell",
+    "dark": "dunkel",
+
+    "clear_cache": "Cache leeren"
+  },
+
+  "utility": {
+    "report_a_problem": "Problem melden",
+    "darkmode": "Darkmode",
+    "impress_privacy": "Impressum & Datenschutz",
+    "page_not_found": "Seite nicht gefunden",
+    "back": "Zurück",
+    "error": "Fehler",
+    "for_more_help": "Für weitere Hilfe kontaktieren Sie bitte",
+
+    "modals": {
+      "report_a_problem": "<b>Sie haben einen Fehler gefunden?</b><br/>Schreiben Sie eine Mail an <a href='mailto:hello@transportflow.online'>hello@transportflow.online</a>",
+      "suggest_region": "<b>Transportflow ist nicht in Ihrer Region verfügbar?</b><br/>Schreiben Sie uns einfach eine Mail, in der Sie erläutern, warum wir Ihre Region hinzufügen sollten 📫 <br/><br/><i>hello@transportflow.online</i>",
+      "region_not_available": "<b>Region nicht verfügbar</b><br/>Bitte wählen Sie Ihre Region in den Einstellungen aus.",
+      "network_error": "<b>Netzwerkfehler</b><br/>Vergewissern Sie sich, dass ihr Gerät mit dem Internet verbunden ist.",
+      "attention": "Achtung",
+      "deprecating__dot_de": "<p class='dark:text-white -mt-1 leading-snug'>Wir werden <span class='text-blue-600'>transportflow.de</span> nur noch bis zum 14.12.2020 betreiben.<br>Sie können Transportflow weiterhin unter <span class='text-blue-600'>transportflow.online</span> nutzen.</p><div class='mb-2 mt-4'><a href='https://transportflow.online' target='_blank' class='px-4 py-2 rounded cursor-pointer shadow transition-bg duration-200 font-medium text-sm text-gray-100 focus:outline-none bg-button-blue hover:shadow-outline active:bg-blue-700'>Öffnen</a></div>"
+    }
+  },
+
+  "changelog": {
+    "230": "Mit diesem Update haben wir Transportflow mehrsprachig gemacht!<br/><br/> Die Sprachwahl wurde zunächst automatisch getroffen, doch kann in den Einstellungen angepasst werden."
+  },
+
+  "region": {
+    "choose_region": "Region wählen",
+    "search": "Suche",
+    "suggest": "Region vorschlagen"
+  }
+}

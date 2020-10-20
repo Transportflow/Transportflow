@@ -3,6 +3,7 @@
     import Spinner from 'svelte-spinner';
     import {getUpcomingStops} from "../../../data";
     import {relativeTime, relativeToTime, clockTime} from "../../../data"
+    import {_} from "svelte-i18n";
 
     export let city, tripId, currentStopId, lineName, when, relativeTo, relativeWhen;
     let error = null;
@@ -31,7 +32,7 @@
 {:else if loading}
     <p class="flex">
         <Spinner size="30" speed="1000" color="#85cb37" thickness="2" gap="40"/>
-        <span class="my-auto">Lade Haltestelleninformationen</span></p>
+        <span class="my-auto">{$_('departures.loading_stop_information')}</span></p>
 {:else}
     <div class="flex flex-no-wrap overflow-scroll overflow-y-hidden scrollbar-none scrolling-touch pt-2 pb-1">
         {#each upcoming as stopover}

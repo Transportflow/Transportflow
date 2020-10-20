@@ -2,12 +2,12 @@ import {getAxios, NETWORK_ERROR, REGION_NOT_AVAILABLE} from "./index";
 
 export async function getStops(query, onError) {
     if (!localStorage.getItem("region")) {
-        onError(REGION_NOT_AVAILABLE)
+        onError(REGION_NOT_AVAILABLE())
         return;
     }
     let response = await getAxios().get(`/${localStorage.getItem("region").toLowerCase()}/locations?query=${query}&stops=true`).catch(err => {
         if (err.message === "Network Error") {
-            onError(NETWORK_ERROR);
+            onError(NETWORK_ERROR());
             return;
         }
         if (err.response)
@@ -20,12 +20,12 @@ export async function getStops(query, onError) {
 
 export async function getNearbyStops(lat, lng, onError) {
     if (!localStorage.getItem("region")) {
-        onError(REGION_NOT_AVAILABLE)
+        onError(REGION_NOT_AVAILABLE())
         return;
     }
     let response = await getAxios().get(`/${localStorage.getItem("region").toLowerCase()}/nearby?lat=${lat}&lng=${lng}&stops=true`).catch(err => {
         if (err.message === "Network Error") {
-            onError(NETWORK_ERROR);
+            onError(NETWORK_ERROR());
             return;
         }
         if (err.response)
@@ -39,7 +39,7 @@ export async function getNearbyStops(lat, lng, onError) {
 export async function getDepartures(city, stopId, onError) {
     let response = await getAxios().get(`/${city.toLowerCase()}/departures/${stopId}?when=${Math.round(Date.now() / 1000)}`).catch(err => {
         if (err.message === "Network Error") {
-            onError(NETWORK_ERROR);
+            onError(NETWORK_ERROR());
             return;
         }
         if (err.response)
@@ -58,7 +58,7 @@ export async function getDepartures(city, stopId, onError) {
 export async function getUpcomingStops(city, tripId, currentStopId, lineName, when, relativeTo, onError) {
     let response = await getAxios().get(`/${city.toLowerCase()}/upcoming/${tripId.replace(/#/g, "%23")}?currentstopid=${currentStopId}&linename=${lineName}&when=${when}&relativeto=${relativeTo}`).catch(err => {
         if (err.message === "Network Error") {
-            onError(NETWORK_ERROR);
+            onError(NETWORK_ERROR());
             return;
         }
         if (err.response)
@@ -80,7 +80,7 @@ export async function getWagenreihung(lineName, plannedDeparture, onError) {
     }
     let response = await getAxios().get(`/deutsche bahn/wagenreihung/${lineName}?when=${plannedDeparture}`).catch(err => {
         if (err.message === "Network Error") {
-            onError(NETWORK_ERROR);
+            onError(NETWORK_ERROR());
             return;
         }
         if (err.response)

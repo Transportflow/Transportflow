@@ -6,6 +6,7 @@
     import Divider from "./Divider.svelte";
     import Description from "./Description.svelte";
     import InformationModal from "./InformationModal.svelte";
+    import {_} from "svelte-i18n";
 
     let addRegionVisible = false;
 
@@ -81,8 +82,8 @@
     }
 </script>
 
-<InformationModal shown={addRegionVisible} title="🗺 Region vorschlagen"
-                  text="<b>Transportflow ist nicht in Ihrer Region verfügbar?</b><br/>Schreiben Sie uns einfach eine Mail, in der Sie erläutern, warum wir Ihre Region hinzufügen sollten 📫 <br/><br/><i>hello@transportflow.online</i>"/>
+<InformationModal shown={addRegionVisible} title="🗺 {$_('region.suggest')}"
+                  text="{$_('utility.modals.suggest_region')}"/>
 <ErrorModal {error} shown={errorVisible}/>
 {#if modalOpen}
     <div transition:fade="{{ duration: 200 }}" on:click={closeModalInWhitespace} id="bg"
@@ -91,12 +92,12 @@
         <div class="m-4 w-full sm:max-w-md rounded-lg p-3 bg-white dark:bg-gray-800 transition-all duration-200 shadow-lg">
             <div class="px-2 pt-2">
                 <div class="flex justify-between mb-2">
-                    <h1 class="text-gray-900 dark:text-gray-100 text-lg font-semibold">Region auswählen</h1>
+                    <h1 class="text-gray-900 dark:text-gray-100 text-lg font-semibold">{$_('region.choose_region')}</h1>
                     <button on:click={closeModal}>
                         <ion-icon name="close-circle-outline" class="my-auto dark:text-white pb-1 text-2xl"></ion-icon>
                     </button>
                 </div>
-                <InputField placeholder="Suche" onInput={searchRegion}/>
+                <InputField placeholder="{$_('region.search')}" onInput={searchRegion}/>
                 <Divider className="mt-2"/>
             </div>
             <div style="max-height: 350px;" class="overflow-y-scroll p-2 transition-all duration-200">
@@ -124,7 +125,7 @@
                         <button on:click={showRegionSuggestion}
                                 class="p-2 w-full rounded dark:text-white h-full flex bg-white hover:bg-gray-300 dark-hover:bg-gray-900 dark:bg-gray-800 transition duration-200">
                             <ion-icon name="add-circle-outline" class="mr-1" style="zoom: 1.5;"></ion-icon>
-                            Region vorschlagen
+                            {$_('region.suggest')}
                         </button>
                     {/if}
                 {:else}

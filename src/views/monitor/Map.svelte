@@ -18,7 +18,11 @@
 
         imageSource = "https://api.mapbox.com/styles/v1/" + (dark ? darkTheme : streetsTheme) + "/static/pin-s-circle+FF8167(" + lng + "," + lat + ")/" + lng + "," + lat + ",14.25/512x512@2x?access_token=" + process.env.MAPBOX_TOKEN
 
-        mapImage.src = imageSource
+        try {
+            mapImage.src = imageSource
+        } catch (ignore) {
+
+        }
     }
 
     let loading = true;

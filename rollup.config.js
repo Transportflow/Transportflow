@@ -30,6 +30,8 @@ export default {
             }
         }),
 
+        json(),
+
         replace({
             "process.env.NODE_ENV": production ? "'production'" : "'development'",
             process: JSON.stringify({
