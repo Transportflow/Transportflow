@@ -80,6 +80,10 @@
     }
   },
 
+  "changelog": {
+    "230": "Mit diesem Update haben wir Transportflow mehrsprachig gemacht!<br/><br/> Die Sprachwahl wurde zunächst automatisch getroffen, doch kann in den Einstellungen angepasst werden."
+  },
+
   "region": {
     "choose_region": "Region wählen",
     "search": "Suche",

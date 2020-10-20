@@ -18,12 +18,18 @@
 
     onMount(() => {
         shown = false;
-        if (localStorage.getItem("network")) {
-            localStorage.removeItem("network");
-            shown = true;
-            title = "💚 Lieber Transportflow Nutzer";
-            slot = `<p class="dark:text-white -mt-1">Nach einer langen Entwicklungszeit haben wir mit diesem Update zahlreiche Verkehrsbetriebe hinzugefügt, sowie Design, Funktionalität und Zuverlässigkeit verbessert. Ohne Verbesserungsvorschläge und Ideen vieler Transportflow Nutzer wäre das nicht möglich gewesen.<br/><b>Vielen Dank, dass Du Transportflow nutzt.</b><br/><br/>Kein Auto, kein Problem. 🦜<br/><i>Adrian - Gründer & CEO von Transportflow</i></p>`
-        }
+
+        // changelog
+        try {
+            let version = parseFloat(localStorage.getItem("version").replace(".", ""))
+            if (version < 230) {
+                shown = true;
+                title = "👾 Update 2.3.0"
+                slot = $_('changelog.230')
+            }
+        } catch (ignore) {}
+
+        localStorage.setItem("version", process.env.VERSION)
 
         if (location.hostname === "transportflow.de") {
             shown = true;

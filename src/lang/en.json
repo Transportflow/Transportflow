@@ -80,6 +80,10 @@
     }
   },
 
+  "changelog": {
+    "230": "With this update we added English localisation to Transportflow!<br/><br/> The language was selected automatically, tough it can be configured in settings."
+  },
+
   "region": {
     "choose_region": "Choose your region",
     "search": "Search",
