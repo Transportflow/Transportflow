@@ -9,7 +9,7 @@
     import Description from "../components/Description.svelte";
     import OnboardingCheck from "../components/OnboardingCheck.svelte";
     import {Link} from "svelte-routing";
-    import {_} from "svelte-i18n";
+    import {_, locales, locale} from "svelte-i18n";
 
 
     export let toggleDarkmode;
@@ -30,15 +30,20 @@
         }
         window.location.reload(true);
     }
+
+    function setLocale(l) {
+        locale.set(l)
+        localStorage.setItem("language", l)
+    }
 </script>
 
-<main>
+<main class="pb-20">
     <OnboardingCheck/>
     <BackButton backTo="/"/>
 
-    <Title>⚙️ {$_('settings.title')}</Title>
+    <Title><ion-icon style="font-size: 36px" class="-mb-2" name="cog"></ion-icon> {$_('settings.title')}</Title>
 
-    <Subtitle>{$_('settings.region_title')}</Subtitle>
+    <Subtitle>🧭 {$_('settings.region_title')}</Subtitle>
     <Description>
         {@html $_('settings.region_text', {values: {region: regionName === null ? "N/A" : regionName}})}
     </Description>
@@ -48,7 +53,18 @@
 
     <Divider className="mb-5 mt-6"/>
 
-    <Subtitle>{$_('settings.appearance_title')}</Subtitle>
+    <Subtitle>🗺 {$_('settings.language_title')}</Subtitle>
+    <Description>
+        {@html $_('settings.language_text')}
+    </Description>
+    {#each $locales as l}
+        <PrimaryButton disableColor={true} className="mr-1 {$locale !== l ? 'bg-gray-900' : 'bg-button-blue'}" onClick={() => setLocale(l)} text="{l.replace('de', 'Deutsch').replace('en', 'English')}"/>
+    {/each}
+
+
+    <Divider className="mb-5 mt-6"/>
+
+    <Subtitle>🕯 {$_('settings.appearance_title')}</Subtitle>
     <Description>
         {$_('settings.appearance_text')}
     </Description>

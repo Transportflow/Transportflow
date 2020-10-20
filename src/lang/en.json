@@ -47,8 +47,11 @@
   "settings": {
     "title": "Settings",
     "region_title": "Region",
-    "region_text": "You have currently selected<br/><b>{region}</b><br/>Below you can change to another region.",
+    "region_text": "You have currently selected<br/><b>{region}</b>",
     "choose_region": "Choose region",
+
+    "language_title": "Language",
+    "language_text": "Choose your preferred language.",
 
     "appearance_title": "Appearance",
     "appearance_text": "Choose your preferred appearance.",
@@ -71,7 +74,9 @@
       "report_a_problem": "<b>Found something that's not working?</b><br/>We'd love to hear from you! <a href='mailto:hello@transportflow.online'>hello@transportflow.online</a>",
       "suggest_region": "<b>Transportflow is not available in your region?</b><br/>We'd love to hear from you! Write us an email explaining why we should add your region to Transportflow 📫 <br/><br/><i>hello@transportflow.online</i>",
       "region_not_available": "<b>Region not available</b><br/>Please select a region in settings.",
-      "network_error": "<b>Network error</b><br/>Please make sure that your device is connected to the internet."
+      "network_error": "<b>Network error</b><br/>Please make sure that your device is connected to the internet.",
+      "attention": "Attention",
+      "deprecating__dot_de": "<p class='dark:text-white -mt-1 leading-snug'>We are providing service for <span class='text-blue-600'>transportflow.de</span> only until 14th December 2020.<br>You can continue using Transportflow as usual under <span class='text-blue-600'>transportflow.online</span>.</p><div class='mb-2 mt-4'><a href='https://transportflow.online' target='_blank' class='px-4 py-2 rounded cursor-pointer shadow transition-bg duration-200 font-medium text-sm text-gray-100 focus:outline-none bg-button-blue hover:shadow-outline active:bg-blue-700'>Open</a></div>"
     }
   },
 

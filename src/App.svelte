@@ -22,10 +22,8 @@
 
     init({
         fallbackLocale: 'en',
-        initialLocale: getLocaleFromNavigator(),
+        initialLocale: localStorage.getItem("language") || getLocaleFromNavigator(),
     })
-
-    locale.set("en")
 
 
     // Darkmode
