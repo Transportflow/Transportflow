@@ -17,6 +17,8 @@
     let unicode = "1f99c";
 
     onMount(() => {
+        localStorage.setItem("lastStopSearch", "")
+
         shown = false;
 
         // changelog
