@@ -18,6 +18,7 @@ jobs:
     - name: Set env
       run: |
         echo "VERSION=$(echo $GITHUB_SHA | cut -c 1-6)" >> .env
+        echo "VERSION=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
         echo "BACKEND_URL=${{secrets.BACKEND_URL}}" >> .env
         echo "MAPBOX_TOKEN=${{secrets.MAPBOX_TOKEN}}" >> .env
         echo "IMPRESS_RESPONSIBLE=${{secrets.IMPRESS_RESPONSIBLE}}" >> .env
@@ -40,7 +41,7 @@ jobs:
         # Docker repository to tag the image with
         repository: transportflow/transportflow-web/beta
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
-        tags: $GITHUB_SHA
+        tags: ${{ env.VERSION }}
         # Whether to push the image
         push: true
     - name: Install doctl
