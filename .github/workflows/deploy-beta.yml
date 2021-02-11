@@ -12,30 +12,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Getting short version sha
-      uses: benjlevesque/short-sha@v1.1
-      id: short-sha
-      with:
-        length: 7
     - name: Checkout master
       uses: actions/checkout@master
       
-    - uses: TickX/var-to-dotenv@v1.1.1
-      with:
-        key: 'VERSION'
-        value: ${{ env.SHA }}
-    - uses: TickX/var-to-dotenv@v1.1.1
-      with:
-        key: 'BACKEND_URL'
-        value: ${{secrets.BACKEND_URL}}
-    - uses: TickX/var-to-dotenv@v1.1.1
-      with:
-        key: 'MAPBOX_TOKEN'
-        value: ${{secrets.MAPBOX_TOKEN}}
-    - uses: TickX/var-to-dotenv@v1.1.1
-      with:
-        key: 'IMPRESS_RESPONSIBLE'
-        value: ${{secrets.IMPRESS_RESPONSIBLE}}
+    - run: echo "VERSION=$(echo $GITHUB_SHA | cut -c 1-6)" >> $GITHUB_ENV
+    - run: echo "BACKEND_URL=${{secrets.BACKEND_URL}}" >> $GITHUB_ENV
+    - run: echo ${{ env.BACKEND_URL }}
+    - run: echo "MAPBOX_TOKEN=${{secrets.MAPBOX_TOKEN}}" >> $GITHUB_ENV
+    - run: echo "IMPRESS_RESPONSIBLE=${{secrets.IMPRESS_RESPONSIBLE}}" >> $GITHUB_ENV
     - uses: TickX/var-to-dotenv@v1.1.1
       with:
         key: 'IMPRESS_STREET'
@@ -67,7 +51,7 @@ jobs:
         # Docker repository to tag the image with
         repository: transportflow/transportflow-web/beta
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
-        tags: ${{ env.SHA }}
+        tags: $GITHUB_SHA
         # Whether to push the image
         push: true
     - name: Install doctl
