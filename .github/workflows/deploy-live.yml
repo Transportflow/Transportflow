@@ -20,39 +20,18 @@ jobs:
       run: echo "Using tag ${{ github.event.inputs.tag }}"
     - name: Checkout master
       uses: actions/checkout@master
-      
-    - uses: TickX/var-to-dotenv@v1.1.1
-      with:
-        key: 'VERSION'
-        value: ${{ github.event.inputs.tag }}
-    - uses: TickX/var-to-dotenv@v1.1.1
-      with:
-        key: 'BACKEND_URL'
-        value: ${{secrets.BACKEND_URL}}
-    - uses: TickX/var-to-dotenv@v1.1.1
-      with:
-        key: 'MAPBOX_TOKEN'
-        value: ${{secrets.MAPBOX_TOKEN}}
-    - uses: TickX/var-to-dotenv@v1.1.1
-      with:
-        key: 'IMPRESS_RESPONSIBLE'
-        value: ${{secrets.IMPRESS_RESPONSIBLE}}
-    - uses: TickX/var-to-dotenv@v1.1.1
-      with:
-        key: 'IMPRESS_STREET'
-        value: ${{secrets.IMPRESS_STREET}}
-    - uses: TickX/var-to-dotenv@v1.1.1
-      with:
-        key: 'IMPRESS_CITY'
-        value: ${{secrets.IMPRESS_CITY}}
-    - uses: TickX/var-to-dotenv@v1.1.1
-      with:
-        key: 'IMPRESS_PHONE'
-        value: ${{secrets.IMPRESS_PHONE}}
-    - uses: TickX/var-to-dotenv@v1.1.1
-      with:
-        key: 'IMPRESS_MAIL'
-        value: ${{secrets.IMPRESS_MAIL}}
+    
+    - name: Set env
+      run: |
+        echo "VERSION=${{ github.event.inputs.tag }}" >> .env
+        echo "VERSION=${{ github.event.inputs.tag }}" >> $GITHUB_ENV
+        echo "BACKEND_URL=${{secrets.BACKEND_URL}}" >> .env
+        echo "MAPBOX_TOKEN=${{secrets.MAPBOX_TOKEN}}" >> .env
+        echo "IMPRESS_RESPONSIBLE=${{secrets.IMPRESS_RESPONSIBLE}}" >> .env
+        echo "IMPRESS_STREET=${{secrets.IMPRESS_STREET}}" >> .env
+        echo "IMPRESS_CITY=${{secrets.IMPRESS_CITY}}" >> .env
+        echo "IMPRESS_PHONE=${{secrets.IMPRESS_PHONE}}" >> .env
+        echo "IMPRESS_MAIL=${{secrets.IMPRESS_MAIL}}" >> .env
     
     - name: Build and push Docker images
       # You may pin to the exact commit or the version.
@@ -66,7 +45,7 @@ jobs:
         # Server address of Docker registry. If not set then will default to Docker Hub
         registry: docker.pkg.github.com
         # Docker repository to tag the image with
-        repository: transportflow/transportflow-web/frontend
+        repository: transportflow/transportflow/frontend
         # Comma-delimited list of tags. These will be added to the registry/repository to form the image's tags
         tags: ${{ github.event.inputs.tag }}
         # Whether to push the image
@@ -78,5 +57,5 @@ jobs:
     - name: Save DigitalOcean kubeconfig
       run: doctl kubernetes cluster kubeconfig save k8s-1-16-6-do-2-fra1-1584545136798
     - name: Update deployment
-      run: kubectl set image deployments/transportflow transportflow=docker.pkg.github.com/transportflow/transportflow-web/frontend:${{ github.event.inputs.tag }} -n transportflow
+      run: kubectl set image deployments/transportflow transportflow=docker.pkg.github.com/transportflow/transportflow/frontend:${{ env.VERSION }} -n transportflow
 
