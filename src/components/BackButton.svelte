@@ -44,39 +44,39 @@
 <div class="flex justify-between">
     <div>
         <Button onClick={goBack}
-                className="bg-gray-200 dark:bg-gray-800 dark-hover:bg-gray-900 hover:bg-gray-300 text-gray-700 dark:text-gray-400 shadow-none">
+                className="bg-gray-100 dark:bg-gray-800 dark-hover:bg-gray-900 hover:bg-gray-300 text-gray-700 dark:text-gray-400 shadow-none">
             <div class="flex">
-                <ion-icon class="-ml-1 mr-1 my-auto text-gray-900 dark:text-gray-400"
+                <ion-icon class="my-auto mr-1 -ml-1 text-gray-900 dark:text-gray-400"
                           name="chevron-back-outline"></ion-icon>
                 {$_('utility.back')}
             </div>
         </Button>
         <slot/>
     </div>
-    <div id="crazzy" class="group flex-row-reverse">
+    <div id="crazzy" class="flex-row-reverse group">
         <Button onClick={toggleDropdown}
-                className="bg-gray-200 dark:bg-gray-800 dark-group-hover:bg-gray-900 group-hover:bg-gray-100 text-gray-700 dark:text-gray-400 shadow-none">
+                className="bg-gray-100 dark:bg-gray-800 dark-group-hover:bg-gray-900 group-hover:bg-white text-gray-700 dark:text-gray-400 shadow-none">
             <ion-icon class="mt-1 text-gray-900 dark:text-gray-400"
                       name="ellipsis-horizontal"></ion-icon>
         </Button>
         <div style="margin-left: -11.125rem;" class="flex w-full">
             <div style="max-height: 120px; z-index: 300;"
-                 class="w-56 absolute rounded text-sm text-right h-0 group-hover:py-1 group-hover:h-auto overflow-hidden transition-all duration-200 font-light bg-gray-100 dark:text-gray-200 dark:bg-gray-900 -mt-1 shadow-lg">
+                 class="absolute w-56 h-0 -mt-1 overflow-hidden text-sm font-light text-right transition-all duration-200 bg-white rounded shadow-lg group-hover:py-1 group-hover:h-auto dark:text-gray-200 dark:bg-gray-900">
                 <p class="h-0 group-hover:h-auto">
                     <button on:click={openReportingModal}
-                            class="px-2 py-1 w-full hover:bg-gray-200 dark-hover:bg-black text-right">
+                            class="w-full px-2 py-1 text-right hover:bg-gray-200 dark-hover:bg-black">
                         {$_('utility.report_a_problem')} 🤖
                     </button>
                 </p>
                 <p class="h-0 group-hover:h-auto">
                     <button on:click={toggleDarkmode}
-                            class="px-2 py-1 w-full hover:bg-gray-200 dark-hover:bg-black text-right">
+                            class="w-full px-2 py-1 text-right hover:bg-gray-200 dark-hover:bg-black">
                         {$_('utility.darkmode')} 🌙
                     </button>
                 </p>
                 <p class="h-0 group-hover:h-auto">
                     <Link to="impressprivacy">
-                        <button class="px-2 py-1 w-full hover:bg-gray-200 dark-hover:bg-black text-right">
+                        <button class="w-full px-2 py-1 text-right hover:bg-gray-200 dark-hover:bg-black">
                             {$_('utility.impress_privacy')} 🎈
                         </button>
                     </Link>

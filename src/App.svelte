@@ -77,15 +77,15 @@
 
 
 
-<main class="font-inter transition-bg duration-200 min-h-screen h-full bg-gray-200 dark:bg-gray-800">
+<main class="h-full min-h-screen duration-200 bg-gray-100 font-inter transition-bg dark:bg-gray-800">
 
     {#if development}
-        <div class="text-sm bg-black text-white font-mono flex justify-between">
+        <div class="flex justify-between font-mono text-sm text-white bg-black">
             <p>Transportflow - WIP</p>
             <div class="flex space-x-2">
                 <div class="group">
                     <button class="cursor-pointer group-hover:bg-gray-300 group-hover:text-black">Locale</button>
-                    <div style="z-index: 3000" class="absolute hidden group-hover:block text-left bg-black">
+                    <div style="z-index: 3000" class="absolute hidden text-left bg-black group-hover:block">
                         {#each $locales as l}
                             <button class="pl-1 pr-8 {$locale === l ? 'bg-blue-600' : ''}" on:click={() => locale.set(l)}>{l}</button><br/>
                         {/each}
@@ -111,10 +111,10 @@
             <Index {beta}/>
         </PageAnimator>
         <Route>
-            <div class="h-screen flex justify-center items-center dark:text-white">
+            <div class="flex items-center justify-center h-screen dark:text-white">
                 <div class="mb-12">
                     <h1 class="text-4xl font-black">404</h1>
-                    <p class="dark:text-gray-500 text-gray-700">{$_('utility.page_not_found')}</p>
+                    <p class="text-gray-700 dark:text-gray-500">{$_('utility.page_not_found')}</p>
                 </div>
             </div>
         </Route>

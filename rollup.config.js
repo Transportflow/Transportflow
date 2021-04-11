@@ -6,6 +6,7 @@ import {terser} from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import replace from '@rollup/plugin-replace';
 import json from "@rollup/plugin-json";
+import css from "rollup-plugin-import-css";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -21,7 +22,15 @@ export default {
     },
     plugins: [
         svelte({
-            preprocess: sveltePreprocess({postcss: true}),
+            preprocess: sveltePreprocess({
+              sourceMap: !production,
+              postcss: {
+                plugins: [
+                 require("tailwindcss"), 
+                 require("autoprefixer"),
+                ],
+              },
+            }),
             // enable run-time checks when not in production
             dev: !production,
             // we'll extract any component CSS out into
@@ -32,6 +41,8 @@ export default {
         }),
 
         json(),
+
+        css(),
 
         replace({
             "process.env.NODE_ENV": production ? "'production'" : "'development'",

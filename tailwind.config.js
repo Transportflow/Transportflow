@@ -1,4 +1,10 @@
+const production = !process.env.ROLLUP_WATCH;
+
 module.exports = {
+  future: {
+    purgeLayersByDefault: true,
+    removeDeprecatedGapUtilities: true,
+  },
   theme: {
     extend: {},
   },
@@ -16,4 +22,12 @@ module.exports = {
   plugins: [
     require('tailwindcss-dark-mode')()
   ],
+  purge: {
+    content: [
+     "./src/**/*.svelte",
+     "./public/**/*.html"
+
+    ],
+    enabled: production // disable purge in dev
+  },
 }

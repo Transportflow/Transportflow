@@ -25,7 +25,7 @@
     })
 </script>
 
-<div class="trans-bg bg-gray-300 dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-medium font-inter rounded-lg overflow-hidden mb-2 p-2 pl-3 select-none cursor-pointer transition duration-200"
+<div class="p-2 pl-3 mb-2 overflow-hidden font-medium text-gray-900 transition duration-200 bg-gray-200 rounded-lg cursor-pointer select-none trans-bg dark:bg-gray-900 dark:text-gray-100 font-inter"
      on:click={toggleOpen}>
     <div
             class={(open ? "opacity-100 pb-1" : "opacity-0") + " overflow-hidden font-semibold text-sm tracking-wide uppercase text-center trans"}
@@ -45,9 +45,9 @@
             {/if}
         {/if}
     </div>
-    <div class="flex flex-shrink justify-between rounded-lg">
-        <div class="w-3/4 sm:ml-1 my-auto">
-            <p class="font-semibold text-2xl flex items-center leading-tight">
+    <div class="flex justify-between flex-shrink rounded-lg">
+        <div class="w-3/4 my-auto sm:ml-1">
+            <p class="flex items-center text-2xl font-semibold leading-tight">
                 {#if stopover.line.product.img !== ""}
                     <img
                             style="height:26px;margin-right:0.5rem;"
@@ -55,19 +55,19 @@
                             src={stopover.line.product.img}
                     />
                 {/if}
-                <span class="truncate pt-1">{stopover.line.name}</span>
+                <span class="pt-1 truncate">{stopover.line.name}</span>
             </p>
-            <p class="text-lg font-normal truncate text-gray-800 dark:text-gray-200">
+            <p class="text-lg font-normal text-gray-800 truncate dark:text-gray-200">
                 <span>{stopover.direction}</span>
             </p>
         </div>
-        <div class="w-1/4 sm:w-1/5 md:w-1/6 bg-gray-400 dark:bg-gray-800 rounded-lg object-right p-2 sm:m-1 transition duration-200">
-            <p class="text-center leading-tight">
-                <span class="font-semibold text-2xl text-gray-800 dark:text-gray-200">
+        <div class="object-right w-1/4 p-2 transition duration-200 bg-gray-300 rounded-lg sm:w-1/5 md:w-1/6 dark:bg-gray-800 sm:m-1">
+            <p class="leading-tight text-center">
+                <span class="text-2xl font-semibold text-gray-800 dark:text-gray-200">
                     {relativeTime(stopover.when).replace("+", "")}
                 </span>
                 <br/>
-                <span class="font-thin text-gray-800 dark:text-gray-200 text-base">
+                <span class="text-base font-thin text-gray-800 dark:text-gray-200">
                     {clockTime(stopover.when)}
                 </span>
             </p>

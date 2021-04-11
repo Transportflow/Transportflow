@@ -34,22 +34,22 @@
         <Spinner size="30" speed="1000" color="#85cb37" thickness="2" gap="40"/>
         <span class="my-auto">{$_('departures.loading_stop_information')}</span></p>
 {:else}
-    <div class="flex flex-no-wrap overflow-scroll overflow-y-hidden scrollbar-none scrolling-touch pt-2 pb-1">
+    <div class="flex flex-no-wrap pt-2 pb-1 overflow-scroll overflow-y-hidden scrolling-touch scrollbar-none">
         {#each upcoming as stopover}
-            <div style="margin-right: {(stopover.stop.products ? stopover.stop.products.length : 3)/2}rem;"
+            <div style="margin-right: {(stopover.stop.products ? stopover.stop.products.length*1.5 : 3)/2}rem;"
                  class="text-left">
-                <div class="whitespace-no-wrap h-5">
+                <div class="h-5 whitespace-nowrap">
                     {#if stopover.stop.products}
                         {#each stopover.stop.products as product}
                             {#if product.img !== ""}
-                                <img src={product.img} alt="" class="inline-block h-4 w-4 mr-1"/>
+                                <img src={product.img} alt="" class="inline-block w-4 h-4 mr-1"/>
                             {/if}
                         {/each}
                     {/if}
                 </div>
                 <a use:link href="/monitor/{city}/{stopover.stop.id}"
-                   class="whitespace-no-wrap">{stopover.stop.name}</a>
-                <p class="whitespace-no-wrap">{relativeToTime(stopover.arrival || stopover.departure, new Date(Date.parse(relativeTo + " UTC")))} · {clockTime(stopover.arrival || stopover.departure)}</p>
+                   class="whitespace-nowrap">{stopover.stop.name}</a>
+                <p class="whitespace-nowrap">{relativeToTime(stopover.arrival || stopover.departure, new Date(Date.parse(relativeTo + " UTC")))} · {clockTime(stopover.arrival || stopover.departure)}</p>
             </div>
         {/each}
     </div>

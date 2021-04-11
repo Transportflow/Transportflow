@@ -11,7 +11,11 @@
     let mail = process.env.IMPRESS_MAIL || "muster@mann.de"
 </script>
 
-<div class="p-4 pt-12 sm:p-24 sm:pl-40 sm:pt-20 w-full h-screen dark:text-gray-200 overflow-y-scroll scrolling-touch">
+<svelte:head>
+  <meta name="robots" content="noindex">
+</svelte:head>
+
+<div class="w-full h-screen p-4 pt-12 overflow-y-scroll scrolling-touch sm:p-24 sm:pl-40 sm:pt-20 dark:text-gray-200">
     <BackButton/>
 
     {#if $locale === "de"}
