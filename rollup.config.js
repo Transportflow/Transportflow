@@ -51,11 +51,8 @@ export default {
                     VERSION: process.env.VERSION || "0.0.0",
                     BACKEND_URL: process.env.BACKEND_URL || "https://backend.transportflow.online",
                     MAPBOX_TOKEN: process.env.MAPBOX_TOKEN,
-                    IMPRESS_RESPONSIBLE: process.env.IMPRESS_RESPONSIBLE,
-                    IMPRESS_STREET: process.env.IMPRESS_STREET,
-                    IMPRESS_CITY: process.env.IMPRESS_CITY,
-                    IMPRESS_PHONE: process.env.IMPRESS_PHONE,
-                    IMPRESS_MAIL: process.env.IMPRESS_MAIL,
+                    RESPONSIBLE: process.env.RESPONSIBLE,
+                    HOSTER: process.env.HOSTER,
                 }
             })
         }),
