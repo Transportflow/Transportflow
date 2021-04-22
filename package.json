@@ -21,6 +21,7 @@
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^4.0.3",
     "@rollup/plugin-replace": "^2.4.2",
+    "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "^10.2.5",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",

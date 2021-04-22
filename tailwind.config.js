@@ -20,6 +20,7 @@ module.exports = {
     translate: ['responsive', 'hover', 'group-hover']
   },
   plugins: [
+    require("@tailwindcss/typography"),
     require('tailwindcss-dark-mode')()
   ],
   purge: {

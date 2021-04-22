@@ -62,6 +62,8 @@
   },
 
   "utility": {
+    "see_impress": "siehe Impressum",
+    "see_privacy": "siehe Datenschutz",
     "report_a_problem": "Problem melden",
     "darkmode": "Darkmode",
     "impress_privacy": "Impressum & Datenschutz",
@@ -76,7 +78,7 @@
       "region_not_available": "<b>Region nicht verfügbar</b><br/>Bitte wählen Sie Ihre Region in den Einstellungen aus.",
       "network_error": "<b>Netzwerkfehler</b><br/>Vergewissern Sie sich, dass ihr Gerät mit dem Internet verbunden ist.",
       "attention": "Achtung",
-      "deprecating__dot_de": "<p class='dark:text-white -mt-1 leading-snug'>Wir werden <span class='text-blue-600'>transportflow.de</span> nur noch bis zum 14.12.2020 betreiben.<br>Sie können Transportflow weiterhin unter <span class='text-blue-600'>transportflow.online</span> nutzen.</p><div class='mb-2 mt-4'><a href='https://transportflow.online' target='_blank' class='px-4 py-2 rounded cursor-pointer shadow transition-bg duration-200 font-medium text-sm text-gray-100 focus:outline-none bg-button-blue hover:shadow-outline active:bg-blue-700'>Öffnen</a></div>"
+      "deprecating__dot_de": "<p class='-mt-1 leading-snug dark:text-white'>Wir werden <span class='text-blue-600'>transportflow.de</span> nur noch bis zum 14.12.2020 betreiben.<br>Sie können Transportflow weiterhin unter <span class='text-blue-600'>transportflow.online</span> nutzen.</p><div class='mt-4 mb-2'><a href='https://transportflow.online' target='_blank' class='px-4 py-2 text-sm font-medium text-gray-100 duration-200 rounded shadow cursor-pointer transition-bg focus:outline-none bg-button-blue hover:shadow-outline active:bg-blue-700'>Öffnen</a></div>"
     }
   },
 
