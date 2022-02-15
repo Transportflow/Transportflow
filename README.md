@@ -1,7 +1,8 @@
 
 # 🦜 Transportflow
 
-Transportflow is a webpage to help people use public transport conviniently in germany.<br>
+Transportflow was a webpage to help people use public transport conviniently in germany.<br>
+It is now transformed into an intelligent travel assistant.
 
 ### State of the project
 
