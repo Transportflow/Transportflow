@@ -2,7 +2,10 @@
 # 🦜 Transportflow
 
 Transportflow was a webpage to help people use public transport conviniently in germany.<br>
-It is now transformed into an intelligent travel assistant.
+It is now transformed into an intelligent travel assistant and can be downloaded in the App Store.
+
+[![Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917](https://github.com/user-attachments/assets/d1c879b8-31de-43ac-8565-642a21ff5940)](https://apps.apple.com/de/app/transportflow/id6449669458)
+
 
 ### State of the project
 
